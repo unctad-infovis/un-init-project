@@ -1,0 +1,24 @@
+{
+  "name": "un-init-project",
+  "version": "0.1.0",
+  "description": "UN Project Init Tools",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "un-init-project": "./bin/init-project.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Teemo Tebest <teemo.tebest@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^4.3.4",
+    "ncp": "^2.0.0",
+    "netrc": "^0.1.4",
+    "node-rest-client": "^3.1.1",
+    "promise": "^8.1.0"
+  }
+}
