@@ -1,7 +1,9 @@
 const path = require('path');
 const name = require('./package.json').name;
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 
 module.exports = {
   entry: {
@@ -68,5 +70,13 @@ module.exports = {
       template: "./src/html/index.html",
       filename: "./index.html"
     }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'assets/img/', to: '../public/assets/img/', noErrorOnMissing: true},
+        { from: 'assets/data/data.json', to: '../public/assets/data/data.json', noErrorOnMissing: true},
+        { from: 'src/font/', to: '../public/font/', noErrorOnMissing: true},
+        { from: './favicon.png', to: '../public', noErrorOnMissing: true}
+      ]
+    })
   ]
 };
