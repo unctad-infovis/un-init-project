@@ -1,5 +1,5 @@
 {
-  "name": "2022-__PROJECT_NAME__",
+  "name": "__PROJECT_NAME__",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -39,4 +39,6 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.2"
   },
+  "dependencies": {
+  }
 }

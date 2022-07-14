@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import './../styles/styles.less';
+import React, { /* useState, */useEffect } from 'react';
+import '../styles/styles.less';
 
 // Load helpers.
-import formatNr from './helpers/formatNr.js';
-import roundNr from './helpers/roundNr.js';
+// import formatNr from './helpers/FormatNr.js';
+// import roundNr from './helpers/RoundNr.js';
 
 const App = () => {
   // Data states.
-  const [data, setData] = useState(false);
-
-  // Not used.
-  // const [relativeToPopulation, setRelativeToPopulation] = useState(false);
+  // const [data, setData] = useState(false);
 
   useEffect(() => {
-    const data_file = (window.location.href.includes('unctad.org')) ? '/sites/default/files/data-file/2022-__PROJECT_NAME__.json' : './assets/data/data.json';
+    // const data_file = (window.location.href.includes('unctad.org')) ? '/sites/default/files/data-file/2022-__PROJECT_NAME__.json' : './assets/data/data.json';
     try {
       // fetch(data_file)
       //   .then(response => response.text())

@@ -1,6 +1,6 @@
-# 2022-__PROJECT_NAME__
+# __PROJECT_NAME__
 
-**Live demo** https://unctad-infovis.github.io/2022-__PROJECT_NAME__/
+**Live demo** https://unctad-infovis.github.io/__PROJECT_NAME__/
 
 ## Rights of usage
 
