@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "sync-gh-pages": "npm run build && git commit -am 'Production build' && git subtree push --prefix public origin gh-pages"
+    "sync-gh-pages": "git subtree push --prefix public origin gh-pages"
   },
   "keywords": [],
   "author": "",
