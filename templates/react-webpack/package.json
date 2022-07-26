@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "sync-gh-pages": "git subtree push --prefix public origin gh-pages"
+    "login":"az login --service-principal -u $AZURE_USER -p $AZURE_PW --tenant $AZURE_TENANT",
+    "start": "webpack serve --open --config webpack.dev.js",
+    "sync-gh-pages": "git subtree push --prefix public origin gh-pages",
+    "sync-prod":"azcopy copy 'public/*' 'https://${AZURE_STORAGE_NAME}.blob.core.windows.net/$web/${npm_package_name}/' --include-path 'js;css;assets' --recursive --exclude-pattern '.DS_Store'"
   },
   "keywords": [],
   "author": "",
