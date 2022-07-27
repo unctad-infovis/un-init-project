@@ -111,6 +111,7 @@ const injectFiles = props => {
       'package.json',
       'README.md',
       'src/html/index.html',
+      'src/index.js',
       'src/jsx/App.jsx',
       'src/styles/styles.less'
     ];
