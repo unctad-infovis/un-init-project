@@ -9,9 +9,6 @@ module.exports = merge(common, {
     hot: true,
     static: path.resolve(__dirname, './public')
   },
-  entry: {
-    app: './src/index.js'
-  },
   mode: 'development',
   plugins: [
     new ESLintPlugin({
