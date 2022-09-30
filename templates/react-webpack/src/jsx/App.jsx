@@ -15,7 +15,12 @@ const App = () => {
     // const data_file = (window.location.href.includes('unctad.org')) ? '/sites/default/files/data-file/__PROJECT_NAME__.json' : './assets/data/data.json';
     try {
       // fetch(data_file)
-      //   .then(response => response.text())
+      //   .then((response) => {
+      //     if (!response.ok) {
+      //       throw Error(response.statusText);
+      //     }
+      //     return response.text();
+      //   })
       //   .then(body => setData(JSON.parse(body)));
     }
     catch (error) {
