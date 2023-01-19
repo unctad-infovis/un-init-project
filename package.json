@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "UN Project Init Tools",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "push": "git push && git push unctad main"
   },
   "bin": {
     "un-init-project": "./bin/init-project.js"
