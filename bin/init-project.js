@@ -17,11 +17,12 @@ console.log('');
 /*********************************************
 // Check that UN_PATH is defined.
 *********************************************/
-const basePath = process.env.UN_PATH;
+let basePath = process.env.UN_PATH;
 if (basePath === undefined) {
   console.log('Environment variable UN_PATH not defined.');
   process.exit(1);
 }
+basePath = basePath + '/' + (new Date()).getFullYear()
 console.log('Base path is: ' + basePath);
 
 /*********************************************
