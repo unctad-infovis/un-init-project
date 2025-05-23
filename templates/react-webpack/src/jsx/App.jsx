@@ -30,7 +30,9 @@ const App = () => {
 
   return (
     <div className="app">
-      <noscript>Your browser does not support JavaScript!</noscript>
+      {
+        // Application
+      }
     </div>
   );
 };
