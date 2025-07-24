@@ -8,7 +8,7 @@ This project can be used to initialize an empty project.
 
 ## Install
 
-`npm install -g`
+`npm install && npm install -g`
 
 ## How to use
 
@@ -22,4 +22,8 @@ Example: `un-init-project 2019-climate`
 
 ### react-webpack
 
-Very basic React + Webpack template that comes with a basic folder structure and allows you to build everything from zero.
+Very basic React + Webpack template that comes with a basic folder structure and that allows you to build everything from zero.
+
+### react-webpack-un-map
+
+Very basic React + Webpack template that comes with a basic folder structure to build a map visualisation based on the UN country map and that allows you to build everything from zero.
