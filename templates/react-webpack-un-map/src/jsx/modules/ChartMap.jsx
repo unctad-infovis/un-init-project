@@ -96,7 +96,7 @@ function ChartMap({ values }) {
           }
         },
         enabled: true,
-        filename: '2025-__PROJECT_NAME__'
+        filename: '__PROJECT_NAME__'
       },
       legend: {
         align: 'left',
