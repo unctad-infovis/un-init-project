@@ -12,7 +12,7 @@ const App = () => {
   // const [data, setData] = useState(false);
 
   useEffect(() => {
-    // const data_file = (window.location.href.includes('unctad.org')) ? '/sites/default/files/data-file/__PROJECT_NAME__.json' : './assets/data/data.json';
+    const data_file = `${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/__PROJECT_NAME__/' : (window.location.href.includes('localhost:80')) ? './' : 'https://unctad-infovis.github.io/__PROJECT_NAME__/'}assets/data/data.json`;
     try {
       // fetch(data_file)
       //   .then((response) => {
