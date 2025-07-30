@@ -139,7 +139,7 @@ function ChartMap({ values }) {
                 if (chinaAreas.includes(element.id)) {
                   const { chart } = element.series;
                   chinaAreas.forEach((area) => {
-                    chart.get(area).setState('hover');
+                    chart.get(area)?.setState('hover');
                   });
                 }
                 return true;
@@ -148,7 +148,7 @@ function ChartMap({ values }) {
                 const element = this;
                 const { chart } = element.series;
                 chinaAreas.forEach((area) => {
-                  chart.get(area).setState('');
+                  chart.get(area)?.setState('');
                 });
               }
             }
@@ -229,8 +229,8 @@ function ChartMap({ values }) {
       },
       tooltip: {
         enabled: true,
-        // headerFormat: '<span style="font-size: 15px;"><strong>{point.name}</strong></span><br /><br />',
-        // pointFormat: pointFormat(type),
+        headerFormat: '<span style="font-size: 15px;"><strong>{point.name}</strong></span><br /><br />',
+        pointFormat: pointFormat(type),
         style: {
           color: '#000',
           fontSize: '13px'
