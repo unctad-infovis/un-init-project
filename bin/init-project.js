@@ -38,18 +38,23 @@ const Promise = require('promise');
 // Check that we have enough arguments.
 *********************************************/
 
-if (process.argv.length < 3) {
-  console.log('Usage: un-init-project [project_name] {template_name}');
-  console.log('Example: un-init-project 2019-climate');
-  process.exit(1);
-}
-
 const fileFilter = [
   '.DS_Store',
   '.git',
   '.gitignore',
   'README.md'
 ];
+
+if (process.argv.length < 3) {
+  console.log('Usage: un-init-project [project_name] {template_name}');
+  console.log('Example: un-init-project 2019-climate');
+  console.log('Available templates:');
+  const templatePath = __dirname + '/../templates/';
+  const templates = fs.readdirSync(templatePath).filter(file => fileFilter.indexOf(file) === -1);
+  templates.forEach(fileName => console.log('- ' + fileName));
+  process.exit(1);
+}
+
 
 /*********************************************
 // Check template name. 
@@ -114,6 +119,7 @@ const injectFiles = props => {
       'src/html/index.html',
       'src/index.js',
       'src/jsx/App.jsx',
+      'src/jsx/components/ChartMap.jsx',
       'src/styles/styles.less'
     ];
 
