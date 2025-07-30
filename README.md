@@ -27,3 +27,8 @@ Very basic React + Webpack template that comes with a basic folder structure and
 ### react-webpack-un-map
 
 Very basic React + Webpack template that comes with a basic folder structure to build a map visualisation based on the UN country map and that allows you to build everything from zero.
+
+
+### react-webpack-highcharts
+
+Very basic React + Webpack template that comes with a basic folder structure to build a highcharts graph and that allows you to build everything from zero.
