@@ -229,7 +229,7 @@ function ChartMap({ values }) {
       tooltip: {
         enabled: true,
         headerFormat: '<span style="font-size: 15px;"><strong>{point.name}</strong></span><br /><br />',
-        pointFormat: pointFormat(type),
+        // pointFormat: pointFormat(type),
         style: {
           color: '#000',
           fontSize: '13px'
