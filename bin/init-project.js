@@ -130,7 +130,7 @@ const injectFiles = props => {
         fs.writeFileSync(props.target + filePath, targetFile, 'utf8');
         // console.log('Injected file at ' + filePath);
       } catch (err) {
-        console.log('No file at ' + filePath);
+        
       }
     });
     process.chdir(basePath + '/' + projectName);
