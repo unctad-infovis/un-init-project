@@ -1,0 +1,16 @@
+---
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>__PROJECT_NAME__</title>
+	</head>
+	<body>
+		<h1>__PROJECT_NAME__</h1>
+	</body>
+</html>
