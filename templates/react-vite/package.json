@@ -1,0 +1,24 @@
+{
+  "name": "2026-test",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "vite build",
+    "start": "vite --open",
+    "preview": "vite preview",
+    "login": "az login --service-principal -u $AZURE_USER -p $AZURE_PW --tenant $AZURE_TENANT",
+    "push": "git push && git push unctad main",
+    "sync-gh-pages": "git subtree push --prefix public origin gh-pages",
+    "sync-prod": "azcopy copy \"public/*\" \"https://${AZURE_STORAGE_NAME}.blob.core.windows.net/\\$web/${npm_package_name}/\" --include-path 'js;css;assets' --recursive --exclude-pattern '.DS_Store'"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "vite": "^8.0.10"
+  },
+  "dependencies": {
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  }
+}

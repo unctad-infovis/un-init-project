@@ -117,10 +117,11 @@ const injectFiles = props => {
       'package.json',
       'README.md',
       'src/html/index.html',
-      'src/pages/index.astro',
       'src/index.js',
+      'src/index.jsx',
       'src/jsx/App.jsx',
       'src/jsx/components/ChartMap.jsx',
+      'src/styles/styles.css',
       'src/styles/styles.less'
     ];
 
