@@ -1,20 +1,21 @@
 {
-  "name": "2026-test",
+  "name": "__PROJECT_NAME__",
   "version": "1.0.0",
   "scripts": {
     "build": "vite build",
     "start": "vite --open",
     "preview": "vite preview",
+    "format": "biome format --write src",
+    "lint:fix": "biome check --write src",
     "login": "az login --service-principal -u $AZURE_USER -p $AZURE_PW --tenant $AZURE_TENANT",
     "push": "git push && git push unctad main",
     "sync-gh-pages": "git subtree push --prefix public origin gh-pages",
     "sync-prod": "azcopy copy \"public/*\" \"https://${AZURE_STORAGE_NAME}.blob.core.windows.net/\\$web/${npm_package_name}/\" --include-path 'js;css;assets' --recursive --exclude-pattern '.DS_Store'"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.14",
     "@vitejs/plugin-react": "^6.0.1",
-    "eslint": "",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.1.1",
+    "terser": "^5.0.0",
     "vite": "^8.0.10"
   },
   "dependencies": {
