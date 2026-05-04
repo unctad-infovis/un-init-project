@@ -8,7 +8,9 @@ export default defineConfig(({ command }) => ({
   base: `/${name}/`,
   server: {
     hot: true,
-    open: true
+    open: true,
+    port: 8080,
+    strictPort: false
   },
   build: {
     emptyOutDir: true,
