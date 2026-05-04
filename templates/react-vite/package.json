@@ -4,6 +4,7 @@
   "scripts": {
     "build": "vite build",
     "start": "vite --open",
+    "start_public": "vite --open --host",
     "preview": "vite preview",
     "format": "biome format --write src",
     "lint:fix": "biome check --write src",
