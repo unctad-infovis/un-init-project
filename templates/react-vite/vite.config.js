@@ -1,4 +1,6 @@
 import { createRequire } from 'node:module';
+import mdx from '@mdx-js/rollup';
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 const require = createRequire(import.meta.url);
@@ -6,16 +8,10 @@ const { name } = require('./package.json');
 
 export default defineConfig(({ command }) => ({
   base: `/${name}/`,
-  server: {
-    hot: true,
-    open: true,
-    port: 8080,
-    strictPort: false
-  },
   build: {
     emptyOutDir: true,
-    outDir: 'dist',
     minify: 'terser',
+    outDir: 'dist',
     rollupOptions: {
       input: {
         index: './index.html'
@@ -35,5 +31,12 @@ export default defineConfig(({ command }) => ({
         drop_console: command === 'build'
       }
     }
+  },
+  plugins: [{ enforce: 'pre', ...mdx() }, react()],
+  server: {
+    hot: true,
+    open: true,
+    port: 8080,
+    strictPort: false
   }
 }));

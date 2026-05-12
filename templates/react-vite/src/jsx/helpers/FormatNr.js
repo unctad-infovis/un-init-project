@@ -1,18 +1,32 @@
-const formatNr = (x, separator = ',', unit = '', prefix = '', addComma = false, addPlus = false) => {
-  let extra = '';
-  if (addPlus === true && x > 0) {
-    extra = '+';
-  }
-  else if (addPlus === true && x === 0) {
-    extra = '±';
-  }
+const formatNr = ({
+  addComma = false,
+  addPlus = false,
+  prefix = '',
+  separator = ',',
+  unit = '',
+  x
+}) => {
+  // Determine sign prefix
+  let sign = '';
   if (x < 0) {
-    extra = '-';
+    sign = '-';
+  } else if (addPlus && x > 0) {
+    sign = '+';
+  } else if (addPlus && x === 0) {
+    sign = '±';
   }
-  x = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator).replace(/-/g, '');
-  if (addComma === true && x.indexOf('.') === -1) {
-    x += '.0';
+
+  // Format number: add thousands separator, strip minus sign
+  let formatted = Math.abs(x)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, separator);
+
+  // Add trailing .0 if requested and no decimal present
+  if (addComma && !formatted.includes('.')) {
+    formatted += '.0';
   }
-  return x === '' ? 0 : extra + prefix + x + unit;
-}
+
+  return formatted === '' ? 0 : `${sign}${prefix}${formatted}${unit}`;
+};
+
 export default formatNr;

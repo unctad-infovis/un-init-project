@@ -114,12 +114,13 @@ const injectFiles = (props) => {
 
 		// Project files.
 		const injectFiles = [
+			"index.html",
 			"package.json",
 			"README.md",
-			"index.html",
 			"src/index.jsx",
 			"src/jsx/App.jsx",
 			"src/jsx/components/ChartMap.jsx",
+			"src/jsx/helpers/LoadFile.js",
 			"src/styles/styles.css",
 		];
 
