@@ -1,16 +1,10 @@
-const getHost = () => {
-  const { href } = window.location;
-  if (href.includes('unctad.org')) return 'https://storage.unctad.org/2026-__PROJECT_NAME__/';
-  if (href.includes('localhost')) return './';
-  return 'https://unctad-infovis.github.io/2026-__PROJECT_NAME__/';
-};
+import basePath from './BasePath.js';
 
 const loadFile = async file => {
   try {
-    const response = await fetch(getHost() + file);
+    const response = await fetch(basePath() + file);
     if (!response.ok) throw new Error(response.statusText);
-    const body = await response.text();
-    return JSON.parse(body);
+    return await response.text();
   } catch (error) {
     console.error(error);
     return null;

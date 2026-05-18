@@ -1,0 +1,48 @@
+#app-root-__PROJECT_NAME__ .app {
+  div.container_chapter_header {
+    max-width: 1000px;
+    margin: auto auto;
+    h3 {
+      font-size: var(--un-font-size-xxxxl);
+      font-weight: var(--un-font-weight-boldest);
+      line-height: var(--un-line-height-smallest);
+      margin: 0 0 10px 0;
+      max-width: 100%;
+      width: 100%;
+      @media all and (max-width: 700px) {
+        font-size: var(--un-font-size-xxxl);
+        font-weight: var(--un-font-weight-boldest);
+        line-height: var(--un-line-height-small);
+      }
+    }
+    h4 {
+      font-size: var(--un-font-size-xxl);
+      font-weight: var(--un-font-weight-normal);
+      line-height: var(--un-line-height-small);
+      margin: 0 0 20px 0;
+      max-width: 100%;
+      width: 100%;
+      @media all and (max-width: 700px) {
+        font-size: var(--un-font-size-xl);
+        font-weight: var(--un-font-weight-normal);
+        line-height: var(--un-line-height-small);
+      }
+    }
+
+    .container_button_download {
+      padding: 0 10px;
+      p {
+        margin: 0 0 10px 0;
+        max-width: 1000px;
+        width: 100%;
+      }
+    }
+    figure {
+      padding: 0 10px;
+      max-width: 1000px;
+      img {
+        height: 100%;
+      }
+    }
+  }
+}

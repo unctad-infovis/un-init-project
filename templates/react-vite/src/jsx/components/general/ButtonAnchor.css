@@ -1,0 +1,73 @@
+#app-root-__PROJECT_NAME__ .app {
+  .container_button_download {
+    margin: 0 0 20px 0;
+    button,
+    a {
+      background-color: var(--main-color);
+      border-radius: 20px;
+      border: 0;
+      color: #fff;
+      margin-right: 10px;
+      cursor: pointer;
+      display: inline-block;
+      font-size: var(--un-font-size-normal);
+      font-weight: 600;
+      line-height: var(--un-line-height-normal);
+      padding: 8px 20px 8px 20px;
+      position: relative;
+      text-decoration: none;
+      &:before {
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        content: '';
+        display: block;
+        height: 30px;
+        left: 6px;
+        position: absolute;
+        top: 4px;
+        width: 30px;
+      }
+      &:hover {
+        background-color: var(--secondary-color);
+        color: #fff;
+      }
+      &.overview {
+        background-color: var(--un-color-yellow);
+        color: #000;
+        padding: 8px 20px 8px 40px;
+        &:before {
+          background-image: url('https://storage.unctad.org/2025-wir_report/assets/img/icons/icon_eye_black.png');
+        }
+        &:hover {
+          background-color: var(--un-color-yellow-dark);
+          color: #000;
+        }
+      }
+      &.full_report {
+        background-color: var(--un-color-blue-dark);
+        color: #fff;
+        padding: 8px 20px 8px 40px;
+        &:before {
+          background-image: url('https://storage.unctad.org/2025-wir_report/assets/img/icons/icon_download_white.png');
+        }
+        &:hover {
+          background-color: var(--un-color-blue-darkest);
+          color: #fff;
+        }
+      }
+      &.chapter_download {
+        background-color: var(--main-color);
+        color: #fff;
+        padding: 8px 20px 8px 40px;
+        &:before {
+          background-image: url('https://storage.unctad.org/2025-wir_report/assets/img/icons/icon_download_white.png');
+        }
+        &:hover {
+          background-color: var(--secondary-color);
+          color: #fff;
+        }
+      }
+    }
+  }
+}

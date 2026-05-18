@@ -1,6 +1,97 @@
 @import 'colors.css';
 @import 'basics.css';
 
-#app-root-__PROJECT_NAME__ .app {
-  font-family: Inter, Arial, sans-serif;
+#app-root-__PROJECT_NAME__ {
+  .app {
+    box-sizing: border-box;
+    font-family: Inter, Arial, sans-serif;
+    button {
+      font-family: Inter, Arial, sans-serif;
+    }
+    h3 {
+      font-size: var(--un-font-size-xxl);
+      font-weight: var(--un-font-weight-bold);
+      line-height: var(--un-line-height-small);
+      @media all and (max-width: 700px) {
+        font-size: var(--un-font-size-xl);
+        font-weight: var(--un-font-weight-bolder);
+        line-height: var(--un-line-height-small);
+      }
+    }
+    h4 {
+      font-size: var(--un-font-size-xl);
+      font-weight: var(--un-font-weight-bold);
+      line-height: var(--un-line-height-small);
+      @media all and (max-width: 700px) {
+        font-size: var(--un-font-size-normal);
+        font-weight: var(--un-font-weight-bold);
+        line-height: var(--un-line-height-small);
+      }
+    }
+    p {
+      font-size: var(--un-font-size-normal);
+      font-weight: var(--un-font-weight-normal);
+      line-height: var(--un-line-height-normal);
+    }
+    strong {
+      font-weight: var(--un-font-weight-bold);
+    }
+    h3,
+    h4,
+    p {
+      box-sizing: border-box;
+      margin: auto auto 20px auto;
+      max-width: 700px;
+      padding: 0 10px;
+    }
+  
+    /* Layouts */
+    .width_100vw {
+      margin: auto auto;
+      max-width: 100dvw;
+      width: 100%;
+      h3,
+      h4,
+      p,
+      figure {
+        max-width: 100dvw;
+        margin: auto auto 20px auto;
+      }
+    }
+    .height_100vh {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      min-height: 100dvh;
+    }
+    .width_wide {
+      margin: auto auto;
+      max-width: 800px;
+      h3,
+      h4,
+      p,
+      figure {
+        max-width: 100%;
+        margin: auto auto 20px auto;
+      }
+    }
+    .two_column {
+      align-items: center;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      @media all and (max-width: 700px) {
+        flex-direction: column;
+      }
+      figure {
+        margin: 0 0 20px 0;
+      }
+    }
+    .parallax_container {
+      position: relative;
+      transition:
+        opacity 3s,
+        top 1s ease;
+    }
+  }
 }

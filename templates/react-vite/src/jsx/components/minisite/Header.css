@@ -1,0 +1,214 @@
+#app-root-__PROJECT_NAME__ .app {
+  div.container_header_wrapper {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto auto auto auto;
+    position: relative;
+    z-index: 2;
+    .container_header {
+      align-content: space-between;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: auto auto;
+      max-width: 1350px;
+      min-height: 50vh;
+      .header_top {
+        box-sizing: border-box;
+        margin-bottom: 100px;
+        padding: 10px;
+        > h2 {
+          color: #fff;
+          font-size: var(--un-font-size-xxxl);
+          font-weight: var(--un-font-weight-boldest);
+          line-height: var(--un-line-height-smallest);
+          margin: 0;
+          max-width: 400px;
+          text-shadow:
+            0 0 5px #000,
+            0 0 5px #000;
+          @media all and (max-width: 700px) {
+            font-size: var(--un-font-size-xxl);
+            font-weight: var(--un-font-weight-bolder);
+            line-height: var(--un-line-height-smallest);
+            max-width: 350px;
+          }
+          .year {
+            span {
+              span {
+                color: var(--un-color-yellow);
+              }
+            }
+          }
+        }
+      }
+      .header_bottom {
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        padding: 10px;
+        width: 100%;
+        > h3 {
+          color: #fff;
+          font-size: var(--un-font-size-xxxxl);
+          line-height: var(--un-line-height-smallest);
+          font-weight: var(--un-font-weight-bolder);
+          margin: 0 0 20px 0;
+          max-width: 700px;
+          padding: 0;
+          text-shadow:
+            0 0 5px #000,
+            0 0 5px #000;
+          @media all and (max-width: 700px) {
+            font-size: var(--un-font-size-xxxl);
+            font-weight: var(--un-font-weight-bolder);
+            line-height: var(--un-line-height-small);
+            max-width: 350px;
+          }
+        }
+        .share_wrapper {
+          box-shadow: 0 0 10px #000;
+        }
+        .container_button_download {
+          display: inline-block;
+          p {
+            display: inline-block;
+            margin: 0 10px 0 0;
+            padding: 0;
+          }
+        }
+        .container_chapters_navigation {
+          display: flex;
+          flex-direction: row;
+          height: 100%;
+          @media all and (max-width: 970px) {
+            flex-direction: column;
+          }
+          button {
+            background: none;
+            border-radius: 0;
+            border: 0;
+            cursor: pointer;
+            height: auto;
+            margin: 0;
+            outline: none;
+            padding: 0;
+            text-align: left;
+            @media all and (max-width: 970px) {
+              margin-bottom: 2px;
+            }
+            .chapter_navigation {
+              align-items: stretch;
+              background-color: var(--main-color);
+              border-color: var(--main-color);
+              border-style: solid;
+              border-width: 5px;
+              box-sizing: border-box;
+              display: flex;
+              flex-direction: column;
+              height: 100%;
+              margin: 0 10px 0 0;
+              width: 170px;
+              @media all and (max-width: 970px) {
+                flex-direction: row;
+                width: 100%;
+                .chapter_meta {
+                  order: 1;
+                }
+                .chapter_title {
+                  order: 2;
+                }
+                .chapter_image {
+                  order: 3;
+                }
+              }
+              .chapter_title {
+                background-color: var(--main-color);
+                box-sizing: border-box;
+                display: flex;
+                flex: 1;
+                padding: 5px 5px 10px 5px;
+                @media all and (max-width: 970px) {
+                  padding: 5px;
+                }
+                h3 {
+                  color: #fff;
+                  font-size: var(--un-font-size-normal);
+                  font-weight: var(--un-font-weight-bold);
+                  line-height: var(--un-line-height-normal);
+                  margin: 0;
+                  padding: 0;
+                }
+              }
+              .chapter_image {
+                background: transparent;
+                padding: 5px;
+                position: relative;
+                div {
+                  aspect-ratio: 1 / 1;
+                  background-position: 50% 50%;
+                  background-size: auto 100%;
+                  background-blend-mode: darken;
+                  background-color: rgba(0, 0, 0, 0.4);
+                }
+              }
+              .chapter_meta {
+                align-items: center;
+                background-color: var(--main-color);
+                display: flex;
+                justify-content: space-between;
+                padding: 5px 5px 0px 5px;
+                @media all and (max-width: 970px) {
+                  padding: 0 5px;
+                }
+                .chapter_number {
+                  color: #fff;
+                  font-size: var(--un-font-size-xl);
+                  font-weight: var(--un-font-weight-boldest);
+                  line-height: var(--un-line-height-normal);
+                  @media all and (max-width: 970px) {
+                    width: 30px;
+                  }
+                }
+                .chapter_download_button {
+                  color: #fff;
+                  font-size: 0;
+                  margin-top: -4px;
+                  @media all and (max-width: 970px) {
+                    margin-top: 0;
+                  }
+                  &:before {
+                    background-image: url('https://storage.unctad.org/2025-wir_report/assets/img/icons/icon_download_white.png');
+                    background-size: 100%;
+                    content: '';
+                    display: block;
+                    height: 30px;
+                    opacity: 0.7;
+                    width: 30px;
+                  }
+                }
+                .chapter_download_button:hover {
+                  &:before {
+                    opacity: 1;
+                  }
+                }
+              }
+            }
+            &:hover {
+              .chapter_navigation {
+                background-color: var(--secondary-color);
+                border-color: var(--secondary-color);
+              }
+              .chapter_title {
+                background-color: var(--secondary-color);
+              }
+              .chapter_meta {
+                background-color: var(--secondary-color);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+#app-root-__PROJECT_NAME__ .app {
+  figure.quote {
+    font-weight: var(--un-font-weight-normal);
+    margin: auto auto 20px auto;
+    max-width: 600px;
+    blockquote {
+      border: 0;
+      margin: 0 0 20px 0;
+      padding: 40px 0 0 100px;
+      position: relative;
+      .quote {
+        font-size: var(--un-font-size-xl);
+        font-style: italic;
+        line-height: var(--un-line-height-normal);
+        margin-bottom: 20px;
+      }
+      .author {
+        font-size: var(--un-font-size-normal);
+        .name {
+          font-weight: var(--un-font-weight-bold);
+          display: block;
+        }
+      }
+      &:before {
+        background-image: url('https://storage.unctad.org/2025-wir_report/assets/img/icons/icon_quote_big.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        content: '';
+        display: inline-block;
+        height: calc(129px / 1.5);
+        left: 0;
+        position: absolute;
+        top: 0;
+        vertical-align: middle;
+        width: calc(139px / 1.5);
+      }
+    }
+  }
+}

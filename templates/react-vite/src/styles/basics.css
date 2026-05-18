@@ -1,7 +1,37 @@
 /* Utility */
-.hidden {
+#app-root-__PROJECT_NAME__ .hidden {
   display: none;
 }
-.nowrap {
+#app-root-__PROJECT_NAME__ .nowrap {
   white-space: nowrap;
+}
+#app-root-__PROJECT_NAME__ .warning {
+  align-items: center;
+  border: 5px solid var(--un-color-red);
+  box-sizing: border-box;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  width: 100%;
+}
+
+:root {
+  /* Font size */
+  --un-font-size-normal: 18px;
+  --un-font-size-xs: 16px;
+  --un-font-size-xxs: 13px;
+  --un-font-size-xxxxs: 11px;
+  --un-font-size-xl: 24px;
+  --un-font-size-xxl: 30px;
+  --un-font-size-xxxl: 40px;
+  --un-font-size-xxxxl: 60px;
+  /* Font weight */
+  --un-font-weight-bold: 600;
+  --un-font-weight-bolder: 700;
+  --un-font-weight-boldest: 800;
+  --un-font-weight-normal: 400;
+  /* Line height */
+  --un-line-height-normal: 1.3;
+  --un-line-height-small: 1.2;
+  --un-line-height-smallest: 1.1;
 }

@@ -1,0 +1,8 @@
+#app-root-__PROJECT_NAME__ .app {
+  figure.container_chart_data_wrapper {
+    box-sizing: border-box;
+    max-width: 650px;
+    padding: 0 10px;
+    width: 100%;
+  }
+}
