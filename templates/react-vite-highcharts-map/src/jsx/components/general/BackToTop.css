@@ -1,0 +1,52 @@
+#app-root-__PROJECT_NAME__ .app {
+  div.container_back_to_top {
+    animation-delay: 10s;
+    animation-direction: normal;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-iteration-count: 5;
+    animation-name: app_root_2026_wir_report_bounce2;
+    animation-play-state: running;
+    animation-timing-function: ease-in-out;
+    background-color: transparent;
+    margin-right: 50px;
+    position: sticky;
+    text-align: right;
+    top: calc(100dvh - 65px);
+    z-index: 15;
+    button {
+      background-color: var(--un-color-yellow);
+      border: 0;
+      border-radius: 50px;
+      box-shadow: 0 0 10px #000;
+      color: #000;
+      cursor: pointer;
+      font-size: var(--un-font-size-xxxxs);
+      font-weight: var(--un-font-weight-bold);
+      height: 50px;
+      line-height: var(--un-line-height-normal);
+      position: relative;
+      width: 50px;
+      &:hover {
+        background-color: var(--un-color-blue-dark);
+        color: #fff;
+      }
+    }
+    @media all and (max-width: 970px) {
+      margin-right: 20px;
+    }
+  }
+}
+
+@keyframes app_root_2026_wir_report_bounce2 {
+  0%,
+  100% {
+    top: calc(100dvh - 65px);
+  }
+  5% {
+    top: calc(100dvh - 70px);
+  }
+  10% {
+    top: calc(100dvh - 75px);
+  }
+}

@@ -1,0 +1,42 @@
+#app-root-2026-map .app {
+  figure.container_map {
+    background-color: #f2f8fc;
+    margin: auto auto;
+    max-width: 800px;
+    padding: 20px;
+    button {
+      cursor: default !important;
+    }
+    .map_tooltip {
+      text-align: left;
+      h3 {
+        font-size: var(--un-font-size-normal);
+        font-weight: var(--un-font-weight-bold);
+        line-height: var(--un-line-height-normal);
+        margin-bottom: 10px;
+        padding: 0;
+        text-align: left;
+      }
+      ul {
+        font-size: var(--un-font-size-normal);
+        font-weight: var(--un-font-weight-normal);
+        line-height: var(--un-line-height-normal);
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li {
+          span.label {
+            font-size: var(--un-font-size-xs);
+            font-weight: var(--un-font-weight-normal);
+            line-height: var(--un-line-height-normal);
+          }
+          span.value {
+            font-size: var(--un-font-size-xs);
+            font-weight: var(--un-font-weight-bold);
+            line-height: var(--un-line-height-normal);
+          }
+        }
+      }
+    }
+  }
+}

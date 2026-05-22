@@ -1,0 +1,18 @@
+#app-root-__PROJECT_NAME__ .app {
+  figure.image {
+    .parallax_container {
+      position: relative;
+      transition:
+        opacity 3s,
+        top 1s ease;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+    figcaption {
+      color: var(--un-color-grey-text);
+      font-size: var(--un-font-size-xs);
+    }
+  }
+}

@@ -1,0 +1,41 @@
+#app-root-__PROJECT_NAME__ .app {
+  div.container_side_scrolling_text {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    .header {
+      color: var(--main-color);
+      font-size: var(--un-font-size-xxxl);
+      font-weight: var(--un-font-weight-boldest);
+      left: 10px;
+      line-height: var(--un-line-height-small);
+      margin: 0 0 20px auto;
+      position: fixed;
+      text-transform: uppercase;
+      top: 20px;
+      z-index: 1;
+    }
+    .container_scrolling_text {
+      height: 100dvh;
+      min-width: 80vw;
+      position: fixed;
+      top: 35vh;
+      .text {
+        box-sizing: border-box;
+        font-size: var(--un-font-size-xxxxl);
+        font-weight: var(--un-font-weight-bold);
+        line-height: var(--un-line-height-smallest);
+        max-width: 700px;
+        padding: 0 40px;
+        @media all and (max-width: 700px) {
+          font-size: var(--un-font-size-xxxl);
+          font-weight: var(--un-font-weight-bold);
+          line-height: var(--un-line-height-small);
+        }
+      }
+    }
+  }
+}

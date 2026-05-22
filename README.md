@@ -1,10 +1,12 @@
 # UN Data visualisation initialization script
 
-This project can be used to initialize an empty project.
+Use this to initialize an empty project.
 
 `UN_PATH` needs to be set. This is the based path were the project folder is created.
 
 `export UN_PATH=''`
+
+Or you can set it in your default config.
 
 ## Install
 
@@ -16,22 +18,26 @@ This project can be used to initialize an empty project.
 
 Default template is `react-vite`
 
-Example: `un-init-project 2019-climate`
+Example: `un-init-project 2026-climate`
 
 ## Available templates
 
 ### react-vite
 
-Very basic React + Vite template that comes with a basic folder structure and that allows you to build everything from zero.
+Basic React + Vite template that comes with a basic folder structure and that allows you to build everything from zero.
 
-### react-webpack (depricated)
+### react-vite-highcharts-map
 
-Very basic React + Webpack template that comes with a basic folder structure and that allows you to build everything from zero.
+Basic React + Vite template that comes with a basic folder structure to build a map visualisation based on the UN country map and that allows you to build everything from zero.
 
-### react-webpack-un-map (depricated)
+### react-webpack (depricated, do not use)
 
-Very basic React + Webpack template that comes with a basic folder structure to build a map visualisation based on the UN country map and that allows you to build everything from zero.
+Basic React + Webpack template that comes with a basic folder structure and that allows you to build everything from zero.
 
-### react-webpack-highcharts (depricated)
+### react-webpack-un-map (depricated, do not use)
 
-Very basic React + Webpack template that comes with a basic folder structure to build a highcharts graph and that allows you to build everything from zero.
+Basic React + Webpack template that comes with a basic folder structure to build a map visualisation based on the UN country map and that allows you to build everything from zero.
+
+### react-webpack-highcharts (depricated, do not use)
+
+Basic React + Webpack template that comes with a basic folder structure to build a highcharts graph and that allows you to build everything from zero.

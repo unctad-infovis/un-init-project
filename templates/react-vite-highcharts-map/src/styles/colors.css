@@ -1,0 +1,68 @@
+:root {
+  /*
+  * BLUE
+  */
+  --un-color-blue-dark: #0077b8;
+  --un-color-blue-darkest: #004987;
+  --un-color-blue-light: #c5dfef;
+  --un-color-blue-lightest: #e3edf6;
+  --un-color-blue: #009edb;
+  /* Web colors for text */
+  --un-color-blue-text-dark: #005392;
+  --un-color-blue-text: #0077b8;
+
+  /*
+  * RED
+  */
+  --un-color-red-dark: #a71f36;
+  --un-color-red-darkest: #7e1a1c;
+  --un-color-red-light: #f9c0c5;
+  --un-color-red-lightest: #f7dfdf;
+  --un-color-red: #ed1847;
+  /* Web colors for text */
+  --un-color-red-text-dark: #ab1d37;
+  --un-color-red-text: #eb0045;
+
+  /*
+  * YELLOW
+  */
+  --un-color-yellow-dark: #d67c29;
+  --un-color-yellow-darkest: #b06e2a;
+  --un-color-yellow-lighest: #fff4bf;
+  --un-color-yellow-light: #ffd48e;
+  --un-color-yellow: #fbaf17;
+
+  /*
+  * GREY
+  */
+  --un-color-grey-dark: #6e6259;
+  --un-color-grey-darkest: #4f4740;
+  --un-color-grey-lighest: #ebeae6;
+  --un-color-grey-light: #ded9d5;
+  --un-color-grey: #aea29a;
+  /* Web colors for text */
+  --un-color-grey-text: #7c7067;
+
+  /*
+  * PURPLE
+  */
+  --un-color-purple-dark: #381f75;
+  --un-color-purple-darkest: #381f75;
+  --un-color-purple-light: #381f75;
+  --un-color-purple-lightest: #e4d7e8;
+  --un-color-purple: #a05fb4;
+  /* Web colors for text */
+  --un-color-purple-text-dark: #733d96;
+  --un-color-purple-text: #9a58af;
+
+  /*
+  * GREEN
+  */
+  --un-color-green-dark: #006747;
+  --un-color-green-darkest: #00562e;
+  --un-color-green-lighest: #e6efd0;
+  --un-color-green-light: #cee3a0;
+  --un-color-green: #72bf44;
+  /* Web colors for text */
+  --un-color-green-text: #27833a;
+}

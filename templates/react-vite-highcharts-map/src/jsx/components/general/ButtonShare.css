@@ -1,0 +1,75 @@
+#app-root-__PROJECT_NAME__ .app {
+  .share_wrapper {
+    display: inline;
+    margin: 0 10px;
+    position: relative;
+    z-index: 2;
+    .share_container {
+      left: 0;
+      line-height: 12px;
+      position: absolute;
+      top: 20px;
+      .icon_container {
+        button {
+          background-color: transparent;
+          border: 0;
+          color: #fff;
+          cursor: pointer;
+          margin: 0;
+          padding: 0;
+          img {
+            border-radius: 50%;
+            border: 3px solid #fff;
+            height: 35px;
+            margin: 0;
+            padding: 0;
+            width: 35px;
+            &:hover {
+              border-color: var(--un-color-blue-dark);
+            }
+          }
+        }
+      }
+      .share_buttons {
+        font-size: 0;
+        left: 50px;
+        position: absolute;
+        text-align: left;
+        top: 0px;
+        width: 150px;
+        button.share_button {
+          background-color: transparent;
+          border: none;
+          margin: 0;
+          padding: 0;
+          position: relative;
+          img {
+            border-radius: 50%;
+            border: 3px solid #fff;
+            height: 35px;
+            margin: 0 4px;
+            padding: 0;
+            width: 35px;
+            &:hover {
+              border-color: var(--un-color-blue-darkest);
+            }
+          }
+          .copied_message {
+            font-size: var(--un-font-size-xxs);
+            font-weight: var(--un-font-weight-normal);
+            left: 55px;
+            line-height: var(--un-line-height-small);
+            color: #fff;
+            position: absolute;
+            text-align: center;
+            text-shadow:
+              0 0 10px #000,
+              0 0 10px #000;
+            text-transform: uppercase;
+            top: 5px;
+          }
+        }
+      }
+    }
+  }
+}
