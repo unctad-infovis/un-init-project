@@ -16,8 +16,6 @@ import Article from '../Article.mdx';
 
 import './../styles/styles.css';
 
-import meta from './../meta.json';
-
 const components = {
   // BackToTop,
   // ChartDataWrapper,
@@ -30,7 +28,7 @@ const components = {
   // SideScrollingText
 };
 
-const App = () => {
+const App = ({ meta }) => {
   const appRef = useRef();
 
   // useEffect(() => {

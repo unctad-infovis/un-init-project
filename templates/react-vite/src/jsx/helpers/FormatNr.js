@@ -1,11 +1,4 @@
-const formatNr = ({
-  addComma = false,
-  addPlus = false,
-  prefix = '',
-  separator = ',',
-  unit = '',
-  x
-}) => {
+const formatNr = ({ addComma = false, addPlus = false, prefix = '', separator = ',', unit = '', x }) => {
   // Determine sign prefix
   let sign = '';
   if (x < 0) {

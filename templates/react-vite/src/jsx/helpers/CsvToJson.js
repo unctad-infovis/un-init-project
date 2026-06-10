@@ -2,7 +2,7 @@
 const CSVtoJSON = csv => {
   const lines = csv.toString().split(/\r\n/g);
   const result = [];
-  const headers = lines[0].split(',');
+  const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim());
   for (let i = 1; i < lines.length; i++) {
     const obj = {};
 

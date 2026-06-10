@@ -9,11 +9,6 @@ import Article from '../Article.mdx';
 // import ProgressBar from './components/general/ProgressBar.jsx';
 // import Quote from './components/general/Quote.jsx';
 
-// Minisite
-// import Header from './components/minisite/Header.jsx';
-// import HeaderChapter from './components/minisite/HeaderChapter.jsx';
-// import SideScrollingText from './components/minisite/SideScrollingText.jsx';
-
 // Map
 import ChartMap from './components/ChartMap.jsx';
 
@@ -21,8 +16,6 @@ import ChartMap from './components/ChartMap.jsx';
 import LoadFile from './helpers/LoadFile.js';
 
 import './../styles/styles.css';
-
-import meta from './../meta.json';
 
 const components = {
   ChartMap
@@ -37,7 +30,7 @@ const components = {
   // SideScrollingText
 };
 
-const App = () => {
+const App = ({ meta }) => {
   const appRef = useRef();
 
   const [data, setData] = useState(false);

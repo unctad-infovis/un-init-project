@@ -17,9 +17,19 @@ Project should start at: http://localhost:8080
 
 For developing please refer to `package.json`
 
+## Files and folders
+
+All public assets go to folder `public`.
+
+All source code goes to folder `src`.
+
 ## Packages
 
 The following packages are used in this project by default.
+
+### Project specific
+
+* **highcharts** - used to create the map
 
 ### Build & Dev Server
 

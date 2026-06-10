@@ -30,14 +30,14 @@ Basic React + Vite template that comes with a basic folder structure and that al
 
 Basic React + Vite template that comes with a basic folder structure to build a map visualisation based on the UN country map and that allows you to build everything from zero.
 
-### react-webpack (depricated, do not use)
+### react-webpack (depricated, DO NOT USE)
 
 Basic React + Webpack template that comes with a basic folder structure and that allows you to build everything from zero.
 
-### react-webpack-un-map (depricated, do not use)
+### react-webpack-un-map (depricated, DO NOT USE)
 
 Basic React + Webpack template that comes with a basic folder structure to build a map visualisation based on the UN country map and that allows you to build everything from zero.
 
-### react-webpack-highcharts (depricated, do not use)
+### react-webpack-highcharts (depricated, DO NOT USE)
 
 Basic React + Webpack template that comes with a basic folder structure to build a highcharts graph and that allows you to build everything from zero.

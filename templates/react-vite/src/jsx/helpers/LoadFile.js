@@ -8,7 +8,7 @@ const loadFile = async file => {
       throw new Error(response.statusText);
     }
 
-    return await response;
+    return response;
   } catch (error) {
     console.error(error);
 
