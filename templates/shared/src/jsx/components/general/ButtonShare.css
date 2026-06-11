@@ -1,0 +1,152 @@
+#app-root-__PROJECT_NAME__ .app {
+  /* ── Wrapper ── */
+  /* ── Panel ── */
+  .share_panel {
+    align-items: center;
+    display: inline-flex;
+    gap: 8px;
+  }
+  .share_wrapper {
+    align-items: center;
+    display: inline-flex;
+    gap: 10px;
+    /* Static: panel flows inline next to the toggle */
+    &.share_wrapper_static {
+      position: static;
+      .share_panel {
+        position: static;
+      }
+    }
+    /* Absolute: panel floats to the right of the toggle button */
+    &.share_wrapper_absolute {
+      position: relative;
+      .share_panel {
+        left: calc(100% + 10px);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        white-space: nowrap;
+      }
+    }
+  }
+  /* ── SHARE label ── */
+  .share_label {
+    color: inherit;
+    font-size: var(--un-font-size-xxxxs);
+    font-weight: var(--un-font-weight-normal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  /* ── Buttons — size, bg, radius, color all via inline style ── */
+  .share_btn {
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--un-color-grey-light);
+    cursor: pointer;
+    display: inline-flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      opacity 0.2s ease;
+    svg {
+      display: block;
+      height: 50%;
+      width: 50%;
+    }
+  }
+
+  /* ── "Copied!" tooltip ── */
+  .share_copied_msg {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    bottom: calc(100% + 6px);
+    color: #fff;
+    font-size: var(--un-font-size-xxxxs);
+    font-weight: var(--un-font-weight-bold);
+    left: 50%;
+    padding: 4px 8px;
+    pointer-events: none;
+    position: absolute;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+}
+
+  .share_wrapper {
+    display: inline;
+    margin: 0 10px;
+    position: relative;
+    z-index: 2;
+    .share_container {
+      left: 0;
+      line-height: 12px;
+      position: absolute;
+      top: 20px;
+      .icon_container {
+        button {
+          background-color: transparent;
+          border: 0;
+          color: #fff;
+          cursor: pointer;
+          margin: 0;
+          padding: 0;
+          img {
+            border-radius: 50%;
+            border: 3px solid #fff;
+            height: 35px;
+            margin: 0;
+            padding: 0;
+            width: 35px;
+            &:hover {
+              border-color: var(--un-color-blue-dark);
+            }
+          }
+        }
+      }
+      .share_buttons {
+        font-size: 0;
+        left: 50px;
+        position: absolute;
+        text-align: left;
+        top: 0px;
+        width: 150px;
+        button.share_button {
+          background-color: transparent;
+          border: none;
+          margin: 0;
+          padding: 0;
+          position: relative;
+          img {
+            border-radius: 50%;
+            border: 3px solid #fff;
+            height: 35px;
+            margin: 0 4px;
+            padding: 0;
+            width: 35px;
+            &:hover {
+              border-color: var(--un-color-blue-darkest);
+            }
+          }
+          .copied_message {
+            font-size: var(--un-font-size-xxs);
+            font-weight: var(--un-font-weight-normal);
+            left: 55px;
+            line-height: var(--un-line-height-small);
+            color: #fff;
+            position: absolute;
+            text-align: center;
+            text-shadow:
+              0 0 10px #000,
+              0 0 10px #000;
+            text-transform: uppercase;
+            top: 5px;
+          }
+        }
+      }
+    }
+  }
+}
