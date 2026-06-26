@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-import fs from 'node:fs';
-import path from 'node:path';
 import { execSync } from 'node:child_process';
-import { cpSync } from 'node:fs';
+import fs, { cpSync } from 'node:fs';
+import path from 'node:path';
 
 const YEAR = new Date().getFullYear();
 const FILE_FILTER = ['.DS_Store', '.git', '.gitignore', 'README.md'];
@@ -36,7 +35,9 @@ const getTemplates = () =>
 
 const printTemplates = () => {
   console.log('Available templates:');
-  getTemplates().forEach(t => console.log(`  - ${t}`));
+    getTemplates().forEach((t) => {
+    console.log(`  - ${t}`);
+  });
 };
 
 /*********************************************

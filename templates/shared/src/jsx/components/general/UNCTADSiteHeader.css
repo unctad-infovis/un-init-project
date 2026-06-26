@@ -1,7 +1,9 @@
 /* Bootstrap xl breakpoint = 1200px */
 .unctad_site_preview {
+  background-color: var(--un-color-red-light);
   box-sizing: border-box;
   font-family: Inter, Arial, sans-serif;
+  height: 275px;
   width: 100%;
   *,
   *::before,
@@ -14,7 +16,8 @@
   .usp_mobile_only {
     display: flex;
   }
-  @media (min-width: 1200px) {
+  @media (min-width: 1024px) {
+
     .usp_desktop_only {
       display: flex;
     }
@@ -22,13 +25,16 @@
       display: none;
     }
   }
+  @media (max-width: 1024px) {
+    height: 360px;
+  }
   /* ── Shared Bootstrap-style container ── */
   .usp_container {
     align-items: center;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
-    max-width: 1140px;
+    max-width: 1350px;
     padding: 0 12px;
     width: 100%;
   }
@@ -111,7 +117,6 @@
   }
   /* ── Logo + action buttons ── */
   .usp_header {
-    background-color: var(--un-color-red-light);
     .usp_container {
       align-items: flex-start;
     }
@@ -289,6 +294,8 @@
   /* ── Desktop navigation bar ── */
   .usp_nav {
     background: #4d4d4d;
+    margin: auto auto;
+    max-width: 1350px;
     .usp_container {
       padding: 0;
     }
