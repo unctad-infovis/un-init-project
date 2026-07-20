@@ -35,6 +35,10 @@
         outline: none;
         padding: 4px 0;
       }
+      /* LastPass ignores data-lpignore for its own "quick access" icon; hide the icon it injects directly */
+      [data-lastpass-icon-root] {
+        display: none !important;
+      }
     }
     .un_select_tags {
       display: flex;
