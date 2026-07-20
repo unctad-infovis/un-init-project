@@ -3,19 +3,19 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Article from '../Article.mdx';
 
 // General
-// import BackToTop from './components/general/BackToTop.jsx';
-// import ChartDataWrapper from './components/general/ChartDataWrapper.jsx';
-// import Image from './components/general/Image.jsx';
-// import ProgressBar from './components/general/ProgressBar.jsx';
-// import Quote from './components/general/Quote.jsx';
+// import BackToTop from '@unctad-infovis/general-tools/components/BackToTop.jsx';
+// import ChartDataWrapper from '@unctad-infovis/general-tools/components/ChartDataWrapper.jsx';
+// import Image from '@unctad-infovis/general-tools/components/Image.jsx';
+// import ProgressBar from '@unctad-infovis/general-tools/components/ProgressBar.jsx';
+// import Quote from '@unctad-infovis/general-tools/components/Quote.jsx';
 
 // Map
 import ChartMap from './components/ChartMap.jsx';
 
 // Helpers.
-import LoadFile from './helpers/LoadFile.js';
+import LoadFile from '@unctad-infovis/general-tools/helpers/LoadFile.js';
 
-import './../styles/styles.css';
+import '@unctad-infovis/general-tools/styles/styles.css';
 
 const components = {
   ChartMap

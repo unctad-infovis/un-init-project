@@ -1,0 +1,20 @@
+.app {
+  .highcharts-button {
+    outline: none;
+    &:hover {
+      .highcharts-button-box {
+        fill: #ddd;
+        stroke: #bbb;
+      }
+    }
+  }
+  .highcharts-label-box,
+  .highcharts-button-box {
+    fill: #fff;
+    font-family: Inter, Arial, sans-serif;
+    stroke: #ddd;
+  }
+  .highcharts-button-symbol {
+    stroke: #333;
+  }
+}

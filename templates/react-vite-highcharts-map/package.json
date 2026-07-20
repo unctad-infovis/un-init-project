@@ -25,6 +25,9 @@
     "vite": "^8.0.10"
   },
   "dependencies": {
+    "@unctad-infovis/general-tools": "^1.0.0",
+    "@unctad-infovis/map-tools": "^1.0.0",
+    "@unctad-infovis/minisite-tools": "^1.0.0",
     "highcharts": "^12.6.0"
   }
 }

@@ -1,0 +1,29 @@
+{
+  "name": "@unctad-infovis/minisite-tools",
+  "version": "1.0.1",
+  "description": "Shared React components for UNCTAD minisite report layouts (headers, footer, chapter navigation)",
+  "type": "module",
+  "exports": {
+    "./*": "./src/*"
+  },
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unctad-infovis/un-init-project.git",
+    "directory": "packages/minisite-tools"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {
+    "@unctad-infovis/general-tools": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "author": "Teemo Tebest <teemo.tebest@gmail.com>",
+  "license": "ISC"
+}

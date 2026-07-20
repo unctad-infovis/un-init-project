@@ -3,6 +3,9 @@
   "version": "0.1.2",
   "type":"module",
   "description": "UN Project Init Tools",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "push": "git push && git push unctad main"
   },

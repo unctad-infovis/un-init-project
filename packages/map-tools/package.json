@@ -1,0 +1,25 @@
+{
+  "name": "@unctad-infovis/map-tools",
+  "version": "1.2.0",
+  "description": "Shared Highcharts map helpers (TopoJSON processing, border/mapline series, disputed-territory colour resolution) for UNCTAD map visualisations",
+  "type": "module",
+  "exports": {
+    "./*": "./src/*"
+  },
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unctad-infovis/un-init-project.git",
+    "directory": "packages/map-tools"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "peerDependencies": {
+    "highcharts": "^12.6.0 || ^13.0.0"
+  },
+  "author": "Teemo Tebest <teemo.tebest@gmail.com>",
+  "license": "ISC"
+}

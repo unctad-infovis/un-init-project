@@ -1,0 +1,51 @@
+.app {
+  .un_tooltip {
+    display: inline-block;
+    position: relative;
+    .un_tooltip_trigger {
+      appearance: none;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+      padding: 0;
+    }
+    .un_tooltip_bubble {
+      background-color: #fff;
+      border-radius: 4px;
+      bottom: calc(100% + 8px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      color: #000;
+      font-size: var(--un-font-size-xxs);
+      left: 50%;
+      max-width: 300px;
+      opacity: 0;
+      padding: 10px 12px;
+      pointer-events: none;
+      position: absolute;
+      transform: translateX(-50%);
+      visibility: hidden;
+      width: max-content;
+      z-index: var(--tooltip-z-index, 1);
+      @media (prefers-reduced-motion: no-preference) {
+        transition:
+          opacity 0.2s ease,
+          visibility 0.2s ease;
+      }
+      &::after {
+        border: 6px solid transparent;
+        border-top-color: #fff;
+        content: '';
+        left: 50%;
+        position: absolute;
+        top: 100%;
+        transform: translateX(-50%);
+      }
+    }
+    .un_tooltip_trigger:hover + .un_tooltip_bubble,
+    .un_tooltip_trigger:focus-visible + .un_tooltip_bubble {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

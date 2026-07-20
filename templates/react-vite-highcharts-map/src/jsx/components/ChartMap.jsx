@@ -10,11 +10,11 @@ import 'highcharts/modules/map';
 import 'highcharts/modules/pattern-fill';
 
 // Load map helpers.
-import createMaplineSeries from './../helpers/map/CreateMaplineSeries.js';
-import getColor from './../helpers/map/GetColor.js';
-import getValue from './../helpers/map/GetValue.js';
-import processTopoObject from './../helpers/map/ProcessTopoObject.js';
-import processTopoObjectPolygons from './../helpers/map/ProcessTopoObjectPolygons.js';
+import createMaplineSeries from '@unctad-infovis/map-tools/CreateMaplineSeries.js';
+import getColor from '@unctad-infovis/map-tools/GetColor.js';
+import getValue from '@unctad-infovis/map-tools/GetValue.js';
+import processTopoObject from '@unctad-infovis/map-tools/ProcessTopoObject.js';
+import processTopoObjectPolygons from '@unctad-infovis/map-tools/ProcessTopoObjectPolygons.js';
 
 import './ChartMap.css';
 
@@ -184,10 +184,12 @@ function ChartMap({ data }) {
             affectsMapView: true,
             mapData: processTopoObjectPolygons(topology, 'economies-color'),
             data: topology.objects.economies.geometries.map(region => {
-              region.properties.value = map_data.find(data => data.code === region.properties.code) ? map_data.find(data => data.code === region.properties.code).value : null;
+              const { code, labelen } = region.properties;
+              const match = map_data.find(row => row.code === code);
+              region.properties.value = match ? match.value : null;
               return {
                 borderWidth: 0,
-                code: region.properties.code,
+                code,
                 color: getColor(region.properties, map_data, chinaAreas),
                 events: {
                   click() {
@@ -213,8 +215,8 @@ function ChartMap({ data }) {
                     });
                   }
                 },
-                id: region.properties.code,
-                name: region.properties.labelen,
+                id: code,
+                name: labelen,
                 value: getValue(region.properties, map_data, chinaAreas)
               };
             }),
