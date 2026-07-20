@@ -1,6 +1,6 @@
 {
   "name": "@unctad-infovis/map-tools",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "Shared Highcharts map helpers (TopoJSON processing, border/mapline series, disputed-territory colour resolution) for UNCTAD map visualisations",
   "type": "module",
   "exports": {

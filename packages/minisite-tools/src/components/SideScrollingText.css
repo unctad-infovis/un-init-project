@@ -18,11 +18,23 @@
       top: 20px;
       z-index: 1;
     }
+    .background {
+      background-position: center;
+      background-size: cover;
+      height: 100%;
+      left: 0;
+      opacity: 0.05;
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 0;
+    }
     .container_scrolling_text {
-      height: 100dvh;
+      height: 100svh;
       min-width: 80vw;
       position: fixed;
-      top: 35vh;
+      top: 35svh;
       .text {
         box-sizing: border-box;
         font-size: var(--un-font-size-xxxxl);

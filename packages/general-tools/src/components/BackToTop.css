@@ -18,21 +18,26 @@
       display: none;
     }
     button {
+      align-items: center;
       background-color: var(--un-color-yellow);
       border: 0;
       border-radius: 50px;
       box-shadow: 0 0 10px #000;
       color: #000;
       cursor: pointer;
-      font-size: var(--un-font-size-xxxxs);
-      font-weight: var(--un-font-weight-bold);
+      display: inline-flex;
       height: 50px;
-      line-height: var(--un-line-height-normal);
+      justify-content: center;
       position: relative;
       width: 50px;
       &:hover {
         background-color: var(--un-color-blue-dark);
         color: #fff;
+      }
+      svg {
+        display: block;
+        height: 24px;
+        width: 24px;
       }
     }
     @media all and (max-width: 970px) {

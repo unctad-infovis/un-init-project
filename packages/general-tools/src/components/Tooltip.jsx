@@ -8,13 +8,13 @@ const handleTriggerKeyDown = event => {
   }
 };
 
-function Tooltip({ className = '', content, label = 'More information' }) {
+function Tooltip({ children, className = '', content, label = 'More information' }) {
   const bubbleId = useId();
 
   return (
     <span className={`un_tooltip ${className}`.trim()}>
-      <button aria-describedby={bubbleId} aria-label={label} className="un_tooltip_trigger" onKeyDown={handleTriggerKeyDown} type="button">
-        <span aria-hidden="true">i</span>
+      <button aria-describedby={bubbleId} aria-label={children ? undefined : label} className="un_tooltip_trigger" onKeyDown={handleTriggerKeyDown} type="button">
+        {children ?? <span aria-hidden="true">i</span>}
       </button>
       <span className="un_tooltip_bubble" id={bubbleId} role="tooltip">
         {content}
