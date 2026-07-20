@@ -176,6 +176,11 @@ function Select({ ariaLabel, className = '', clearable = false, disabled = false
           aria-expanded={open}
           aria-haspopup="listbox"
           aria-label={label ? undefined : ariaLabel}
+          autoComplete="off"
+          data-1p-ignore="true"
+          data-bwignore="true"
+          data-form-type="other"
+          data-lpignore="true"
           disabled={disabled}
           id={inputId}
           onChange={searchable ? handleInputChange : undefined}
