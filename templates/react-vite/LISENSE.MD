@@ -1,1 +1,0 @@
-../shared/LISENSE.md
