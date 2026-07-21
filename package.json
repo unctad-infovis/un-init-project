@@ -7,7 +7,11 @@
     "packages/*"
   ],
   "scripts": {
-    "push": "git push && git push unctad main"
+    "push": "git push && git push unctad main",
+    "login": "az login --service-principal -u $AZURE_USER -p $AZURE_PW --tenant $AZURE_TENANT",
+    "sync-shared-resources": "npm run sync-flags && npm run sync-icons",
+    "sync-flags": "azcopy copy \"packages/unctad-flags/src/round/*\" \"https://${AZURE_STORAGE_NAME}.blob.core.windows.net/\\$web/shared-resources/flags/round/\" --recursive --exclude-pattern '.DS_Store'",
+    "sync-icons": "azcopy copy \"packages/unctad-icons/src/*\" \"https://${AZURE_STORAGE_NAME}.blob.core.windows.net/\\$web/shared-resources/icons/\" --recursive --exclude-pattern '.DS_Store;index.js'"
   },
   "bin": {
     "un-init-project": "./bin/init-project.js"

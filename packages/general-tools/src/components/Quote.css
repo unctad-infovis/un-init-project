@@ -22,7 +22,7 @@
         }
       }
       &:before {
-        background-image: url('./icons/icon_quote_big.png');
+        background-image: url('https://storage.unctad.org/shared-resources/icons/icon_quote_big.png');
         background-repeat: no-repeat;
         background-size: 100%;
         content: '';

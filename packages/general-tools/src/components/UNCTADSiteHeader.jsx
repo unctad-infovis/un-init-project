@@ -1,4 +1,4 @@
-import basePath from "../helpers/BasePath.js";
+import { getIconUrl } from "@unctad-infovis/unctad-icons";
 import "./UNCTADSiteHeader.css";
 
 const NAV_ITEMS = [
@@ -11,25 +11,27 @@ const NAV_ITEMS = [
 	"Media",
 ];
 
-const IMG = "assets/img/unctad_site_header/";
-
 const BUTTONS = [
 	{
 		key: "unctad16",
 		label: "UNCTAD16",
-		icon: "unctad_site_header_icon_unctad16.png",
+		icon: getIconUrl("unctad_site_header_icon_unctad16.png"),
 	},
 	{
 		key: "subscribe",
 		label: "Subscribe",
-		icon: "unctad_site_header_icon_subscribe.png",
+		icon: getIconUrl("unctad_site_header_icon_subscribe.png"),
 	},
 	{
 		key: "tariffs",
 		label: "Tariffs",
-		icon: "unctad_site_header_icon_tariffs.png",
+		icon: getIconUrl("unctad_site_header_icon_tariffs.png"),
 	},
 ];
+
+const logoUrl = getIconUrl("unctad_site_header_logo.png");
+const logoSmallUrl = getIconUrl("unctad_site_header_logo_small.png");
+const buttonBgUrl = getIconUrl("unctad_site_header_button_bg.png");
 
 export default function UNCTADSiteHeader({ children }) {
 	return (
@@ -75,12 +77,12 @@ export default function UNCTADSiteHeader({ children }) {
 							<img
 								alt="UN Trade and Development (UNCTAD)"
 								className="usp_logo usp_logo_large"
-								src={`${basePath()}assets/img/unctad_site_header/unctad_site_header_logo.png`}
+								src={logoUrl}
 							/>
 							<img
 								alt="UN Trade and Development (UNCTAD)"
 								className="usp_logo usp_logo_small"
-								src={`${basePath()}assets/img/unctad_site_header/unctad_site_header_logo_small.png`}
+								src={logoSmallUrl}
 							/>
 						</span>
 						{/* Desktop: action button nav */}
@@ -91,13 +93,13 @@ export default function UNCTADSiteHeader({ children }) {
 										<img
 											className="usp_btn_bg"
 											alt=""
-											src={`${basePath()}assets/img/unctad_site_header/unctad_site_header_button_bg.png`}
+											src={buttonBgUrl}
 										/>
 										<span className="usp_btn_label">{label}</span>
 										<img
 											className="usp_btn_icon"
 											alt=""
-											src={`${basePath()}${IMG}${icon}`}
+											src={icon}
 										/>
 									</span>
 								</li>
@@ -138,7 +140,7 @@ export default function UNCTADSiteHeader({ children }) {
 											<img
 												className="usp_small_bg"
 												alt=""
-												src={`${basePath()}assets/img/unctad_site_header/unctad_site_header_button_bg.png`}
+												src={buttonBgUrl}
 											/>
 											<span className="usp_small_label">{label}</span>
 										</span>

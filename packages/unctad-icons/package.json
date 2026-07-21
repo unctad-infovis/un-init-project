@@ -1,0 +1,22 @@
+{
+  "name": "@unctad-infovis/unctad-icons",
+  "version": "1.0.1",
+  "description": "UNCTAD-branded icons and images shared across data visualisation projects (site header preview, quote/download/eye icons, report bullet arrow), served from storage.unctad.org (production) or raw GitHub content (dev/gh-pages) rather than bundled per-project",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unctad-infovis/un-init-project.git",
+    "directory": "packages/unctad-icons"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "author": "Teemo Tebest <teemo.tebest@gmail.com>",
+  "license": "ISC"
+}

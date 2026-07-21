@@ -1,6 +1,6 @@
 {
   "name": "@unctad-infovis/general-tools",
-  "version": "1.5.1",
+  "version": "1.7.0",
   "description": "Shared general-purpose React components, helpers and base styles for UNCTAD data visualisation projects",
   "type": "module",
   "exports": {
@@ -16,6 +16,10 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {
+    "@unctad-infovis/unctad-flags": "^1.0.1",
+    "@unctad-infovis/unctad-icons": "^1.0.1"
   },
   "peerDependencies": {
     "react": "^19.2.5",
