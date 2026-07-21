@@ -146,7 +146,3 @@ npm run sync-prod       # azcopy dist/ -> storage.unctad.org/<project>/
 ```
 
 `dist/` is committed to git in most projects (needed for `sync-gh-pages`'s subtree push to work) — check an individual project's convention before assuming otherwise.
-
-## The 11 example projects
-
-`2022-wcp`, `2023-wcp`, `2023-gcrg_debt`, `2025-tariffs_dashboard`, `2026-cyberlaw_tracker`, `2026-cdde`, `2026-gstp`, `2026-second_hand_clothes`, `2026-sohd_dashboard`, `2026-sohd_storyboard` and `2026-wir_report` have all been through a pass of: consuming the `@unctad-infovis/*` packages instead of local copies, reconciling genuine local differences into small scoped overrides, and fixing whatever real bugs turned up along the way (broken CSS selectors, missing design tokens, accessibility gaps). They're meant to be the reference examples for "what a clean project looks like" — when scaffolding something new, look at whichever of these is closest to what you're building rather than starting from an empty template.
