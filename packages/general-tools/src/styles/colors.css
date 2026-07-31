@@ -51,6 +51,8 @@
 	--un-color-orange-brand-light: #fedcbd;
 	--un-color-orange-brand-lighter: #ffead5;
 	--un-color-orange-brand-shade: #d4582a;
+	/* Web colors for text */
+	--un-color-orange-text: #cf3f0b;
 
 	/*
   * GREY
@@ -75,10 +77,10 @@
 	--un-color-purple-light: #d5b4d6;
 	--un-color-purple-lightest: #e4d7e8;
 	--un-color-purple: #a05fb4;
-	--un-color-purple-brand: #ffc800;
-	--un-color-purple-brand-light: #f8e66b;
-	--un-color-purple-brand-lighter: #faf0bb;
-	--un-color-purple-brand-shade: #b16d03;
+	--un-color-purple-brand: #a05fb4;
+	--un-color-purple-brand-light: #d5b4d6;
+	--un-color-purple-brand-lighter: #e4d7e8;
+	--un-color-purple-brand-shade: #5b2c86;
 	/* Web colors for text */
 	--un-color-purple-text-dark: #733d96;
 	--un-color-purple-text: #9a58af;
