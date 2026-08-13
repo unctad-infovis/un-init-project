@@ -1,9 +1,10 @@
 # un-init-project
 
-Two things live in this repo:
+Three things live in this repo:
 
 1. **`un-init-project`**, a CLI that scaffolds new UNCTAD data visualisation projects from a template.
 2. **`packages/`**, an npm workspaces monorepo of shared code (`@unctad-infovis/*`) that scaffolded projects — and any project you build by hand — depend on instead of copy-pasting components.
+3. **`un-audit-project`**, a CLI that recursively audits, updates, rebuilds and syncs already-scaffolded projects.
 
 If you're starting a new project, use the CLI. If you're wondering how a scaffolded project actually works (why it imports `@unctad-infovis/general-tools`, why images resolve differently in dev vs production, how to deploy), read on.
 
@@ -146,3 +147,16 @@ npm run sync-prod       # azcopy dist/ -> storage.unctad.org/<project>/
 ```
 
 `dist/` is committed to git in most projects (needed for `sync-gh-pages`'s subtree push to work) — check an individual project's convention before assuming otherwise.
+
+## Auditing and updating existing projects
+
+`un-audit-project <path>` walks every scaffolded project under `<path>` (or audits a single project directly) and, per project: skips it if the git working tree isn't clean, runs `npm update` + `npm audit fix`, rebuilds only if dependencies changed, diffs the build output against `HEAD`, and commits + pushes (`--no-push` to skip) whatever actually changed. If the production JS/CSS changed, it also runs `npm run sync-prod`.
+
+```
+un-audit-project <path>                    # audit one project, or every project found recursively
+un-audit-project <path> --dry-run          # report only, apply nothing
+un-audit-project <path> --no-push          # commit locally, skip git push and sync-prod
+un-audit-project <path> --skip-sync-prod   # do everything except the azcopy upload
+```
+
+Drop a `.un-audit-ignore` file (any content) in a project's root to exclude it from discovery — useful for internal/demo projects. Run history is kept in `~/.un-audit-project/state.json`, keyed by project path.
