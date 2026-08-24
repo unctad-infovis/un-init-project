@@ -1,6 +1,6 @@
 {
   "name": "@unctad-infovis/unctad-flags",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Country/region flag SVGs shared across UNCTAD data visualisation projects, served from storage.unctad.org (production) or raw GitHub content (dev/gh-pages) rather than bundled per-project",
   "type": "module",
   "exports": {

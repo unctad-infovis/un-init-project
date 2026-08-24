@@ -1,6 +1,6 @@
 {
   "name": "@unctad-infovis/unctad-icons",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "UNCTAD-branded icons and images shared across data visualisation projects (site header preview, quote/download/eye icons, report bullet arrow), served from storage.unctad.org (production) or raw GitHub content (dev/gh-pages) rather than bundled per-project",
   "type": "module",
   "exports": {

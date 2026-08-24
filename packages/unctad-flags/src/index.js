@@ -1,9 +1,7 @@
-// Flags are hosted, not bundled: storage.unctad.org in production, raw GitHub
-// content everywhere else (dev, gh-pages) since this repo is public.
-const basePath = () => {
-  if (window.location.href.includes('unctad.org')) return 'https://storage.unctad.org/shared-resources/flags/round/';
-  return 'https://raw.githubusercontent.com/unctad-infovis/un-init-project/main/packages/unctad-flags/src/round/';
-};
+// Flags are hosted, not bundled: always served from storage.unctad.org.
+// (The un-init-project repo is private, so a raw-GitHub-content fallback
+// for non-unctad.org environments 404s and cannot be used.)
+const basePath = () => 'https://storage.unctad.org/shared-resources/flags/round/';
 
 export const getFlagUrl = countryCode => `${basePath()}${countryCode.toLowerCase()}.svg`;
 
