@@ -79,6 +79,55 @@ if (fs.existsSync(projectPath)) {
 /*********************************************
 // Define functions
 *********************************************/
+
+/**
+ * Replace any symlink under `dir` with a real copy of whatever it points
+ * to (file or directory), recursively.
+ *
+ * Needed because `cpSync`'s own `dereference: true` option (used below)
+ * turned out not to do this for us — confirmed 2026-09-11 as a genuine
+ * Node.js regression, not a bug in this script's own logic: on Node 20,
+ * `cpSync(src, dest, { recursive: true, dereference: true })` correctly
+ * follows a symlink found anywhere while recursing `src` and copies the
+ * real target content; on Node 22/24/26 it only dereferences the
+ * top-level `src` path itself — any symlink found *inside* the tree
+ * (which is exactly this repo's situation: templates/react-vite/index.html
+ * etc. are deliberately symlinked to templates/shared/ for DRY template
+ * maintenance) is copied through as a symlink, unchanged. Reproduced
+ * directly against Node 20.19.2/22.22.2/24.15.0/26.1.0 via nvm before
+ * concluding this, not assumed.
+ *
+ * This mattered for more than portability: `index.html` is one of the
+ * symlinked files *and* one `injectProjectName` writes into below —
+ * `fs.writeFileSync` follows a symlink by default, so on Node 22+ every
+ * real scaffold was silently overwriting `templates/shared/index.html`
+ * in this repo with that run's own project name, corrupting the shared
+ * template's `__PROJECT_NAME__` placeholder for every future scaffold
+ * until someone noticed. Confirmed this had already happened for real
+ * (`templates/shared/index.html` showed a real project's name baked in,
+ * restored via `git checkout` on 2026-09-11) — this function exists to
+ * make sure a scaffolded project's files are genuinely its own from the
+ * start, not just to satisfy a preference for portability.
+ */
+const dereferenceSymlinks = (dir) => {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isSymbolicLink()) {
+      const real = fs.realpathSync(fullPath);
+      const stat = fs.statSync(real);
+      fs.rmSync(fullPath, { recursive: true, force: true });
+      if (stat.isDirectory()) {
+        cpSync(real, fullPath, { recursive: true, dereference: true });
+        dereferenceSymlinks(fullPath); // the target itself may contain further symlinks
+      } else {
+        fs.copyFileSync(real, fullPath);
+      }
+    } else if (entry.isDirectory()) {
+      dereferenceSymlinks(fullPath);
+    }
+  }
+};
+
 const injectProjectName = (filePath) => {
   try {
     const content = fs.readFileSync(filePath, 'utf8');
@@ -109,6 +158,14 @@ console.log(`Creating project at ${projectPath}...`);
 fs.mkdirSync(projectPath, { recursive: true });
 cpSync(srcPath, projectPath, { recursive: true, dereference: true });
 console.log('Copied template files.');
+
+// Belt-and-braces: cpSync's own `dereference: true` above doesn't reliably
+// dereference symlinks nested inside the copied tree on Node 22+ (see
+// dereferenceSymlinks' own comment) — replace any that made it through
+// with real copies, so the new project never depends on this repo's own
+// filesystem location.
+dereferenceSymlinks(projectPath);
+console.log('Resolved any template symlinks into real files.');
 
 // Inject project name into config/meta files
 console.log('Injecting project name into config files...');

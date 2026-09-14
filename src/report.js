@@ -43,9 +43,17 @@ export function printReport(results) {
   console.log(chalk.gray('-'.repeat(header.length)));
 
   for (const r of results) {
+    // vulnsBefore is the real current-state number for a dry-run row —
+    // wouldFix (what `npm audit fix --dry-run` would change it to) is a
+    // different, forward-looking figure and must never silently stand in
+    // for it. It used to (`vulnsBefore ?? r.wouldFix`), which meant a
+    // failed baseline `npm audit` call could still show real-looking
+    // numbers here whenever the separate fix-preview call happened to
+    // succeed — exactly the kind of masked failure this whole change set
+    // exists to prevent. Confirmed 2026-09-04 against a real registry 503.
     const vulns = r.vulnsAfter
       ? `${vulnStr(r.vulnsBefore)} -> ${vulnStr(r.vulnsAfter)}`
-      : vulnStr(r.vulnsBefore ?? r.wouldFix);
+      : vulnStr(r.vulnsBefore);
     const prodImpactCount = r.remainingProdImpact?.length ?? 0;
     const row = [
       pad(r.name, cols[0].width),
@@ -71,11 +79,12 @@ export function printReport(results) {
       .join('  '),
   );
 
-  const needsFollowUp = results.filter((r) => r.status === 'build-failed' || r.status === 'error' || r.syncProdStatus === 'needs-manual-auth');
+  const needsFollowUp = results.filter((r) => r.status === 'build-failed' || r.status === 'error' || r.syncProdStatus === 'needs-manual-auth' || r.auditFailed);
   if (needsFollowUp.length) {
     console.log(chalk.red.bold(`\n${needsFollowUp.length} project(s) need manual follow-up:`));
     for (const r of needsFollowUp) {
-      console.log(chalk.red(`  - ${r.name}: ${r.error ?? r.syncProdStatus ?? r.status}`));
+      const auditNote = r.auditFailed ? 'npm audit call failed (registry unavailable/timed out) — vulnerability counts unknown, shown as "-"; re-run this project' : null;
+      console.log(chalk.red(`  - ${r.name}: ${r.error ?? r.syncProdStatus ?? auditNote ?? r.status}`));
     }
   }
 }

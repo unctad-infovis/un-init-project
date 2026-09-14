@@ -15,22 +15,52 @@ function readPkg(dir) {
   return JSON.parse(fs.readFileSync(path.join(dir, 'package.json'), 'utf8'));
 }
 
-function run(cmd, args, dir) {
+// No timeout at all here used to mean a single degraded/hanging registry
+// call (npm's own default is a 300s timeout *per request*, times 2
+// retries) could block an entire batch run silently, with no output
+// distinguishing "stuck" from "just slow" — found for real 2026-09-04
+// against a live project when registry.npmjs.org's bulk advisories
+// endpoint was returning intermittent 503s. Every command now gets an
+// explicit timeout (network-ish commands default shorter, real-work
+// commands like install/build/sync-prod get a longer one passed in by the
+// caller) and a one-line "→ <cmd>" progress print before it runs, so a
+// slow step is visible while it's happening rather than only inferable
+// after the fact from a project that never finished.
+const DEFAULT_TIMEOUT_MS = 120_000; // network-ish queries: audit, audit fix --dry-run, explain, grep
+const LONG_TIMEOUT_MS = 300_000; // real work: install, update, audit fix, build, sync-prod
+
+function announce(cmd, args) {
+  process.stdout.write(`  → ${cmd} ${args.join(' ')}\n`);
+}
+
+function run(cmd, args, dir, { timeout = DEFAULT_TIMEOUT_MS } = {}) {
+  announce(cmd, args);
   try {
-    const stdout = execFileSync(cmd, args, { cwd: dir, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    const stdout = execFileSync(cmd, args, { cwd: dir, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout });
     return { ok: true, stdout };
   } catch (err) {
-    return { ok: false, stdout: err.stdout?.toString() ?? '', stderr: err.stderr?.toString() ?? String(err.message ?? err) };
+    const timedOut = err.signal === 'SIGTERM' && err.killed;
+    const stderr = err.stderr?.toString() ?? String(err.message ?? err);
+    return {
+      ok: false,
+      stdout: err.stdout?.toString() ?? '',
+      stderr: timedOut ? `timed out after ${Math.round(timeout / 1000)}s: ${cmd} ${args.join(' ')}` : stderr,
+    };
   }
 }
 
-function runJson(cmd, args, dir) {
+function runJson(cmd, args, dir, { timeout = DEFAULT_TIMEOUT_MS } = {}) {
+  announce(cmd, args);
   // npm audit / audit fix --dry-run exit non-zero when vulnerabilities are
   // present even though they still print valid JSON on stdout.
   try {
-    const stdout = execFileSync(cmd, args, { cwd: dir, encoding: 'utf8' });
+    const stdout = execFileSync(cmd, args, { cwd: dir, encoding: 'utf8', timeout });
     return JSON.parse(stdout);
   } catch (err) {
+    if (err.signal === 'SIGTERM' && err.killed) {
+      process.stderr.write(`  ✗ timed out after ${Math.round(timeout / 1000)}s: ${cmd} ${args.join(' ')}\n`);
+      return null;
+    }
     if (err.stdout) {
       try {
         return JSON.parse(err.stdout);
@@ -56,8 +86,19 @@ function detectBundler(dir) {
   return null;
 }
 
+/**
+ * `null` in, `null` out — deliberately not "0 vulnerabilities" — a null
+ * `auditJson` means the `npm audit` call itself failed (registry 503,
+ * timeout, etc.), which is a different, worse thing than a clean audit and
+ * must never be displayed the same way. Found for real 2026-09-04: two
+ * projects hit the registry's flaky bulk-advisories endpoint mid-batch and
+ * silently reported as "0c/0h/0m/0l" (report.js's own `vulnStr` already
+ * renders a null summary as "-", so returning null here is the whole fix
+ * on this side — no report.js change needed for the table itself).
+ */
 function vulnSummary(auditJson) {
-  const v = auditJson?.metadata?.vulnerabilities ?? {};
+  if (!auditJson) return null;
+  const v = auditJson.metadata?.vulnerabilities ?? {};
   return {
     critical: v.critical ?? 0,
     high: v.high ?? 0,
@@ -155,11 +196,12 @@ export async function auditProject(projectPath, options = {}) {
     // and doesn't need this, which is why a missing node_modules only shows
     // up as a classification bug, not an audit failure.
     if (!fs.existsSync(path.join(dir, 'node_modules'))) {
-      run('npm', ['install'], dir);
+      run('npm', ['install'], dir, { timeout: LONG_TIMEOUT_MS });
     }
 
     const baselineAudit = runJson('npm', ['audit', '--json'], dir);
     const vulnsBefore = vulnSummary(baselineAudit);
+    const baselineAuditFailed = baselineAudit === null;
 
     if (dryRun) {
       const preview = runJson('npm', ['audit', 'fix', '--dry-run', '--json'], dir);
@@ -170,16 +212,18 @@ export async function auditProject(projectPath, options = {}) {
         status: 'dry-run',
         bundler: bundler.tool,
         vulnsBefore,
-        wouldFix: preview ? vulnSummary(preview) : null,
+        wouldFix: vulnSummary(preview),
         remainingProdImpact,
+        auditFailed: baselineAuditFailed,
       };
     }
 
-    run('npm', ['update'], dir);
-    run('npm', ['audit', 'fix'], dir);
+    run('npm', ['update'], dir, { timeout: LONG_TIMEOUT_MS });
+    run('npm', ['audit', 'fix'], dir, { timeout: LONG_TIMEOUT_MS });
 
     const postFixAudit = runJson('npm', ['audit', '--json'], dir);
     const vulnsAfter = vulnSummary(postFixAudit);
+    const auditFailed = baselineAuditFailed || postFixAudit === null;
     const remainingProdImpact = classifyRemainingVulns(dir, postFixAudit, outDirPath).filter((v) => !v.devOnly);
 
     const depsChanged = hasDependencyChanges(dir);
@@ -194,10 +238,11 @@ export async function auditProject(projectPath, options = {}) {
         remainingProdImpact,
         depsUpdated: false,
         buildChanged: false,
+        auditFailed,
       };
     }
 
-    const install = run('npm', ['install'], dir);
+    const install = run('npm', ['install'], dir, { timeout: LONG_TIMEOUT_MS });
     if (!install.ok) {
       rollbackDependencyFiles(dir);
       return {
@@ -207,13 +252,14 @@ export async function auditProject(projectPath, options = {}) {
         error: `npm install failed after update: ${install.stderr}`,
         vulnsBefore,
         vulnsAfter,
+        auditFailed,
       };
     }
 
-    const build = run('npm', ['run', 'build'], dir);
+    const build = run('npm', ['run', 'build'], dir, { timeout: LONG_TIMEOUT_MS });
     if (!build.ok) {
       rollbackDependencyFiles(dir);
-      run('npm', ['install'], dir);
+      run('npm', ['install'], dir, { timeout: LONG_TIMEOUT_MS });
       return {
         name,
         path: dir,
@@ -222,6 +268,7 @@ export async function auditProject(projectPath, options = {}) {
         vulnsBefore,
         vulnsAfter,
         error: build.stderr,
+        auditFailed,
       };
     }
 
@@ -252,7 +299,7 @@ export async function auditProject(projectPath, options = {}) {
         if (authNow === false) {
           syncProdStatus = 'needs-manual-auth';
         } else {
-          const sync = run('npm', ['run', 'sync-prod'], dir);
+          const sync = run('npm', ['run', 'sync-prod'], dir, { timeout: LONG_TIMEOUT_MS });
           syncProdRun = sync.ok;
           syncProdStatus = sync.ok ? 'done' : `failed: ${sync.stderr || 'unknown error (see project for details)'}`;
         }
@@ -274,6 +321,7 @@ export async function auditProject(projectPath, options = {}) {
       pushed,
       syncProdRun,
       syncProdStatus,
+      auditFailed,
     };
   } catch (err) {
     return { name, path: dir, status: 'error', error: err.message ?? String(err) };
