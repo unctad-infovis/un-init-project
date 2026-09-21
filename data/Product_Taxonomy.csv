@@ -1,0 +1,388 @@
+Term ID,Term name,Hierarchy role,Parent names,Full hierarchy path(s)
+693,Accounting and Financial Reporting: Training Material,Root parent,,Accounting and Financial Reporting: Training Material
+694,Dispute Settlement - Course Modules,Leaf child,Accounting and Financial Reporting: Training Material,Accounting and Financial Reporting: Training Material > Dispute Settlement - Course Modules
+695,Investment Facilitation Compact - Training,Leaf child,Accounting and Financial Reporting: Training Material,Accounting and Financial Reporting: Training Material > Investment Facilitation Compact - Training
+696,Trade Negotiations - Training Modules,Leaf child,Accounting and Financial Reporting: Training Material,Accounting and Financial Reporting: Training Material > Trade Negotiations - Training Modules
+1777,All News Stories [PARENT DO NOT USE],Root parent,,All News Stories [PARENT DO NOT USE]
+1780,Commentaries,Leaf child,All News Stories [PARENT DO NOT USE],All News Stories [PARENT DO NOT USE] > Commentaries
+1778,Data stories,Leaf child,All News Stories [PARENT DO NOT USE],All News Stories [PARENT DO NOT USE] > Data stories
+1779,Impact stories,Leaf child,All News Stories [PARENT DO NOT USE],All News Stories [PARENT DO NOT USE] > Impact stories
+290,Factual Document,Root parent,,Factual Document
+1928,WIR: Annex tables,Leaf child,Factual Document,Factual Document > WIR: Annex tables
+1927,WIR: Country fact sheets,Leaf child,Factual Document,Factual Document > WIR: Country fact sheets
+1929,WIR: Regional fact sheets,Leaf child,Factual Document,Factual Document > WIR: Regional fact sheets
+1930,WIR: Regional trends,Leaf child,Factual Document,Factual Document > WIR: Regional trends
+306,Meeting [DO NOT USE],Root parent,,Meeting [DO NOT USE]
+308,Commission on Science and Technology for Development - Annual Sessions,Leaf child,Meeting [DO NOT USE],Meeting [DO NOT USE] > Commission on Science and Technology for Development - Annual Sessions
+310,Commission on Science and Technology for Development - Inter-sessional Panels,Leaf child,Meeting [DO NOT USE],Meeting [DO NOT USE] > Commission on Science and Technology for Development - Inter-sessional Panels
+314,Intergovernmental Forum on Mining,Leaf child,Meeting [DO NOT USE],Meeting [DO NOT USE] > Intergovernmental Forum on Mining
+313,Joint Advisory Group on the International Trade Centre,Leaf child,Meeting [DO NOT USE],Meeting [DO NOT USE] > Joint Advisory Group on the International Trade Centre
+315,Trade and Development Board,Child and parent,Meeting [DO NOT USE],Meeting [DO NOT USE] > Trade and Development Board
+318,CI - Trade and Development Commission,Child and parent,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > CI - Trade and Development Commission
+319,Commission on Trade and Development,Leaf child,CI - Trade and Development Commission,Meeting [DO NOT USE] > Trade and Development Board > CI - Trade and Development Commission > Commission on Trade and Development
+1453,Intergovernmental Group of Experts on Competition Law and Policy,Leaf child,CI - Trade and Development Commission,Meeting [DO NOT USE] > Trade and Development Board > CI - Trade and Development Commission > Intergovernmental Group of Experts on Competition Law and Policy
+1454,Intergovernmental Group of Experts on Consumer Protection Law and Policy,Leaf child,CI - Trade and Development Commission,Meeting [DO NOT USE] > Trade and Development Board > CI - Trade and Development Commission > Intergovernmental Group of Experts on Consumer Protection Law and Policy
+1455,Multi-year Expert Meeting on Commodities and Development,Leaf child,CI - Trade and Development Commission,Meeting [DO NOT USE] > Trade and Development Board > CI - Trade and Development Commission > Multi-year Expert Meeting on Commodities and Development
+1456,Multi-year Expert Meeting on Enhancing the Enabling Economic Environment,Leaf child,CI - Trade and Development Commission,Meeting [DO NOT USE] > Trade and Development Board > CI - Trade and Development Commission > Multi-year Expert Meeting on Enhancing the Enabling Economic Environment
+1457,"Multi-year Expert Meeting on Trade, Services and Development",Leaf child,CI - Trade and Development Commission,"Meeting [DO NOT USE] > Trade and Development Board > CI - Trade and Development Commission > Multi-year Expert Meeting on Trade, Services and Development"
+1458,"Multi-Year Expert Meeting on Transport, Trade Logistics and Trade Facilitation",Leaf child,CI - Trade and Development Commission,"Meeting [DO NOT USE] > Trade and Development Board > CI - Trade and Development Commission > Multi-Year Expert Meeting on Transport, Trade Logistics and Trade Facilitation"
+321,CII - Investment Commission,Child and parent,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > CII - Investment Commission
+322,"Commission on Investment, Enterprise and Development",Leaf child,CII - Investment Commission,"Meeting [DO NOT USE] > Trade and Development Board > CII - Investment Commission > Commission on Investment, Enterprise and Development"
+1459,Intergovernmental Group of Experts on International Standards of Accounting and Reporting,Leaf child,CII - Investment Commission,Meeting [DO NOT USE] > Trade and Development Board > CII - Investment Commission > Intergovernmental Group of Experts on International Standards of Accounting and Reporting
+1461,Multi-year Expert Meeting on Economic Integration and Cooperation (2009-2016),Leaf child,CII - Investment Commission,Meeting [DO NOT USE] > Trade and Development Board > CII - Investment Commission > Multi-year Expert Meeting on Economic Integration and Cooperation (2009-2016)
+1462,Multi-year Expert Meeting on Investment for Development (2009-2012),Leaf child,CII - Investment Commission,Meeting [DO NOT USE] > Trade and Development Board > CII - Investment Commission > Multi-year Expert Meeting on Investment for Development (2009-2012)
+1463,"Multi-year Expert Meeting on Investment, Innovation and Entrepreneurship",Leaf child,CII - Investment Commission,"Meeting [DO NOT USE] > Trade and Development Board > CII - Investment Commission > Multi-year Expert Meeting on Investment, Innovation and Entrepreneurship"
+1460,"Multi-year Expert Meeting on Science, Technology and Innovation (2009-2012)",Leaf child,CII - Investment Commission,"Meeting [DO NOT USE] > Trade and Development Board > CII - Investment Commission > Multi-year Expert Meeting on Science, Technology and Innovation (2009-2012)"
+324,COM1 - Commission on Trade,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > COM1 - Commission on Trade
+325,COM1 - Commission on Trade - Annual Session,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > COM1 - Commission on Trade - Annual Session
+326,COM1 - Commission on Trade - Expert Meeting,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > COM1 - Commission on Trade - Expert Meeting
+327,COM2 - Commission on Investment,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > COM2 - Commission on Investment
+328,COM2 - Commission on Investment - Annual Session,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > COM2 - Commission on Investment - Annual Session
+329,COM2 - Commission on Investment - Expert Meeting,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > COM2 - Commission on Investment - Expert Meeting
+330,COM3 - Commission on Enterprise,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > COM3 - Commission on Enterprise
+331,COM3 - Commission on Enterprise - Annual Session,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > COM3 - Commission on Enterprise - Annual Session
+332,COM3 - Commission on Enterprise - Expert Meeting,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > COM3 - Commission on Enterprise - Expert Meeting
+316,Expert Meeting,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > Expert Meeting
+335,Intergovernmental Group of Experts on E-commerce and the Digital Economy,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > Intergovernmental Group of Experts on E-commerce and the Digital Economy
+336,Intergovernmental Group of Experts on Financing for Development,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > Intergovernmental Group of Experts on Financing for Development
+337,Meeting of Governmental Experts from Land-locked and Transit Developing Countries,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > Meeting of Governmental Experts from Land-locked and Transit Developing Countries
+339,Standing Committee on Commodities,Child and parent,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > Standing Committee on Commodities
+1464,Bauxite,Leaf child,Standing Committee on Commodities,Meeting [DO NOT USE] > Trade and Development Board > Standing Committee on Commodities > Bauxite
+1465,Iron ore,Leaf child,Standing Committee on Commodities,Meeting [DO NOT USE] > Trade and Development Board > Standing Committee on Commodities > Iron ore
+1466,Tungsten,Leaf child,Standing Committee on Commodities,Meeting [DO NOT USE] > Trade and Development Board > Standing Committee on Commodities > Tungsten
+317,Trade and Development Board - Annual Session,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > Trade and Development Board - Annual Session
+333,Trade and Development Board - Executive Session,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > Trade and Development Board - Executive Session
+338,Trade and Development Board - Special Session,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > Trade and Development Board - Special Session
+340,Working Group on Measuring E-commerce and the Digital Economy,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > Working Group on Measuring E-commerce and the Digital Economy
+341,Working Party on the Programme Plan and Programme Performance,Leaf child,Trade and Development Board,Meeting [DO NOT USE] > Trade and Development Board > Working Party on the Programme Plan and Programme Performance
+1848,UN Ocean Forum on trade-related aspects of SDG 14,Leaf child,Meeting [DO NOT USE],Meeting [DO NOT USE] > UN Ocean Forum on trade-related aspects of SDG 14
+342,UNCTAD Quadrennial Conference,Child and parent,Meeting [DO NOT USE],Meeting [DO NOT USE] > UNCTAD Quadrennial Conference
+343,Africa Oil and Gas,Leaf child,UNCTAD Quadrennial Conference,Meeting [DO NOT USE] > UNCTAD Quadrennial Conference > Africa Oil and Gas
+344,Cotton,Leaf child,UNCTAD Quadrennial Conference,Meeting [DO NOT USE] > UNCTAD Quadrennial Conference > Cotton
+347,Global Commodities Forum,Leaf child,UNCTAD Quadrennial Conference,Meeting [DO NOT USE] > UNCTAD Quadrennial Conference > Global Commodities Forum
+348,Global Services Forum,Leaf child,UNCTAD Quadrennial Conference,Meeting [DO NOT USE] > UNCTAD Quadrennial Conference > Global Services Forum
+345,International Debt Management Conference,Leaf child,UNCTAD Quadrennial Conference,Meeting [DO NOT USE] > UNCTAD Quadrennial Conference > International Debt Management Conference
+349,Public Symposium,Leaf child,UNCTAD Quadrennial Conference,Meeting [DO NOT USE] > UNCTAD Quadrennial Conference > Public Symposium
+346,UNCTAD eWeek,Leaf child,UNCTAD Quadrennial Conference,Meeting [DO NOT USE] > UNCTAD Quadrennial Conference > UNCTAD eWeek
+351,World Investment Forum,Leaf child,UNCTAD Quadrennial Conference,Meeting [DO NOT USE] > UNCTAD Quadrennial Conference > World Investment Forum
+352,United Nations Conferences [PARENT DO NOT USE],Child and parent,Meeting [DO NOT USE],Meeting [DO NOT USE] > United Nations Conferences [PARENT DO NOT USE]
+353,UN Cocoa Conference,Leaf child,United Nations Conferences [PARENT DO NOT USE],Meeting [DO NOT USE] > United Nations Conferences [PARENT DO NOT USE] > UN Cocoa Conference
+354,UN Conference for the Review of the Set (UN SET),Leaf child,United Nations Conferences [PARENT DO NOT USE],Meeting [DO NOT USE] > United Nations Conferences [PARENT DO NOT USE] > UN Conference for the Review of the Set (UN SET)
+355,UN Conference on Jute,Leaf child,United Nations Conferences [PARENT DO NOT USE],Meeting [DO NOT USE] > United Nations Conferences [PARENT DO NOT USE] > UN Conference on Jute
+356,UN Conference on LDCs,Leaf child,United Nations Conferences [PARENT DO NOT USE],Meeting [DO NOT USE] > United Nations Conferences [PARENT DO NOT USE] > UN Conference on LDCs
+357,UN Conference on Olive Oil,Leaf child,United Nations Conferences [PARENT DO NOT USE],Meeting [DO NOT USE] > United Nations Conferences [PARENT DO NOT USE] > UN Conference on Olive Oil
+358,UN Conference on Timber,Leaf child,United Nations Conferences [PARENT DO NOT USE],Meeting [DO NOT USE] > United Nations Conferences [PARENT DO NOT USE] > UN Conference on Timber
+359,UN/IMO Conference on Arrest of Ships,Leaf child,United Nations Conferences [PARENT DO NOT USE],Meeting [DO NOT USE] > United Nations Conferences [PARENT DO NOT USE] > UN/IMO Conference on Arrest of Ships
+376,Publication [PARENT TERM - DO NOT USE],Root parent,,Publication [PARENT TERM - DO NOT USE]
+398,Newsletter [PARENT TERM - DO NOT USE],Child and parent,Publication [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Newsletter [PARENT TERM - DO NOT USE]
+406,Accounting and Financial Reporting: ISAR Update,Leaf child,Newsletter [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Newsletter [PARENT TERM - DO NOT USE] > Accounting and Financial Reporting: ISAR Update
+1533,ASYCUDA Yearbook,Leaf child,Newsletter [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Newsletter [PARENT TERM - DO NOT USE] > ASYCUDA Yearbook
+399,Creative Economy Newsletter,Leaf child,Newsletter [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Newsletter [PARENT TERM - DO NOT USE] > Creative Economy Newsletter
+401,DMFAS Newsletter,Leaf child,Newsletter [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Newsletter [PARENT TERM - DO NOT USE] > DMFAS Newsletter
+402,Empretec Newsletter,Leaf child,Newsletter [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Newsletter [PARENT TERM - DO NOT USE] > Empretec Newsletter
+403,GSP - Newsletter,Leaf child,Newsletter [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Newsletter [PARENT TERM - DO NOT USE] > GSP - Newsletter
+407,Transport Newsletter,Leaf child,Newsletter [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Newsletter [PARENT TERM - DO NOT USE] > Transport Newsletter
+409,Non-Series [PARENT TERM - DO NOT USE],Child and parent,Publication [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE]
+493,About UNCTAD,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > About UNCTAD
+378,Accounting and Financial Reporting:  Case studies,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Accounting and Financial Reporting:  Case studies
+483,Accounting and Financial Reporting: Guidance materials,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Accounting and Financial Reporting: Guidance materials
+411,African Continental Free Trade Area,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > African Continental Free Trade Area
+415,Aid for eTrade: Member States,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Aid for eTrade: Member States
+418,Aid for eTrade: Private Sector and Civil Society,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Aid for eTrade: Private Sector and Civil Society
+428,ASYCUDA Studies and Reports,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > ASYCUDA Studies and Reports
+291,Bilateral Investment Treaties,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Bilateral Investment Treaties
+1516,Biodiversity and BioTrade,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Biodiversity and BioTrade
+430,Commodities and Development,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Commodities and Development
+431,Commodities Finance,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Commodities Finance
+432,"Commodities Minerals, Oil and Energy",Leaf child,Non-Series [PARENT TERM - DO NOT USE],"Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Commodities Minerals, Oil and Energy"
+433,Commodities: Agriculture,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Commodities: Agriculture
+434,"Commodities: Energy, Oil and Gas",Leaf child,Non-Series [PARENT TERM - DO NOT USE],"Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Commodities: Energy, Oil and Gas"
+435,Commodities: Finance,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Commodities: Finance
+436,Commodities: Food Security,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Commodities: Food Security
+437,Commodities: InfoComm Product Profiles,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Commodities: InfoComm Product Profiles
+438,"Commodities: Mining, Minerals and Metals",Leaf child,Non-Series [PARENT TERM - DO NOT USE],"Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Commodities: Mining, Minerals and Metals"
+439,Commodities: Risk Management,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Commodities: Risk Management
+440,Competition and Capacity Building,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Competition and Capacity Building
+441,Competition and Economic Development,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Competition and Economic Development
+442,Competition and Intellectual Property Rights,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Competition and Intellectual Property Rights
+443,Competition and International Cooperation,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Competition and International Cooperation
+444,Competition and Restrictive Practices,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Competition and Restrictive Practices
+446,Competition and UN Guidelines on Consumer Protection,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Competition and UN Guidelines on Consumer Protection
+447,Competition Authorities Directory,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Competition Authorities Directory
+448,Competition Authority Practices and Effectiveness,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Competition Authority Practices and Effectiveness
+449,Competition Cases (Reports),Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Competition Cases (Reports)
+450,Competition in Selected Sectors,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Competition in Selected Sectors
+451,Competition Law and Policy and Consumer Protection,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Competition Law and Policy and Consumer Protection
+452,Competition Legislation - National,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Competition Legislation - National
+453,"Competition Policy, Legislation and Mechanisms",Leaf child,Non-Series [PARENT TERM - DO NOT USE],"Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Competition Policy, Legislation and Mechanisms"
+454,Creative Economy and Industries,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Creative Economy and Industries
+474,Debt and Debt Sustainability,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Debt and Debt Sustainability
+456,Debt and Development Finance,Child and parent,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Debt and Development Finance
+1499,Debt Management and Financial Analysis System,Leaf child,Debt and Development Finance,Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Debt and Development Finance > Debt Management and Financial Analysis System
+1500,Responsible Lending and Borrowing,Leaf child,Debt and Development Finance,Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Debt and Development Finance > Responsible Lending and Borrowing
+1501,Sovereign Debt,Leaf child,Debt and Development Finance,Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Debt and Development Finance > Sovereign Debt
+457,Dispute Settlement in Trade and Investment,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Dispute Settlement in Trade and Investment
+462,Enterprises Development - Business Linkage,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Enterprises Development - Business Linkage
+463,Enterprises Development - Entrepreneurship and SMEs,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Enterprises Development - Entrepreneurship and SMEs
+465,Evaluation Reports - Follow-up,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Evaluation Reports - Follow-up
+466,Evaluation Reports - Mandated by the Board,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Evaluation Reports - Mandated by the Board
+467,Evaluation Reports - Overviews,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Evaluation Reports - Overviews
+468,Evaluation Reports - Programme,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Evaluation Reports - Programme
+469,Evaluation Reports - Project,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Evaluation Reports - Project
+471,FDI (Occasional Notes),Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > FDI (Occasional Notes)
+472,FDI in least developed countries (LDCs),Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > FDI in least developed countries (LDCs)
+473,FDI Statistics (Bilateral),Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > FDI Statistics (Bilateral)
+476,Finance: Financial Conditions Index,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Finance: Financial Conditions Index
+477,Finance: Illicit Financial Flows,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Finance: Illicit Financial Flows
+478,Finance: Principles on Responsible Sovereign Lending and Borrowing,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Finance: Principles on Responsible Sovereign Lending and Borrowing
+480,Finance: Sovereign Asset and Liability Management,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Finance: Sovereign Asset and Liability Management
+481,Finance: Sovereign Debt Management,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Finance: Sovereign Debt Management
+484,Financial Reporting and Corporate Governance,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Financial Reporting and Corporate Governance
+485,Financial Reporting and Corporate Social Responsibility,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Financial Reporting and Corporate Social Responsibility
+486,G-20 processes: UNCTAD Contributions,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > G-20 processes: UNCTAD Contributions
+487,Gender and Trade,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Gender and Trade
+489,General Information on DIAE,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > General Information on DIAE
+498,Generalized System of Preferences (Handbooks),Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Generalized System of Preferences (Handbooks)
+494,Generalized System of Preferences and Market Access,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Generalized System of Preferences and Market Access
+499,Global System of Trade Preferences Among Developing Countries,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Global System of Trade Preferences Among Developing Countries
+495,"Globalization, Finance and Sustainable Development",Leaf child,Non-Series [PARENT TERM - DO NOT USE],"Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Globalization, Finance and Sustainable Development"
+496,GSP - About the Generalized System of Preferences,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > GSP - About the Generalized System of Preferences
+497,Handbooks on Market Access and Rules of Origin for LDCs,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Handbooks on Market Access and Rules of Origin for LDCs
+500,ICT for development,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > ICT for development
+502,Information and Communication Technology,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Information and Communication Technology
+503,Information Economy - Commerce and E-Finance,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Information Economy - Commerce and E-Finance
+504,Insurance,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance
+505,Insurance Services,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance Services
+506,Insurance: Accident,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance: Accident
+507,Insurance: Agriculture,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance: Agriculture
+508,Insurance: Commission Reports,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance: Commission Reports
+509,Insurance: Education,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance: Education
+510,Insurance: Enterprises and Investors,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance: Enterprises and Investors
+511,Insurance: Fire,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance: Fire
+512,Insurance: Life,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance: Life
+513,Insurance: Marine,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance: Marine
+514,Insurance: Motor,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance: Motor
+515,Insurance: Regulation,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance: Regulation
+516,Insurance: Reinsurance,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance: Reinsurance
+517,Insurance: Statistics,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Insurance: Statistics
+518,Intellectual Property: Emerging Technologies,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Intellectual Property: Emerging Technologies
+519,Intellectual Property: Enhancing Productive Capacity,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Intellectual Property: Enhancing Productive Capacity
+520,Intellectual Property: Guides and Tools,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Intellectual Property: Guides and Tools
+521,Intellectual Property: Partnerships for the SDGs,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Intellectual Property: Partnerships for the SDGs
+522,Intellectual Property: Research Papers,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Intellectual Property: Research Papers
+523,International and Regional Cooperation,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > International and Regional Cooperation
+379,International Financial Reporting Standards  (IFRS),Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > International Financial Reporting Standards  (IFRS)
+530,Investment (G20 Working Group),Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Investment (G20 Working Group)
+531,Investment (Responsible Agricultural),Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Investment (Responsible Agricultural)
+524,Investment Agreements,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Investment Agreements
+525,Investment Flows and TNCs,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Investment Flows and TNCs
+532,Investment for Development Issues,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Investment for Development Issues
+526,Investment Instruments - A Compendium,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Investment Instruments - A Compendium
+527,Investment Policies for Development,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Investment Policies for Development
+552,Key Statistics and Trends: International Trade,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Key Statistics and Trends: International Trade
+553,Key Statistics and Trends: Trade Policy,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Key Statistics and Trends: Trade Policy
+533,Land-Locked Developing Countries - Transit Traffic and Transport infrastructure,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Land-Locked Developing Countries - Transit Traffic and Transport infrastructure
+534,Least Developed Countries: Statistics,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Least Developed Countries: Statistics
+535,Macro-economic and Development Policies,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Macro-economic and Development Policies
+420,Mandates - Landlocked developing countries,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Mandates - Landlocked developing countries
+419,Mandates - Least developed countries,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Mandates - Least developed countries
+421,Mandates - Small island developing states,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Mandates - Small island developing states
+538,Oceans Economy and Fisheries,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Oceans Economy and Fisheries
+427,Palestine - Assistance to the Palestinian People,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Palestine - Assistance to the Palestinian People
+422,Palestine - Background,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Palestine - Background
+423,Palestine - Development challenges - Policy Space,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Palestine - Development challenges - Policy Space
+424,Palestine - Economy and statistics,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Palestine - Economy and statistics
+425,Palestine - Maps,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Palestine - Maps
+426,Palestine - Studies and Technical Papers,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Palestine - Studies and Technical Papers
+539,Port Management,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Port Management
+541,Science and Technology for Development,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Science and Technology for Development
+542,Services: Basic Services and MDGs,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Services: Basic Services and MDGs
+543,Services: ICTs and Software Services,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Services: ICTs and Software Services
+544,Services: Infrastructure and Service Industries,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Services: Infrastructure and Service Industries
+545,Services: Migration and Remittances,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Services: Migration and Remittances
+546,Services: Negotiations on Trade in Services,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Services: Negotiations on Trade in Services
+547,Services: Trade Facilitation and Logistics,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Services: Trade Facilitation and Logistics
+458,South-South cooperation: Briefing Note,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > South-South cooperation: Briefing Note
+461,South-South cooperation: Economic Cooperation Among Developing Countries,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > South-South cooperation: Economic Cooperation Among Developing Countries
+459,South-South cooperation: Policy Brief,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > South-South cooperation: Policy Brief
+460,South-South cooperation: Resolutions and Declarations,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > South-South cooperation: Resolutions and Declarations
+548,Sovereign Financing: Background papers,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Sovereign Financing: Background papers
+549,Sovereign Financing: Project Documents,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Sovereign Financing: Project Documents
+464,Sustainability Reporting,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Sustainability Reporting
+550,Technical Cooperation,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Technical Cooperation
+362,Technical Cooperation: Project Outcomes,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Technical Cooperation: Project Outcomes
+370,Technical Cooperation: Review of activities and their financing,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Technical Cooperation: Review of activities and their financing
+551,Technology Transfer and Intellectual Property,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Technology Transfer and Intellectual Property
+528,Trade and Multilateral Trade Negotiations,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Trade and Multilateral Trade Negotiations
+529,Trade Policy Issues,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Trade Policy Issues
+554,"Trade, Environment and Development",Leaf child,Non-Series [PARENT TERM - DO NOT USE],"Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Trade, Environment and Development"
+555,"Trade, Poverty and Cross-cutting Development Issues",Leaf child,Non-Series [PARENT TERM - DO NOT USE],"Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Trade, Poverty and Cross-cutting Development Issues"
+556,Transport and Trade Logistics,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Transport and Trade Logistics
+557,Transport law and policy (Studies and Reports),Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Transport law and policy (Studies and Reports)
+558,Transport law: Carriage of Goods,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Transport law: Carriage of Goods
+559,Transport law: Climate Change and Maritime Transport,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Transport law: Climate Change and Maritime Transport
+560,Transport law: Energy and Transport Costs,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Transport law: Energy and Transport Costs
+561,Transport law: Maritime and Supply-Chain Security,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Transport law: Maritime and Supply-Chain Security
+562,Transport law: Maritime Conventions,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Transport law: Maritime Conventions
+563,Transport law: Maritime Law and Insurance,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Transport law: Maritime Law and Insurance
+564,Transport law: Maritime Rules,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Transport law: Maritime Rules
+565,Transport law: Rotterdam Rules,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Transport law: Rotterdam Rules
+566,Transport: Economics of Freight,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Transport: Economics of Freight
+567,Transport: Networks and Corridors,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Transport: Networks and Corridors
+568,Transport: Sustainable Systems and Finance,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > Transport: Sustainable Systems and Finance
+569,UN-CSTD WGEC: Agregated responses,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > UN-CSTD WGEC: Agregated responses
+570,UN-CSTD WGEC: Individual response,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > UN-CSTD WGEC: Individual response
+571,UN-CSTD WSIS10: Academia [DO NOT USE],Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > UN-CSTD WSIS10: Academia [DO NOT USE]
+572,UN-CSTD WSIS10: Civil Society [DO NOT USE],Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > UN-CSTD WSIS10: Civil Society [DO NOT USE]
+573,UN-CSTD WSIS10: Governments [DO NOT USE],Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > UN-CSTD WSIS10: Governments [DO NOT USE]
+574,UN-CSTD WSIS10: IGOs [DO NOT USE],Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > UN-CSTD WSIS10: IGOs [DO NOT USE]
+576,UN-CSTD WSIS10: Private Sector [DO NOT USE],Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > UN-CSTD WSIS10: Private Sector [DO NOT USE]
+577,UNCTAD and Civil Society,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > UNCTAD and Civil Society
+578,UNCTAD/UNDP Occasional Paper,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > UNCTAD/UNDP Occasional Paper
+579,World Association of Investment Promotion Agencies (WAIPA),Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > World Association of Investment Promotion Agencies (WAIPA)
+580,World Investment Forum,Leaf child,Non-Series [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Non-Series [PARENT TERM - DO NOT USE] > World Investment Forum
+581,Series  [PARENT TERM - DO NOT USE],Child and parent,Publication [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE]
+1872,A World of Debt,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > A World of Debt
+1485,Activities in Favour of Africa,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Activities in Favour of Africa
+583,"Activity Report: Division for Africa, least developed countries and special programmes",Leaf child,Series  [PARENT TERM - DO NOT USE],"Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Activity Report: Division for Africa, least developed countries and special programmes"
+607,Activity Report: Division on globalization and development strategies,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Activity Report: Division on globalization and development strategies
+600,Activity Report: Division on international trade and commodities,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Activity Report: Division on international trade and commodities
+597,Activity Report: Division on investment and enterprise,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Activity Report: Division on investment and enterprise
+601,Activity Report: Division on technology and logistics,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Activity Report: Division on technology and logistics
+585,Advisory Services on Investment and Training (Study Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Advisory Services on Investment and Training (Study Series)
+584,ASEAN Investment Report,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > ASEAN Investment Report
+588,Commodities and Development Report (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Commodities and Development Report (Series)
+589,Commodities at a Glance,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Commodities at a Glance
+590,Commodity Price Bulletin (2006 - 2011),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Commodity Price Bulletin (2006 - 2011)
+1487,Competition (Model Law),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Competition (Model Law)
+591,Competition and Consumer Protection - Research Partnership Platform,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Competition and Consumer Protection - Research Partnership Platform
+592,Competition Policy - Voluntary Peer Review (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Competition Policy - Voluntary Peer Review (Series)
+593,Consumer Protection - Voluntary Peer Review (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Consumer Protection - Voluntary Peer Review (Series)
+594,Creative Economy Report (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Creative Economy Report (Series)
+595,Creative Industries Country Studies (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Creative Industries Country Studies (Series)
+596,Debt and Development Finance - DMFAS Annual Report,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Debt and Development Finance - DMFAS Annual Report
+1546,Development and Globalization: Facts and Figures (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Development and Globalization: Facts and Figures (Series)
+598,Digital Economy Report (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Digital Economy Report (Series)
+599,Discussion Paper (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Discussion Paper (Series)
+602,E-Commerce and Development Report (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > E-Commerce and Development Report (Series)
+1923,E-commerce and digital economy programme: Year in review,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > E-commerce and digital economy programme: Year in review
+390,Economic Development in Africa Report,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Economic Development in Africa Report
+603,eTrade Readiness Assessments,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > eTrade Readiness Assessments
+604,FDI and Development (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > FDI and Development (Series)
+605,G-20 Trade and Investment Measures (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > G-20 Trade and Investment Measures (Series)
+606,G-24 Discussion Papers (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > G-24 Discussion Papers (Series)
+608,Gender perspective of trade policy,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Gender perspective of trade policy
+609,Global Investment Trends Monitor,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Global Investment Trends Monitor
+1572,Global Trade Update,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Global Trade Update
+396,Handbook of Statistics (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Handbook of Statistics (Series)
+611,ICT Policy Reviews (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > ICT Policy Reviews (Series)
+610,Information and Communication Technology - Cyber Legislation,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Information and Communication Technology - Cyber Legislation
+501,Information and Communication Technology for Development (Technical Notes),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Information and Communication Technology for Development (Technical Notes)
+391,Information Economy Report (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Information Economy Report (Series)
+612,Intellectual Property: Policy Briefs,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Intellectual Property: Policy Briefs
+582,International Accounting and Reporting Issues (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > International Accounting and Reporting Issues (Series)
+586,International Trading System and Trade Negotiations (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > International Trading System and Trade Negotiations (Series)
+613,Investment Advisory Series A (Investment Promotion),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Advisory Series A (Investment Promotion)
+614,Investment Advisory Series B (FDI Case Studies),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Advisory Series B (FDI Case Studies)
+615,Investment Agreements - Issue Series I,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Agreements - Issue Series I
+616,Investment Agreements - Issue Series II (Revised Editions - Sequels),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Agreements - Issue Series II (Revised Editions - Sequels)
+617,Investment Agreements - Issues Note,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Agreements - Issues Note
+618,Investment Blue Book (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Blue Book (Series)
+619,Investment Brief (English only),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Brief (English only)
+620,Investment Country Profiles,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Country Profiles
+621,Investment Guides (The iGuides),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Guides (The iGuides)
+622,Investment Policies for Development (Issue Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Policies for Development (Issue Series)
+623,Investment Policy Monitor,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Policy Monitor
+624,Investment Policy Review (Implementation Reports),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Policy Review (Implementation Reports)
+625,Investment Policy Reviews,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Policy Reviews
+1483,Investment Policy Reviews (Implementation Report),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Policy Reviews (Implementation Report)
+626,Investment Promotion Agency Observer,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Investment Promotion Agency Observer
+392,Least Developed Countries Report,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Least Developed Countries Report
+380,Least Developed Countries: Vulnerability Profiles,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Least Developed Countries: Vulnerability Profiles
+627,National Green Export Review (Fact Sheets),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > National Green Export Review (Fact Sheets)
+628,National Green Export Reviews,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > National Green Export Reviews
+1488,Palestine Report (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Palestine Report (Series)
+629,Policy Issues in International Trade and Commodities,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Policy Issues in International Trade and Commodities
+631,Port Management (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Port Management (Series)
+630,Port Management Monograph (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Port Management Monograph (Series)
+632,Prebisch Lectures,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Prebisch Lectures
+1644,PSI-UNCTAD Briefs on Workers and Debt,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > PSI-UNCTAD Briefs on Workers and Debt
+657,Research Papers,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Research Papers
+575,Research papers for the Group of Twenty-four (G-24),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Research papers for the Group of Twenty-four (G-24)
+393,Review of Maritime Transport,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Review of Maritime Transport
+1490,Rules of Origin - Certifying Authorities for Form A,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Rules of Origin - Certifying Authorities for Form A
+1491,Rules of Origin - Notification,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Rules of Origin - Notification
+1489,Rules of Origin for LDCs,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Rules of Origin for LDCs
+633,"Science, Technology and Innovation - Current Issues",Leaf child,Series  [PARENT TERM - DO NOT USE],"Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Science, Technology and Innovation - Current Issues"
+634,"Science, Technology and Innovation Policies (Training Course)",Leaf child,Series  [PARENT TERM - DO NOT USE],"Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Science, Technology and Innovation Policies (Training Course)"
+635,"Science, Technology and Innovation Policy Reviews",Leaf child,Series  [PARENT TERM - DO NOT USE],"Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Science, Technology and Innovation Policy Reviews"
+1580,SDG Investment Trends Monitor,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > SDG Investment Trends Monitor
+636,Services Policy Reviews,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Services Policy Reviews
+637,Services: New Frontier on Sustainable Development (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Services: New Frontier on Sustainable Development (Series)
+638,Statistics for FDI and the operations of TNCs,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Statistics for FDI and the operations of TNCs
+639,Statistics on Trade in Services (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Statistics on Trade in Services (Series)
+640,Statistics: Commodity Price Bulletin (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Statistics: Commodity Price Bulletin (Series)
+1419,Statistics: Global Merchandise and Services Trade Nowcast (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Statistics: Global Merchandise and Services Trade Nowcast (Series)
+641,Statistics: Indicator Highlights,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Statistics: Indicator Highlights
+642,Statistics: Trade in Services (Quarterly),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Statistics: Trade in Services (Quarterly)
+1931,Strait of Hormuz disruptions,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Strait of Hormuz disruptions
+644,Technology and Innovation Report (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Technology and Innovation Report (Series)
+643,Technology for Development (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Technology for Development (Series)
+364,The New Frontier in Entrepreneurship (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > The New Frontier in Entrepreneurship (Series)
+645,The Road from Rio+20 (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > The Road from Rio+20 (Series)
+646,The State of Commodity Dependence,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > The State of Commodity Dependence
+394,Trade and Development Report,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Trade and Development Report
+1601,Trade and Development Report 2020 (Updates),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Trade and Development Report 2020 (Updates)
+395,Trade and Environment Review,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Trade and Environment Review
+1576,Trade and Gender - Teaching Material,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Trade and Gender - Teaching Material
+647,Trade and Poverty Papers,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Trade and Poverty Papers
+648,Trade Facilitation - Technical Notes,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Trade Facilitation - Technical Notes
+649,Trade Negotiations and Africa (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Trade Negotiations and Africa (Series)
+1493,Trade Negotiations and Commercial Diplomacy Meeting Report,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Trade Negotiations and Commercial Diplomacy Meeting Report
+650,Trade Policy Framework Reviews,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Trade Policy Framework Reviews
+651,Transnational Corporations (Journal),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Transnational Corporations (Journal)
+652,Transport and Trade Facilitation,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Transport and Trade Facilitation
+653,UNCTAD Issues in Brief (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > UNCTAD Issues in Brief (Series)
+654,UNCTAD Manual on FDI Statistics,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > UNCTAD Manual on FDI Statistics
+1486,UNCTAD Meeting Reports,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > UNCTAD Meeting Reports
+655,UNCTAD Policy Brief,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > UNCTAD Policy Brief
+656,UNCTAD Post-2015 Policy Brief,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > UNCTAD Post-2015 Policy Brief
+1494,UNCTAD Proposed Programme Budget,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > UNCTAD Proposed Programme Budget
+412,UNCTAD rapid assessment,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > UNCTAD rapid assessment
+410,United Nations Global Crisis Response Group (Briefs),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > United Nations Global Crisis Response Group (Briefs)
+389,Working Papers,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > Working Papers
+658,World Economic Situation and Prospects,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > World Economic Situation and Prospects
+659,World Investment Directory,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > World Investment Directory
+660,World Investment Prospects Survey (Series),Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > World Investment Prospects Survey (Series)
+397,World Investment Report,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > World Investment Report
+661,World Tariff Profiles,Leaf child,Series  [PARENT TERM - DO NOT USE],Publication [PARENT TERM - DO NOT USE] > Series  [PARENT TERM - DO NOT USE] > World Tariff Profiles
+690,S-Gs and DSGs Statements (2011-2022),Root parent,,S-Gs and DSGs Statements (2011-2022)
+1700,DSG Moreno Statements,Leaf child,S-Gs and DSGs Statements (2011-2022),S-Gs and DSGs Statements (2011-2022) > DSG Moreno Statements
+1638,S-G Grynspan Statements,Leaf child,S-Gs and DSGs Statements (2011-2022),S-Gs and DSGs Statements (2011-2022) > S-G Grynspan Statements
+663,Sessional Document,Root parent,,Sessional Document
+664,ECOSOC,Child and parent,Sessional Document,Sessional Document > ECOSOC
+665,ECOSOC Decision,Leaf child,ECOSOC,Sessional Document > ECOSOC > ECOSOC Decision
+666,ECOSOC Document,Leaf child,ECOSOC,Sessional Document > ECOSOC > ECOSOC Document
+668,ECOSOC Resolutions - Science and Technology,Leaf child,ECOSOC,Sessional Document > ECOSOC > ECOSOC Resolutions - Science and Technology
+669,ECOSOC Resolutions - WSIS Follow-up,Leaf child,ECOSOC,Sessional Document > ECOSOC > ECOSOC Resolutions - WSIS Follow-up
+667,World Summit on the Information Society,Leaf child,ECOSOC,Sessional Document > ECOSOC > World Summit on the Information Society
+670,TDB,Child and parent,Sessional Document,Sessional Document > TDB
+671,List of Intergovernmental Organizations,Leaf child,TDB,Sessional Document > TDB > List of Intergovernmental Organizations
+672,List of Non-Governmental Organizations,Leaf child,TDB,Sessional Document > TDB > List of Non-Governmental Organizations
+673,UNCTAD Membership,Leaf child,TDB,Sessional Document > TDB > UNCTAD Membership
+676,United Nations,Child and parent,Sessional Document,Sessional Document > United Nations
+677,Economic costs of the Israeli occupation for the Palestinian people (UNSG Reports),Leaf child,United Nations,Sessional Document > United Nations > Economic costs of the Israeli occupation for the Palestinian people (UNSG Reports)
+1574,Entrepreneurship for sustainable development (UNSG Reports),Leaf child,United Nations,Sessional Document > United Nations > Entrepreneurship for sustainable development (UNSG Reports)
+686,External debt sustainability and development (UNSG Reports),Leaf child,United Nations,Sessional Document > United Nations > External debt sustainability and development (UNSG Reports)
+684,International Commodity Agreements,Leaf child,United Nations,Sessional Document > United Nations > International Commodity Agreements
+687,International Trade and Development (UNSG Reports),Leaf child,United Nations,Sessional Document > United Nations > International Trade and Development (UNSG Reports)
+688,UN Documents on Trade Law,Leaf child,United Nations,Sessional Document > United Nations > UN Documents on Trade Law
+689,UN Documents on US Embargo of Cuba,Leaf child,United Nations,Sessional Document > United Nations > UN Documents on US Embargo of Cuba
+678,UN Documents related to UNCTAD,Leaf child,United Nations,Sessional Document > United Nations > UN Documents related to UNCTAD
+680,UN Resolutions on ICTs,Leaf child,United Nations,Sessional Document > United Nations > UN Resolutions on ICTs
+1922,UN Resolutions on Illicit Financial Flows,Leaf child,United Nations,Sessional Document > United Nations > UN Resolutions on Illicit Financial Flows
+679,UN Resolutions on Palestine,Leaf child,United Nations,Sessional Document > United Nations > UN Resolutions on Palestine
+681,UN Resolutions on Science and Technology,Leaf child,United Nations,Sessional Document > United Nations > UN Resolutions on Science and Technology
+682,UN Resolutions related to the CSTD,Leaf child,United Nations,Sessional Document > United Nations > UN Resolutions related to the CSTD
+683,UN Resolutions related to UNCTAD,Leaf child,United Nations,Sessional Document > United Nations > UN Resolutions related to UNCTAD
+685,World commodity trends and prospects (UNSG Reports),Leaf child,United Nations,Sessional Document > United Nations > World commodity trends and prospects (UNSG Reports)

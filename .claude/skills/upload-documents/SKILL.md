@@ -63,6 +63,30 @@ otherwise. Never touch `unctad.org` itself unless explicitly told to.
   separately, since it can carry an instruction beyond just logging the
   document — sometimes including an explicit Restricted instruction, not
   just something inferable from the PDF itself.
+- **Always read the email's own subject line too, not just
+  `email.note`.** Confirmed twice now that the actual Restricted
+  instruction can live in the subject rather than the forwarder's typed
+  note: `TD/B/WP(91)/CRP.1`'s subject read "...post on web as restricted",
+  and `TD/B/73/L.3`'s read "ONLY FOR PUBLISHING on The Delegates Portal" —
+  the second one was missed on first filing (2026-09-15) because its PDF
+  cover only said "Distr.: Limited" (not "Distr.: Restricted"), and
+  `email.note` only captured the forwarder's generic "Another one for
+  you" — nothing in `classification.restricted` or the note field flagged
+  it, so **Restricted Document went unticked until the user caught it and
+  fixed it manually after the node was already saved.**
+  **The two wordings seen so far** (per the user, 2026-09-15) — the word
+  "restricted" itself, or a mention of the **Delegates Portal** (the
+  Portal is delegate-only access by definition) — **but treat this as
+  "read the actual email text for intent," not a fixed keyword list**:
+  the user explicitly said other phrasings are possible. Read the whole
+  subject and note for anything implying delegate-only/restricted
+  circulation, tick **Restricted Document** if so, and ask the user if a
+  phrase's intent genuinely isn't clear — regardless of what the PDF's
+  own "Distr.:" line says or what `classification.restricted` computed
+  (that field is symbol/PDF-text-only and won't catch an email-only
+  instruction like this). Treat reading the subject/note for this as a
+  checklist item on every run, not something to rely on the PDF text to
+  surface on its own.
 - Classifies the document: Publication vs. Sessional Document vs.
   Restricted vs. Conference Room Paper — from the symbol shape and
   signals in the PDF itself (e.g. "Advance copy", "Distr.: Restricted").
@@ -82,15 +106,12 @@ otherwise. Never touch `unctad.org` itself unless explicitly told to.
 - For publications only: generates a 1000×1414 cover JPG. Skipped for
   sessional documents (guideline is explicit and unconditional about this
   one).
-- Surfaces taxonomy candidates either way, from two entirely different
-  vocabularies: publications get the large general Thematic Taxonomy list
-  (`manifest.taxonomySuggestions`); sessional documents get Angela's own
-  small curated Product Taxonomy list — confirmed 2026-08-26, overriding
-  the guideline PDF's "skip taxonomy" default for sessional documents
-  specifically for this field (`manifest.sessionalProductTaxonomy`). Both
-  are candidates only — never auto-applied, and for the sessional list
-  capped at **5 selections, never more**, chosen by actually reading the
-  document, not by trusting the weak substring-match candidates alone.
+- Surfaces Thematic Taxonomy candidates for publications
+  (`manifest.taxonomySuggestions`) as a starting point — but see "Taxonomy
+  workflow" below for the current, full three-taxonomy process (all
+  content types, mention-count evidence, per-taxonomy bar); that section
+  supersedes treating this as publications-only or as a bare
+  presence/absence candidate list. Never auto-applied either way.
 - **Always ignores any `.docx` a zip/`.eml` carries alongside the `.pdf`,
   regardless of the email's source** — Angela originally confirmed
   (2026-08-26) gDoc2.0 always sends both with identical content, only the
@@ -293,20 +314,18 @@ Then:
   check by hand every time a CRP's title looks like it might already exist
   as another node.
 - Leave **Embargo** blank unless the user says otherwise.
-- Sessional documents: leave **Thematic** and **Sitemap Taxonomy** blank
-  (guideline: "unless you are 100% clear"). **Product Taxonomy** is
-  different — Angela confirmed it does apply to sessional documents, from
-  her own curated list (`manifest.sessionalProductTaxonomy.fullList`, each
-  with a Drupal term ID). Read the English PDF yourself and pick **up to
-  5, never more** (`maxSelectable`) — `.candidates` is only a weak
-  substring-match hint on the list, not a substitute for actually reading
-  the document; it will often be empty even when real matches exist.
-  Confirm your picks with the user before applying, same as publications.
-- Publications: fill **Thematic Taxonomy** from
-  `manifest.taxonomySuggestions` (ask the user to confirm/prune first —
-  never apply unconfirmed), **Product Taxonomy** with the series if there
-  is one, and **Sitemap Taxonomy** always including "UNCTAD Home" so the
-  item appears under "Latest Publications".
+- **Taxonomy (Thematic/Sitemap/Product)**: ask the user whether this
+  document needs taxonomies at all before doing the matching work below —
+  see "Taxonomy workflow" for the full three-taxonomy process (sourcing,
+  mention-count evidence, the per-taxonomy bar, presentation format).
+  Applies to every content type, not just Publications — for a Sessional
+  Document, still run the process and still ask; don't assume blank by
+  default just because that was the old guidance (see that section's own
+  note on what's superseded). Always confirm candidates with the user
+  before applying any of the three fields — never apply unconfirmed.
+  Sitemap Taxonomy, when used, conventionally includes "UNCTAD Home" for
+  a Publication so it appears under "Latest Publications" — still subject
+  to the same confirm-first rule, not an automatic addition.
 - Do **not** change the **Language** field on the node itself — that's the
   website's display language, not the document's language (guideline is
   explicit about this).
@@ -350,6 +369,64 @@ Then:
   procedure above only actually applies on the runs where the field does
   show up on Create. If it's missing, just check the edit page after
   Save rather than treating the gap as something to fix or ask about.
+
+### Companion Publication-type page (important publications)
+
+Some publications also have a separate **Publication** content type node
+(not to be confused with the Official Document's "Publication" Document
+Type) — a richer landing page/microsite at `unctad.org/publication/<slug>`,
+built independently by the dev team, often with heavy custom paragraph
+content (dashboards, data-viz sections, timelines). It can **pre-exist**
+the Official Document filing by weeks — confirmed case: node `52673`
+("Looking Beyond GDP") was created 17/08/2026 by a developer, a full month
+before the companion Official Document node `52790` was filed
+(14/09/2026). Do not create one yourself; only fill an existing one.
+
+After filing/updating the Official Document node, check whether a
+companion Publication node exists:
+`admin/content?title=<the title>&type=publication`. If unsure whether this
+particular publication is "important" enough to have one, ask the user
+rather than assuming — most documents don't get one.
+
+If a companion node is found, open its edit form and fill/verify these
+fields (confirmed machine names from node `52673`, 2026-09-15):
+- `field_subtitle` — same subtitle text used on the Official Document node.
+- `field_symbol` — same symbol.
+- `field_cover_image` — the cover JPG the pipeline already generates for
+  every Publication at `manifest.coverImagePath`
+  (`<parsed.base>_en_cover.jpg`, from `generateCoverImage()` in
+  `src/upload-pipeline.js`). That file is produced on every run today but
+  nothing currently uploads it anywhere — the Official Document content
+  type has no cover-image field at all, so this companion node is the only
+  place it belongs. Upload it here.
+- `field_documents` (labelled "Downloads", a paragraph-based repeating
+  field with per-row weight + entity-autocomplete) — reference the same
+  English PDF already uploaded to the Official Document node. Exact click
+  interaction not yet confirmed against a real form — screenshot each step
+  and verify the resulting reference before trusting it, same caution as
+  the Associated-meetings autocomplete elsewhere in this doc.
+
+Also present on this content type but **out of scope for auto-fill**
+unless the user asks: Thematic/Sitemap/Product Taxonomy (same three
+fields as the Official Document node — confirm whether to mirror the same
+choices rather than assuming), `field_alternative_title`,
+`field_media_collection`, `field_minisite_link`, `field_featured`, and
+others unrelated to this incident.
+
+**Never overwrite a value a human already set** — read the field's current
+value first (same rule as everywhere else in this skill) and only fill it
+if genuinely empty, or confirm with the user before changing something
+already populated.
+
+This step exists because of a real incident (2026-09-15): node `52673`
+sat with these four fields empty for a month after being built, until a
+colleague (Timothy Sullivan) noticed and filled them in by hand — initially
+reported as if something had gone missing/broken, but the actual root
+cause (confirmed via both nodes' revision histories) was simply that no
+step in this process had ever filled the companion node at all, even
+though the source data (and, for the cover image, the generated file
+itself) was sitting right there in the Official Document filing the whole
+time.
 
 ## Never publish — leave that to the user
 
@@ -407,6 +484,45 @@ retrying fixed it; every subsequent AJAX call that run returned `200`.
 Treat a 403 here as "reload and retry once" before treating it as a real
 blocker.
 
+## Correcting a file on an already-filed document
+
+If a filed document's PDF turns out to be wrong (bad metadata, missing
+images, wrong content) and the user has given explicit one-time
+permission to fix that specific file (see the overwrite rule in Step 1),
+don't recreate the node — replace the file in place:
+
+1. Open the node's edit page, find the Files entry, and use its
+   **"Replace this file"** link — it opens a dedicated page at
+   `admin/content/files/replace/<fid>`, separate from the node edit form.
+2. That page shows the current filename/size under "Original" — **read
+   it and confirm it matches the file you actually mean to replace**
+   before uploading, especially when replacing several languages in a
+   row (fid order isn't always the same as the on-page language order).
+3. Upload the corrected file and click **Save**. The filename stays the
+   same (confirmed: uploading a differently-named local file still saves
+   under the original's filename) — Drupal replaces the bytes at the
+   same fid, so the node's own reference to it needs no further edit.
+4. **A stale-click gotcha, seen repeatedly on this exact page**: the
+   first Save click after an upload frequently doesn't register (the
+   page still shows the file selected, no "The file was replaced."
+   status message) — screenshot or re-read the page after clicking, and
+   click Save again if the status message hasn't appeared. Don't assume
+   one click was enough just because nothing errored.
+5. **Verify the live public URL afterward, with caching disabled — don't
+   trust the "The file was replaced." message alone.** Confirmed
+   2026-09-15: right after a successful save, the very first fetch of
+   `unctad.org/system/files/official-document/<filename>` still returned
+   the *old* file — Cloudflare was serving a cached copy
+   (`cf-cache-status: HIT`, the site's `Cache-Control` is `max-age=2592000`,
+   30 days). It resolved on its own within roughly 10-20 seconds (a
+   second fetch showed `age: 7`, i.e. a freshly-cached copy), consistent
+   with the save triggering a purge rather than waiting out the full
+   TTL — but that window is real. From a logged-in tab,
+   `await fetch(url, { cache: 'no-store' }).then(r => r.arrayBuffer())`
+   via `javascript_tool` and checking `.byteLength` against the size you
+   just uploaded is a fast, reliable way to confirm the public copy has
+   actually caught up before telling the user it's fixed.
+
 ## unctad.org / uat-unctad.org can be slow or unresponsive
 
 Both sites are known to be intermittently slow, or to return `503
@@ -462,21 +578,113 @@ surfaced `TD/B/WP/...` (Working Party) needing "TD/B/" dropped entirely
 like the commissions, which wasn't previously handled — see that module's
 header comment for the full worked-example set.
 
-## Resolved: sessional-document Product Taxonomy
+## Taxonomy workflow: Thematic, Sitemap, Product
 
-The sessional guideline PDF is actually conditional about taxonomy — "Do
-NOT complete the Product, Thematic or Sitemap Taxonomy Fields **unless you
-are 100% clear**" — and `UNCTAD_PDF_Prep_Instructions.txt` (separate
-AI-prep notes, not one of the three Drupal guideline PDFs) went further and
-said skip it unconditionally. Angela's answer (2026-08-26) splits the
-difference for **Product Taxonomy specifically**: it does apply to
-sessional documents, from her own small curated list (20 terms with Drupal
-IDs, `data/Sessional_Document_Product_Taxonomy.txt`) — pick up to 5, never
-more, by reading the document. Thematic and Sitemap Taxonomy stay blank
-for sessional documents as the guideline originally said; only Product
-Taxonomy changed. Tim's training follow-up also flagged
-taxonomy-during-extended-leave-coverage as a gap — still genuinely open,
-ask if it comes up.
+Standing process (2026-09-14), applies to **every content type**, not
+just Publications — supersedes the older per-content-type rules below
+(kept for their historical context, not as current instructions).
+
+**Always ask the user first whether this document needs taxonomies at
+all** before doing any of the matching work below — not every document
+warrants tagging, and this is a judgment call for the user to make, not
+something to assume from content type alone.
+
+**Sources — only suggest terms that already exist in these, never invent
+one:**
+- **Thematic** — `data/Thematic_Taxonomy_List.txt` (one term per line, no
+  ID; original source copy at `.claude/skills/upload-documents/
+  references/thematic_taxonomy_list.md`).
+- **Sitemap** — `data/Sitemap_Taxonomy.csv`, converted from the Sitemap
+  sheet of `.claude/skills/upload-documents/references/
+  Product_and_Sitemap_Taxonomies.xlsx` (the original workbook, kept for
+  provenance/re-conversion if it's ever updated).
+- **Product** — `data/Product_Taxonomy.csv`, converted from that same
+  workbook's Product sheet. **This is now the canonical Product Taxonomy
+  source for every content type, including Sessional Documents** — the
+  older `data/Sessional_Document_Product_Taxonomy.txt` (Angela's
+  hand-curated 20-term subset, 2026-08-26) is superseded by this fuller
+  sheet plus the judgment process below, not a separate track anymore.
+
+Each Sitemap/Product CSV row carries **Term ID, Term name, Hierarchy
+role, Parent names, Full hierarchy path(s)** — the hierarchy columns are
+real evidence for judging fit, not just decoration: a term's place in the
+tree often clarifies what it actually covers (e.g. a "Leaf child" term's
+`Full hierarchy path(s)` shows the exact parent category it sits under).
+**Exclude any row whose Term name contains the substring "DO NOT USE"** —
+these are hierarchy-scaffolding placeholders, never valid tags themselves;
+the exact bracket wording varies (`[DO NOT USE]`, `[PARENT DO NOT USE]`,
+`[PARENT TERM - DO NOT USE]`, `[PARENT - DO NOT USE]` all appear in the
+real workbook) — match on the substring, not one exact phrase.
+`loadProductOrSitemapTaxonomy()` in `src/taxonomy.js` does this filtering
+automatically; don't re-implement it inline.
+
+**Tooling** (`src/taxonomy.js`): `loadTaxonomyList()` /
+`suggestThematicCandidatesWithCounts(text, terms)` for Thematic;
+`loadProductOrSitemapTaxonomy(csvPath)` /
+`suggestProductOrSitemapCandidates(text, terms)` for Sitemap and Product
+— both return every term with at least one mention, plus its count
+(`countMentions()`, a whole-phrase case-insensitive match), sorted by
+count descending (Sitemap/Product) or alphabetically (Thematic, per the
+guideline's own instruction for that field). **This tooling only surfaces
+candidates with evidence — it never decides "is this a main area", that's
+still your judgment call**, reading the actual document, applying the bar
+below.
+
+**Shared "main area" rule, different bar per taxonomy.** Only suggest a
+term that reflects a recurring theme, a substantive section, or a central
+focus of the document — not a passing or single-sentence mention.
+Calibrate to document length: a handful of mentions can be significant in
+a short paper but not in a 200-page report — don't apply a fixed numeric
+threshold across documents of very different lengths.
+- **Sitemap — stricter.** It determines page placement, so suggest fewer
+  terms, only the ones you're genuinely confident about.
+- **Thematic — looser.** It's just on-site keywords, so err on the side
+  of inclusion.
+- **Product — real judgment, not best-effort pattern-matching.** Many
+  publications belong to an existing series (a flagship report series,
+  etc.) — if a Product term for that series exists, it likely fits. A
+  Product term for a parent event or series is for that event's/series'
+  own page, not automatically for every document connected to it — check
+  the actual fit, a family resemblance alone isn't enough. **If no
+  existing series or term genuinely matches, the correct answer is no
+  Product taxonomy suggestion at all** — don't force a near-fit just to
+  have something to show.
+
+**Presenting suggestions to the user:**
+- Thematic: alphabetical, `Term name [N mentions]`.
+- Sitemap and Product: `Term name (Term ID) [N mentions]` — e.g. `Africa
+  (1067) [30 mentions]` — plus a short reason it clears the bar (or, for
+  Product, a short reason nothing qualifies if that's the honest answer).
+  This gives the user the actual evidence to make their own call, not
+  just a claim to trust.
+
+**Lessons from a real review (Beyond GDP, node 52790, colleague Timothy
+Sullivan, 2026-09-15)** — his edits confirmed the mechanical
+mention-counting above is a starting point, not the final answer:
+- **Concept vs. literal name is the biggest gap, confirmed repeatedly.**
+  Several of his additions had zero literal occurrences of the term's own
+  name — e.g. Development indicators matched on the word "indicator"
+  (13×), Gender equality on a "women's pay" example section (4×), SDG 16
+  on "institution"/"trust"/"peace" (8+7+3×), Statistics and data on
+  "statistic" (9×). A literal-substring count will always miss these —
+  when reading the document yourself, actively look for the *concept*
+  each taxonomy term represents, not just its exact name string.
+- **A repeated example within one section isn't the same as a document-wide
+  theme.** Africa was in the original candidate list (30 mentions) but got
+  removed from both Thematic and Sitemap on final review — it turned out
+  to be one recurring regional example inside a single chart/section, not
+  a genuine focus of the publication as a whole. High mention count is
+  evidence to check, not evidence to apply automatically.
+- **Parent and child Sitemap terms can both genuinely apply** — Statistics
+  and Beyond GDP (its own child page) were both added; don't assume adding
+  the more specific term makes the broader parent redundant, or vice
+  versa.
+- **Watch for stray punctuation when an autocomplete value gets typed
+  in** — one applied term round-tripped as `"SDG 16 Peace, Justice and
+  Strong Institutions (1157)"` with literal, stored quote marks around it.
+  Re-read a taxonomy field's actual saved value after applying it, the
+  same way this skill already double-checks the Associated-meetings
+  autocomplete elsewhere.
 
 ## Known gaps — ask, don't guess
 

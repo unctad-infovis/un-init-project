@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { parse } from 'csv-parse/sync';
 
 /**
  * Thematic_Taxonomy_List.txt is a one-column list with a header row
@@ -79,4 +80,76 @@ export function suggestSessionalProductTaxonomy(text, terms) {
     if (pattern.test(text)) matches.push(term);
   }
   return matches;
+}
+
+/**
+ * Count case-insensitive occurrences of `phrase` in `text`, matched as a
+ * whole phrase with the same lookaround boundary rule as the other
+ * suggest* functions here (not \b — several terms start/end with
+ * punctuation, e.g. "Generalized System of Preferences (GSP)", see
+ * suggestTaxonomyTerms' own comment).
+ */
+export function countMentions(text, phrase) {
+  const escaped = phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const pattern = new RegExp(`(?<![a-zA-Z0-9])${escaped}(?![a-zA-Z0-9])`, 'gi');
+  return (text.match(pattern) || []).length;
+}
+
+/**
+ * Thematic candidates with a real mention count each — same source list
+ * as `suggestTaxonomyTerms` (data/Thematic_Taxonomy_List.txt), but exposes
+ * the count instead of collapsing to presence/absence, per the taxonomy
+ * workflow documented in the /upload-documents skill: Thematic Taxonomy
+ * terms have no ID in their source list, so the count is the only piece
+ * of evidence shown alongside each candidate. Sorted alphabetically, per
+ * the guideline's own instruction for this field.
+ */
+export function suggestThematicCandidatesWithCounts(text, terms) {
+  return terms
+    .map((name) => ({ name, mentions: countMentions(text, name) }))
+    .filter((t) => t.mentions > 0)
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/**
+ * Load a Product/Sitemap taxonomy export (data/Product_Taxonomy.csv,
+ * data/Sitemap_Taxonomy.csv — converted from the source .xlsx workbook's
+ * Product/Sitemap sheets; columns: Term ID, Term name, Hierarchy role,
+ * Parent names, Full hierarchy path(s)). Terms whose name contains "DO NOT
+ * USE" are hierarchy-scaffolding placeholders, never valid tags themselves
+ * — always excluded here rather than left for the caller to filter (the
+ * exact bracket wording varies across the real workbook — "[DO NOT USE]",
+ * "[PARENT DO NOT USE]", "[PARENT TERM - DO NOT USE]", "[PARENT - DO NOT
+ * USE]" all appear — matched on the substring, not one exact phrase).
+ */
+export function loadProductOrSitemapTaxonomy(csvPath) {
+  const records = parse(fs.readFileSync(csvPath, 'utf8'), { columns: true, skip_empty_lines: true });
+  return records
+    .filter((r) => !r['Term name'].includes('DO NOT USE'))
+    .map((r) => ({
+      id: r['Term ID'],
+      name: r['Term name'],
+      hierarchyRole: r['Hierarchy role'],
+      parentNames: r['Parent names'],
+      fullPath: r['Full hierarchy path(s)'],
+    }));
+}
+
+/**
+ * Candidate Product/Sitemap terms with a real mention count and Term ID
+ * each, for the caller (a human, reading the actual document) to apply
+ * the per-taxonomy judgment call documented in the /upload-documents
+ * skill — this deliberately doesn't rank-and-cut or threshold anything
+ * itself, since "how many mentions counts as a main area" depends on
+ * document length and which of the two taxonomies is being judged
+ * (Sitemap: stricter, page-placement; Product: real judgment, often
+ * correctly "none"). Only terms with at least one mention are returned,
+ * sorted by mention count descending — the caller still has to read the
+ * document and each candidate's hierarchy context, not just take the top N.
+ */
+export function suggestProductOrSitemapCandidates(text, terms) {
+  return terms
+    .map((t) => ({ ...t, mentions: countMentions(text, t.name) }))
+    .filter((t) => t.mentions > 0)
+    .sort((a, b) => b.mentions - a.mentions);
 }

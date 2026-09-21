@@ -55,6 +55,35 @@ export async function applyPdfMetadata(pdfBytes, { lang, title, keywords, bookma
   doc.setLanguage(LANGUAGE_TAGS[lang]);
   doc.setModificationDate(new Date());
 
+  // Strip any XMP metadata stream. Real UN document PDFs (Word exports)
+  // commonly already carry one with the translator's own Word "Author" and
+  // a Title the translator typed (sometimes just the symbol, sometimes
+  // nothing at all) — and Ghostscript's pdfwrite device, which
+  // compressPdf() always runs before this function, re-serializes that
+  // same stale packet into its rewritten output rather than dropping it.
+  // Confirmed real bug, 2026-09-15, TD/B/73/L.3: Acrobat
+  // prefers XMP dc:title/dc:creator over the classic /Info Title/Author
+  // whenever both are present, so the stale XMP (translator's name as
+  // Author, the bare symbol or even a literal "'Untitled'" placeholder as
+  // Title) silently shadowed the correct values this function had just
+  // written — Subject/Keywords only looked correct in that incident
+  // because the stale XMP happened to carry no dc:description. Deleting
+  // /Metadata here makes the /Info dictionary this function writes the
+  // only source a viewer can read from, avoiding the whole class of
+  // "shows old data" bugs rather than trying to keep a second metadata
+  // representation in sync.
+  //
+  // Deleting the catalog key alone isn't enough: pdf-lib's writer
+  // serializes every object still registered in the document's context
+  // regardless of whether anything references it, so the orphaned XMP
+  // stream's raw bytes — including the translator's real name — would
+  // otherwise survive, unreadable to a compliant viewer but still sitting
+  // in the file. Look the object up first and delete it from the context
+  // itself so the bytes are actually gone, not just unlinked.
+  const metadataRef = doc.catalog.get(PDFName.of('Metadata'));
+  doc.catalog.delete(PDFName.of('Metadata'));
+  if (metadataRef) doc.context.delete(metadataRef);
+
   // Printing dialogue presets: "Default" print scaling + "Duplex flip long edge"
   const viewerPrefs = doc.catalog.getOrCreateViewerPreferences();
   viewerPrefs.setDuplex(Duplex.DuplexFlipLongEdge);

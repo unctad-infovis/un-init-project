@@ -7,7 +7,19 @@ import { parseSymbol, LANGUAGES } from './doc-naming.js';
  */
 export function extractSymbolFromPdfText(text) {
   const match = text.match(/\b(TD\/B[^\s]*|UNCTAD\/[^\s]*|[A-Z]+\/[A-Z0-9.()/-]+)\b/);
-  return match ? match[1] : null;
+  if (match) return match[1];
+
+  // Some cover/colophon page designs render a symbol's slashes with
+  // surrounding whitespace in pdftotext's extracted output — e.g. a
+  // wide-letter-spaced "UNCTAD / SDDS / INF / 2026 / 1" line — confirmed
+  // 2026-09-14 on a real Publication (UNCTAD/SDDS/INF/2026/1, on its last
+  // page). Requires at least two "/segment" groups (three segments total)
+  // so this doesn't fire on an unrelated capitalized word that happens to
+  // sit near an unrelated slash elsewhere on the page. Whitespace around
+  // each slash is stripped from the result, so the returned symbol always
+  // matches the tight form (buildFilenames etc.) expects.
+  const spaced = text.match(/\b([A-Z]{2,})(?:\s*\/\s*[A-Z0-9.()-]+){2,}\b/);
+  return spaced ? spaced[0].replace(/\s*\/\s*/g, '/') : null;
 }
 
 /**

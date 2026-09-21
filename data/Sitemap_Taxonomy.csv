@@ -1,0 +1,394 @@
+Term ID,Term name,Hierarchy role,Parent names,Full hierarchy path(s)
+723,About UNCTAD,Root parent,,About UNCTAD
+1433,COVID-19 response and recovery,Leaf child,About UNCTAD,About UNCTAD > COVID-19 response and recovery
+1654,Delegates portal,Leaf child,About UNCTAD,About UNCTAD > Delegates portal
+1660,"Global Crises: Food, Energy and Finance",Leaf child,About UNCTAD,"About UNCTAD > Global Crises: Food, Energy and Finance"
+1893,Independent Evaluation Unit,Leaf child,About UNCTAD,About UNCTAD > Independent Evaluation Unit
+1560,Media Centre,Leaf child,About UNCTAD,About UNCTAD > Media Centre
+726,Office of the Secretary-General,Child and parent,About UNCTAD,About UNCTAD > Office of the Secretary-General
+1636,Grynspan Commentary and Analysis,Leaf child,Office of the Secretary-General,About UNCTAD > Office of the Secretary-General > Grynspan Commentary and Analysis
+1662,Grynspan News,Leaf child,Office of the Secretary-General,About UNCTAD > Office of the Secretary-General > Grynspan News
+789,Moreno News,Leaf child,Office of the Secretary-General,About UNCTAD > Office of the Secretary-General > Moreno News
+792,Office of the Deputy Secretary-General,Leaf child,Office of the Secretary-General,About UNCTAD > Office of the Secretary-General > Office of the Deputy Secretary-General
+1837,Trade and Development Board,Leaf child,About UNCTAD,About UNCTAD > Trade and Development Board
+724,UNCTAD and Civil Society,Leaf child,About UNCTAD,About UNCTAD > UNCTAD and Civil Society
+1573,UNCTAD New York Office,Leaf child,About UNCTAD,About UNCTAD > UNCTAD New York Office
+916,UNCTAD Regional Office for Africa,Leaf child,About UNCTAD,About UNCTAD > UNCTAD Regional Office for Africa
+735,Africa,Root parent,,Africa
+730,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]",Child and parent,Africa,"Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]"
+733,Centers of Excellence in Africa and Asia,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Centers of Excellence in Africa and Asia"
+1575,"EIF Project TJAU: Transit, transport in West Africa",Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > EIF Project TJAU: Transit, transport in West Africa"
+736,Enhanced Integrated Framework,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Enhanced Integrated Framework"
+737,Geographical Indications (GIs),Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Geographical Indications (GIs)"
+738,Landlocked Developing Countries,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Landlocked Developing Countries"
+739,Least Developed Countries,Child and parent,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Least Developed Countries"
+732,ASEAN LDCs: Trade Policy and Strategy Project,Leaf child,Least Developed Countries,"Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Least Developed Countries > ASEAN LDCs: Trade Policy and Strategy Project"
+734,Duty-Free Quota Free Market Access for LDCs,Leaf child,Least Developed Countries,"Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Least Developed Countries > Duty-Free Quota Free Market Access for LDCs"
+1434,LDC graduation support package,Leaf child,Least Developed Countries,"Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Least Developed Countries > LDC graduation support package"
+1608,On the road to LDC5,Child and parent,Least Developed Countries,"Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Least Developed Countries > On the road to LDC5"
+1609,LDC5: Intergovernmental support,Leaf child,On the road to LDC5,"Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Least Developed Countries > On the road to LDC5 > LDC5: Intergovernmental support"
+1610,LDC5: Support to LDC graduation,Leaf child,On the road to LDC5,"Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Least Developed Countries > On the road to LDC5 > LDC5: Support to LDC graduation"
+1903,Productive capacities,Leaf child,Least Developed Countries,"Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Least Developed Countries > Productive capacities"
+1585,Productive Capacities Index (PCI),Leaf child,Least Developed Countries,"Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Least Developed Countries > Productive Capacities Index (PCI)"
+740,Rules of Origin for LDCs,Leaf child,Least Developed Countries,"Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Least Developed Countries > Rules of Origin for LDCs"
+745,Trade Preferences: Data on Utilization Rates,Leaf child,Least Developed Countries,"Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Least Developed Countries > Trade Preferences: Data on Utilization Rates"
+744,"Trade, poverty, and inequalities",Leaf child,Least Developed Countries,"Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Least Developed Countries > Trade, poverty, and inequalities"
+741,Small Island Developing States,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > Small Island Developing States"
+746,UNDA Project 1415M: Fish Export from selected LDCs,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > UNDA Project 1415M: Fish Export from selected LDCs"
+747,UNDA Project 1617M: LLDCs Productive capacities Index,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > UNDA Project 1617M: LLDCs Productive capacities Index"
+748,UNDA Project 1819F: Towards and Beyond LDC Graduation,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > UNDA Project 1819F: Towards and Beyond LDC Graduation"
+749,UNDA Project 1819Y: Illicit financial flows in Africa,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > UNDA Project 1819Y: Illicit financial flows in Africa"
+1420,UNDA Project 2023E: Productive capacity in African LDCs,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > UNDA Project 2023E: Productive capacity in African LDCs"
+1596,UNDA Project 2124D: Technology assessment in Africa,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > UNDA Project 2124D: Technology assessment in Africa"
+1668,UNDA Project 2225F: TrainForTrade digital economy in SIDS,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > UNDA Project 2225F: TrainForTrade digital economy in SIDS"
+1734,UNDA Project 2326E: Graduation from LDC status,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > UNDA Project 2326E: Graduation from LDC status"
+1857,UNDA Project 2528E: Productive capacities in Caribbean SIDS,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > UNDA Project 2528E: Productive capacities in Caribbean SIDS"
+1730,UNJP Project TJAO: Haiti SDGs: Policy and Financing Options,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > UNJP Project TJAO: Haiti SDGs: Policy and Financing Options"
+1729,UNJP Project TLAU: Global crisis emergency support for Haiti,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > UNJP Project TLAU: Global crisis emergency support for Haiti"
+1584,UNSDG Subfund Project TJBS: Productive capacities and linkages with China,Leaf child,"Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE]","Africa > Africa, LDCs, LLDCs and Special Programmes [PARENT - DO NOT USE] > UNSDG Subfund Project TJBS: Productive capacities and linkages with China"
+731,Angola: EU-UNCTAD Project TFBK,Leaf child,Africa,Africa > Angola: EU-UNCTAD Project TFBK
+1432,Support to the African Continental Free Trade Area (AfCFTA),Leaf child,Africa,Africa > Support to the African Continental Free Trade Area (AfCFTA)
+1792,UN-PDTF-SDG Project: SMEs in regional value chains,Leaf child,Africa,Africa > UN-PDTF-SDG Project: SMEs in regional value chains
+863,UNDA Project 1819I: Services trade in Africa,Leaf child,Africa,Africa > UNDA Project 1819I: Services trade in Africa
+1938,UNRCO Project: Productive capacities in DR Congo,Leaf child,Africa,Africa > UNRCO Project: Productive capacities in DR Congo
+759,Assistance to the Palestinian People,Standalone root,,Assistance to the Palestinian People
+750,Commission on Science and Technology for Development,Root parent,,Commission on Science and Technology for Development
+757,CSTD - Gender Advisory Board,Leaf child,Commission on Science and Technology for Development,Commission on Science and Technology for Development > CSTD - Gender Advisory Board
+1828,CSTD - Working Group on Data Governance,Child and parent,Commission on Science and Technology for Development,Commission on Science and Technology for Development > CSTD - Working Group on Data Governance
+1898,Working Group on Data Governance (SURVEY RESPONSES),Child and parent,CSTD - Working Group on Data Governance,Commission on Science and Technology for Development > CSTD - Working Group on Data Governance > Working Group on Data Governance (SURVEY RESPONSES)
+1894,Track 1,Leaf child,Working Group on Data Governance (SURVEY RESPONSES),Commission on Science and Technology for Development > CSTD - Working Group on Data Governance > Working Group on Data Governance (SURVEY RESPONSES) > Track 1
+1895,Track 2,Leaf child,Working Group on Data Governance (SURVEY RESPONSES),Commission on Science and Technology for Development > CSTD - Working Group on Data Governance > Working Group on Data Governance (SURVEY RESPONSES) > Track 2
+1896,Track 3,Leaf child,Working Group on Data Governance (SURVEY RESPONSES),Commission on Science and Technology for Development > CSTD - Working Group on Data Governance > Working Group on Data Governance (SURVEY RESPONSES) > Track 3
+1897,Track 4,Leaf child,Working Group on Data Governance (SURVEY RESPONSES),Commission on Science and Technology for Development > CSTD - Working Group on Data Governance > Working Group on Data Governance (SURVEY RESPONSES) > Track 4
+751,CSTD - Working Group on Enhanced Cooperation (2013),Leaf child,Commission on Science and Technology for Development,Commission on Science and Technology for Development > CSTD - Working Group on Enhanced Cooperation (2013)
+752,CSTD - Working Group on Enhanced Cooperation (2016),Leaf child,Commission on Science and Technology for Development,Commission on Science and Technology for Development > CSTD - Working Group on Enhanced Cooperation (2016)
+755,CSTD - Working Group on Enhanced Cooperation (WGEC),Leaf child,Commission on Science and Technology for Development,Commission on Science and Technology for Development > CSTD - Working Group on Enhanced Cooperation (WGEC)
+753,CSTD - Working Group on Internet Governance (2011),Leaf child,Commission on Science and Technology for Development,Commission on Science and Technology for Development > CSTD - Working Group on Internet Governance (2011)
+1421,CSTD and Covid-19,Leaf child,Commission on Science and Technology for Development,Commission on Science and Technology for Development > CSTD and Covid-19
+754,CSTD Dialogue,Leaf child,Commission on Science and Technology for Development,Commission on Science and Technology for Development > CSTD Dialogue
+1632,CSTD Project: CropWatch-ICP,Leaf child,Commission on Science and Technology for Development,Commission on Science and Technology for Development > CSTD Project: CropWatch-ICP
+1633,CSTD Project: Young Female Scientist Programme,Leaf child,Commission on Science and Technology for Development,Commission on Science and Technology for Development > CSTD Project: Young Female Scientist Programme
+856,CSTD Project: Young Scientist PhD Programme,Leaf child,Commission on Science and Technology for Development,Commission on Science and Technology for Development > CSTD Project: Young Scientist PhD Programme
+1757,WSIS+20: 20-year review of WSIS implementation,Leaf child,Commission on Science and Technology for Development,Commission on Science and Technology for Development > WSIS+20: 20-year review of WSIS implementation
+791,Commodities,Root parent,,Commodities
+784,Commodities - ECCAS Project,Leaf child,Commodities,Commodities > Commodities - ECCAS Project
+785,Commodities - ESA Cotton Project,Leaf child,Commodities,Commodities > Commodities - ESA Cotton Project
+786,Commodities - Global Commodities Forum,Leaf child,Commodities,Commodities > Commodities - Global Commodities Forum
+787,Commodities - International Commodity Bodies,Leaf child,Commodities,Commodities > Commodities - International Commodity Bodies
+788,Commodities - Project LLDCs in GVCs,Leaf child,Commodities,Commodities > Commodities - Project LLDCs in GVCs
+790,Commodities - WTO-UNCTAD-ITC Cotton Project,Leaf child,Commodities,Commodities > Commodities - WTO-UNCTAD-ITC Cotton Project
+1790,Critical minerals,Leaf child,Commodities,Commodities > Critical minerals
+1859,Project TOAH: Critical Energy Transition Minerals in Southern Africa,Leaf child,Commodities,Commodities > Project TOAH: Critical Energy Transition Minerals in Southern Africa
+1913,Project TPAM: Critical Energy Transition Minerals in DRC,Leaf child,Commodities,Commodities > Project TPAM: Critical Energy Transition Minerals in DRC
+909,SENAI Project: Suape Industrial Port Complex,Leaf child,Commodities,Commodities > SENAI Project: Suape Industrial Port Complex
+1842,UNDA Project 2528F: Sustainable coffee in Asia,Leaf child,Commodities,Commodities > UNDA Project 2528F: Sustainable coffee in Asia
+793,Competition and Consumer Protection,Root parent,,Competition and Consumer Protection
+901,7th UN Review Conference [DO NOT USE],Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > 7th UN Review Conference [DO NOT USE]
+794,COMPAL Programme,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > COMPAL Programme
+795,Competition - Research Partnership Platform,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > Competition - Research Partnership Platform
+1603,EBRD Project TNAK: Competition law and policy in Albania,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > EBRD Project TNAK: Competition law and policy in Albania
+1911,EC Project TOAY: Consumer product safety,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > EC Project TOAY: Consumer product safety
+1769,Project NT8X603: Competition and consumer protection on PALOP countries,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > Project NT8X603: Competition and consumer protection on PALOP countries
+1773,Project RAF0TLBG:  Competition and consumer protection in the DRC,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > Project RAF0TLBG:  Competition and consumer protection in the DRC
+1607,Project TIAV: consumers blockchain dispute resolution,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > Project TIAV: consumers blockchain dispute resolution
+725,Project TNAB: Consumer protection in MEAs,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > Project TNAB: Consumer protection in MEAs
+1916,Project TPAL: Consumer product safety in Sub-Saharan Africa,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > Project TPAL: Consumer product safety in Sub-Saharan Africa
+1919,UN principles for consumer product safety,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > UN principles for consumer product safety
+1588,Working group on competition law enforcement,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > Working group on competition law enforcement
+1586,Working group on consumer product safety,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > Working group on consumer product safety
+908,Working group on consumer protection and gender,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > Working group on consumer protection and gender
+1589,Working group on consumer protection in e-commerce,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > Working group on consumer protection in e-commerce
+1591,Working group on cross-border cartels,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > Working group on cross-border cartels
+1587,Working group on protection of vulnerable consumers,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > Working group on protection of vulnerable consumers
+1590,Working group on voluntary peer reviews,Leaf child,Competition and Consumer Protection,Competition and Consumer Protection > Working group on voluntary peer reviews
+760,Debt and Development Finance,Root parent,,Debt and Development Finance
+761,Debt ＆ Finance: Financial Conditions Index Project,Leaf child,Debt and Development Finance,Debt and Development Finance > Debt ＆ Finance: Financial Conditions Index Project
+762,Debt ＆ Finance: Responsible Sovereign Financing Project,Leaf child,Debt and Development Finance,Debt and Development Finance > Debt ＆ Finance: Responsible Sovereign Financing Project
+763,Debt Management and Financial Analysis System (DMFAS),Leaf child,Debt and Development Finance,Debt and Development Finance > Debt Management and Financial Analysis System (DMFAS)
+1915,Debt management: Borrowers platform,Leaf child,Debt and Development Finance,Debt and Development Finance > Debt management: Borrowers platform
+1836,OSF Project TMAY: Climate Finance for Development,Leaf child,Debt and Development Finance,Debt and Development Finance > OSF Project TMAY: Climate Finance for Development
+1867,OSF Project TMAY: Development-oriented debt architecture,Leaf child,Debt and Development Finance,Debt and Development Finance > OSF Project TMAY: Development-oriented debt architecture
+764,Sovereign Debt Portal,Leaf child,Debt and Development Finance,Debt and Development Finance > Sovereign Debt Portal
+866,E-commerce and the Digital Economy,Root parent,,E-commerce and the Digital Economy
+873,Digital Economy: Measurement,Leaf child,E-commerce and the Digital Economy,E-commerce and the Digital Economy > Digital Economy: Measurement
+867,e-Commerce Legislation,Leaf child,E-commerce and the Digital Economy,E-commerce and the Digital Economy > e-Commerce Legislation
+871,E-commerce Strategy and ICT Policy Reviews,Leaf child,E-commerce and the Digital Economy,E-commerce and the Digital Economy > E-commerce Strategy and ICT Policy Reviews
+868,e-Trade for All,Leaf child,E-commerce and the Digital Economy,E-commerce and the Digital Economy > e-Trade for All
+869,e-Trade for Women,Leaf child,E-commerce and the Digital Economy,E-commerce and the Digital Economy > e-Trade for Women
+870,e-Trade Readiness Assessments Project,Leaf child,E-commerce and the Digital Economy,E-commerce and the Digital Economy > e-Trade Readiness Assessments Project
+1658,ECOWAS Project: Regional e-commerce strategy,Leaf child,E-commerce and the Digital Economy,E-commerce and the Digital Economy > ECOWAS Project: Regional e-commerce strategy
+872,ICTs and Women's Entrepreneurship,Leaf child,E-commerce and the Digital Economy,E-commerce and the Digital Economy > ICTs and Women's Entrepreneurship
+874,Network of Centres of Excellence,Leaf child,E-commerce and the Digital Economy,E-commerce and the Digital Economy > Network of Centres of Excellence
+1635,Pacific Digital Economy Programme,Leaf child,E-commerce and the Digital Economy,E-commerce and the Digital Economy > Pacific Digital Economy Programme
+875,Partnership on ICT Measurement,Leaf child,E-commerce and the Digital Economy,E-commerce and the Digital Economy > Partnership on ICT Measurement
+833,Enterprise Development,Root parent,,Enterprise Development
+834,Business Facilitation (E-Regulation),Leaf child,Enterprise Development,Enterprise Development > Business Facilitation (E-Regulation)
+835,Business Facilitation Programme,Leaf child,Enterprise Development,Enterprise Development > Business Facilitation Programme
+838,E-Tools for Business Facilitation,Leaf child,Enterprise Development,Enterprise Development > E-Tools for Business Facilitation
+836,EMPRETEC Programme,Leaf child,Enterprise Development,Enterprise Development > EMPRETEC Programme
+837,Entrepreneurship Policy Framework,Leaf child,Enterprise Development,Enterprise Development > Entrepreneurship Policy Framework
+840,Insurance,Leaf child,Enterprise Development,Enterprise Development > Insurance
+850,ISAR - Corporate Transparency - Accounting,Child and parent,Enterprise Development,Enterprise Development > ISAR - Corporate Transparency - Accounting
+832,Corporate Social Responsibility,Leaf child,ISAR - Corporate Transparency - Accounting,Enterprise Development > ISAR - Corporate Transparency - Accounting > Corporate Social Responsibility
+1854,ISAR Regional Partnership: Africa,Leaf child,ISAR - Corporate Transparency - Accounting,Enterprise Development > ISAR - Corporate Transparency - Accounting > ISAR Regional Partnership: Africa
+1855,ISAR Regional Partnership: Eurasia,Leaf child,ISAR - Corporate Transparency - Accounting,Enterprise Development > ISAR - Corporate Transparency - Accounting > ISAR Regional Partnership: Eurasia
+1853,ISAR Regional Partnership: Latin America,Leaf child,ISAR - Corporate Transparency - Accounting,Enterprise Development > ISAR - Corporate Transparency - Accounting > ISAR Regional Partnership: Latin America
+851,UNDA Project 1819H: ISAR enterprise policy for sustainability and SDGs,Leaf child,ISAR - Corporate Transparency - Accounting,Enterprise Development > ISAR - Corporate Transparency - Accounting > UNDA Project 1819H: ISAR enterprise policy for sustainability and SDGs
+827,UNDA project 2427L: ISAR sustainability reporting,Leaf child,ISAR - Corporate Transparency - Accounting,Enterprise Development > ISAR - Corporate Transparency - Accounting > UNDA project 2427L: ISAR sustainability reporting
+727,The Square for Global Goals,Leaf child,Enterprise Development,Enterprise Development > The Square for Global Goals
+1564,UNDA Project 2023W: Post-Covid-19 resurgence of the MSME sector,Leaf child,Enterprise Development,Enterprise Development > UNDA Project 2023W: Post-Covid-19 resurgence of the MSME sector
+756,Featured Publication,Standalone root,,Featured Publication
+821,Gender Equality,Root parent,,Gender Equality
+823,Gender Project: E-Learning Courses,Leaf child,Gender Equality,Gender Equality > Gender Project: E-Learning Courses
+822,Gender Project: East African Community,Leaf child,Gender Equality,Gender Equality > Gender Project: East African Community
+824,Gender Project: Horticulture and Tourism in Myanmar,Leaf child,Gender Equality,Gender Equality > Gender Project: Horticulture and Tourism in Myanmar
+825,Gender Project: PACER Plus Agreement,Leaf child,Gender Equality,Gender Equality > Gender Project: PACER Plus Agreement
+1657,International Women’s Day,Leaf child,Gender Equality,Gender Equality > International Women’s Day
+771,International Trade and Commodities [PARENT - DO NOT USE],Root parent,,International Trade and Commodities [PARENT - DO NOT USE]
+798,"Dispute Settlement in International Trade, Investment and Intellectual Property",Leaf child,International Trade and Commodities [PARENT - DO NOT USE],"International Trade and Commodities [PARENT - DO NOT USE] > Dispute Settlement in International Trade, Investment and Intellectual Property"
+1679,EU-UNIDO project: PROMOVE Comércio Mozambique,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > EU-UNIDO project: PROMOVE Comércio Mozambique
+1737,EU4Business CEFTA Project: NTMs and Dispute Settlement,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > EU4Business CEFTA Project: NTMs and Dispute Settlement
+801,Generalized System of Preferences,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Generalized System of Preferences
+1569,GIZ Sector Project: NTMs cost-effectiveness toolkit,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > GIZ Sector Project: NTMs cost-effectiveness toolkit
+1422,Global System of Trade Preferences (GSTP),Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Global System of Trade Preferences (GSTP)
+1920,Global Trade Update,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Global Trade Update
+1582,PACER Plus Project THAQ: Transparency and Trade Portals,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > PACER Plus Project THAQ: Transparency and Trade Portals
+1731,SDG Fund Project: NTMs cost-effectiveness toolkit in Barbados,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > SDG Fund Project: NTMs cost-effectiveness toolkit in Barbados
+807,Services Project: Value-added in exports,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Services Project: Value-added in exports
+808,"Services, development and trade",Leaf child,International Trade and Commodities [PARENT - DO NOT USE],"International Trade and Commodities [PARENT - DO NOT USE] > Services, development and trade"
+772,Tariffs,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Tariffs
+815,Trade Agreements,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Trade Agreements
+810,Trade Analysis,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Trade Analysis
+820,Trade and Environment,Child and parent,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment
+1904,BCLME IV Project: Climate resilient blue economy,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > BCLME IV Project: Climate resilient blue economy
+773,BioTrade,Child and parent,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > BioTrade
+774,BioTrade - Kunming-Montreal Global Biodiversity Framework,Leaf child,BioTrade,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > BioTrade > BioTrade - Kunming-Montreal Global Biodiversity Framework
+809,The Biotrade Initiative,Leaf child,BioTrade,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > BioTrade > The Biotrade Initiative
+1548,Circular Economy,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > Circular Economy
+782,Climate Change,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > Climate Change
+1926,COP30 Plan to harnessing trade policy for NDCs,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > COP30 Plan to harnessing trade policy for NDCs
+1691,DANIDA Project:  Green initiatives in AfCFTA Strategies,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > DANIDA Project:  Green initiatives in AfCFTA Strategies
+797,DFID Project: Sustainable Manufacturing and Environmental Pollution,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > DFID Project: Sustainable Manufacturing and Environmental Pollution
+802,Green Economy,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > Green Economy
+839,Green export strategies,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > Green export strategies
+803,National Green Export Review,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > National Green Export Review
+1940,Portugal-UK project: Marine tourism in São Tomé and Príncipe,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > Portugal-UK project: Marine tourism in São Tomé and Príncipe
+806,"SECO Project: Sustainable tourism, production and export in Laos",Leaf child,Trade and Environment,"International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > SECO Project: Sustainable tourism, production and export in Laos"
+1600,Sustainable Ocean and Blue Economy,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > Sustainable Ocean and Blue Economy
+799,UNCTAD-FAO-UNEP Project: Regulating Fisheries Subsidies,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > UNCTAD-FAO-UNEP Project: Regulating Fisheries Subsidies
+1552,UNCTAD-FAO-UNEP Project: Trade related targets of SDG 14,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > UNCTAD-FAO-UNEP Project: Trade related targets of SDG 14
+1553,UNCTAD-OECS-CITES Project: Blue Bio-trade,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > UNCTAD-OECS-CITES Project: Blue Bio-trade
+804,UNDA Project 1819K:  Oceans Economy and Trade Strategies,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > UNDA Project 1819K:  Oceans Economy and Trade Strategies
+1873,UNDA Project 2528A:  Climate action through AI for Caribbean SIDS,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > UNDA Project 2528A:  Climate action through AI for Caribbean SIDS
+1892,United Nations Global Seaweed Initiative (UNGSI),Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > United Nations Global Seaweed Initiative (UNGSI)
+1941,UNSDG project TQAK: Transforming Indonesia Seaweed Sector,Leaf child,Trade and Environment,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Environment > UNSDG project TQAK: Transforming Indonesia Seaweed Sector
+811,Trade and Non-Tariff Measures,Child and parent,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Trade and Non-Tariff Measures
+1581,BMZ Project THBT: AfCFTA elimination and transparency in NTMs,Leaf child,Trade and Non-Tariff Measures,International Trade and Commodities [PARENT - DO NOT USE] > Trade and Non-Tariff Measures > BMZ Project THBT: AfCFTA elimination and transparency in NTMs
+812,Trade and Preferential Market Access,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Trade and Preferential Market Access
+813,Trade and Sustainable Development,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Trade and Sustainable Development
+816,Trade Negotiations and the International Trading System,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Trade Negotiations and the International Trading System
+817,Trade Policy for Sustainable Development,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Trade Policy for Sustainable Development
+818,Trade Policy Framework Reviews,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Trade Policy Framework Reviews
+819,"Trade, Employment and Development",Leaf child,International Trade and Commodities [PARENT - DO NOT USE],"International Trade and Commodities [PARENT - DO NOT USE] > Trade, Employment and Development"
+826,"Trade, Migration and Development",Leaf child,International Trade and Commodities [PARENT - DO NOT USE],"International Trade and Commodities [PARENT - DO NOT USE] > Trade, Migration and Development"
+828,TRAINS (Trade Analysis and Information System),Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > TRAINS (Trade Analysis and Information System)
+1557,UN Inter-Agency Project: Horticulture and tourism in Myanmar,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > UN Inter-Agency Project: Horticulture and tourism in Myanmar
+1554,UNCTAD Multi-agency Project: Global BioTrade Facilitation Programme,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > UNCTAD Multi-agency Project: Global BioTrade Facilitation Programme
+1555,UNCTAD-EU Project: Measurement of services value-added,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > UNCTAD-EU Project: Measurement of services value-added
+829,UNDA Project 1415N: Implications of NTMs on trade,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > UNDA Project 1415N: Implications of NTMs on trade
+1423,UNDA Project 16171: Food Security for Small Farmers,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > UNDA Project 16171: Food Security for Small Farmers
+814,UNDA Project 1617AI: Fostering Green Exports through VSS,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > UNDA Project 1617AI: Fostering Green Exports through VSS
+830,UNDA Project 1617J: Women in cross-border trade,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > UNDA Project 1617J: Women in cross-border trade
+1424,UNDA Project 2023D: Statistics on gender-responsive trade policies,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > UNDA Project 2023D: Statistics on gender-responsive trade policies
+1425,UNDA Project 2023G: Green trade for Pacific island States,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > UNDA Project 2023G: Green trade for Pacific island States
+1594,UNDA Project 2124F: Trade policy challenges of conflict-affected nations,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > UNDA Project 2124F: Trade policy challenges of conflict-affected nations
+1924,UNDA Project 2629H: Gender AI and NTM,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > UNDA Project 2629H: Gender AI and NTM
+1602,Voluntary Sustainability Standards,Leaf child,International Trade and Commodities [PARENT - DO NOT USE],International Trade and Commodities [PARENT - DO NOT USE] > Voluntary Sustainability Standards
+831,Investment,Root parent,,Investment
+841,FDI Statistics,Leaf child,Investment,Investment > FDI Statistics
+1875,Future Investment Conference 2025,Child and parent,Investment,Investment > Future Investment Conference 2025
+1879,FIC 2025: Conference events,Leaf child,Future Investment Conference 2025,Investment > Future Investment Conference 2025 > FIC 2025: Conference events
+1878,FIC 2025: Pre-events,Leaf child,Future Investment Conference 2025,Investment > Future Investment Conference 2025 > FIC 2025: Pre-events
+1933,Future Investment Conference 2026,Child and parent,Investment,Investment > Future Investment Conference 2026
+1934,FIC 2026: Conference events,Leaf child,Future Investment Conference 2026,Investment > Future Investment Conference 2026 > FIC 2026: Conference events
+1937,FIC 2026: High level dialogue,Leaf child,Future Investment Conference 2026,Investment > Future Investment Conference 2026 > FIC 2026: High level dialogue
+1936,FIC 2026: Networking events,Leaf child,Future Investment Conference 2026,Investment > Future Investment Conference 2026 > FIC 2026: Networking events
+1935,FIC 2026: Pre-events,Leaf child,Future Investment Conference 2026,Investment > Future Investment Conference 2026 > FIC 2026: Pre-events
+842,Intellectual Property (IP),Leaf child,Investment,Investment > Intellectual Property (IP)
+843,International Investment Agreements (IIA),Leaf child,Investment,Investment > International Investment Agreements (IIA)
+846,Investment Guides,Leaf child,Investment,Investment > Investment Guides
+847,Investment Policy Framework for Sustainable Development,Leaf child,Investment,Investment > Investment Policy Framework for Sustainable Development
+848,Investment Policy Reviews (IPR),Leaf child,Investment,Investment > Investment Policy Reviews (IPR)
+844,Investment Promotion and Facilitation,Leaf child,Investment,Investment > Investment Promotion and Facilitation
+845,Investment Promotion Awards,Leaf child,Investment,Investment > Investment Promotion Awards
+849,Investment statistics and trends,Leaf child,Investment,Investment > Investment statistics and trends
+852,Research on FDI and TNCs,Leaf child,Investment,Investment > Research on FDI and TNCs
+853,Sustainable Stock Exchanges Initiative,Leaf child,Investment,Investment > Sustainable Stock Exchanges Initiative
+1426,UNDA Project 1819AV: Promoting Refugee and Migrant Entrepreneurship,Leaf child,Investment,Investment > UNDA Project 1819AV: Promoting Refugee and Migrant Entrepreneurship
+1427,UNDA Project 1819M: Investment in SDG sectors,Leaf child,Investment,Investment > UNDA Project 1819M: Investment in SDG sectors
+1428,UNDA Project 2023F: Investment in antibiotics for East Africa,Leaf child,Investment,Investment > UNDA Project 2023F: Investment in antibiotics for East Africa
+1801,UNDA Project 2427B: Investment for Energy Transition in Africa,Leaf child,Investment,Investment > UNDA Project 2427B: Investment for Energy Transition in Africa
+1912,UNDA Project 2629E:  Investment policymaking for digital economy in Africa,Leaf child,Investment,Investment > UNDA Project 2629E:  Investment policymaking for digital economy in Africa
+854,World Investment Forum,Leaf child,Investment,Investment > World Investment Forum
+855,World Investment Report,Leaf child,Investment,Investment > World Investment Report
+758,Macroeconomics,Root parent,,Macroeconomics
+1856,CECG-RBF Project TMAP: Climate-resilient financial system at COP28,Leaf child,Macroeconomics,Macroeconomics > CECG-RBF Project TMAP: Climate-resilient financial system at COP28
+769,Trade and Development Report,Leaf child,Macroeconomics,Macroeconomics > Trade and Development Report
+1566,UNDA Project 2023Z:  COVID-19 Response and Recovery: Mobilising financial resources,Leaf child,Macroeconomics,Macroeconomics > UNDA Project 2023Z:  COVID-19 Response and Recovery: Mobilising financial resources
+1598,UNDA Project 2124E:  Mobilizing resources for a Green New Deal,Leaf child,Macroeconomics,Macroeconomics > UNDA Project 2124E:  Mobilizing resources for a Green New Deal
+1666,UNDA Project 2225D: Financing green development in SIDS,Leaf child,Macroeconomics,Macroeconomics > UNDA Project 2225D: Financing green development in SIDS
+877,"Science, Technology and Innovation",Root parent,,"Science, Technology and Innovation"
+728,2030 Agenda Sub-Fund project TMAG: STI Parks,Leaf child,"Science, Technology and Innovation","Science, Technology and Innovation > 2030 Agenda Sub-Fund project TMAG: STI Parks"
+1739,AIR Project: Earth Observation with Julia 2024,Leaf child,"Science, Technology and Innovation","Science, Technology and Innovation > AIR Project: Earth Observation with Julia 2024"
+1669,Building Capacity for STI Policy-making,Leaf child,"Science, Technology and Innovation","Science, Technology and Innovation > Building Capacity for STI Policy-making"
+783,"Gender perspectives in science, technology and innovation",Leaf child,"Science, Technology and Innovation","Science, Technology and Innovation > Gender perspectives in science, technology and innovation"
+1719,STI Project: Bio-Circular-Green Economic Model - BCG,Leaf child,"Science, Technology and Innovation","Science, Technology and Innovation > STI Project: Bio-Circular-Green Economic Model - BCG"
+1430,STIxNET,Leaf child,"Science, Technology and Innovation","Science, Technology and Innovation > STIxNET"
+1908,UNDA Project 2629G: Gender-inclusive digital transformation in ASEAN,Leaf child,"Science, Technology and Innovation","Science, Technology and Innovation > UNDA Project 2629G: Gender-inclusive digital transformation in ASEAN"
+878,Women in STEM,Leaf child,"Science, Technology and Innovation","Science, Technology and Innovation > Women in STEM"
+765,South-South Cooperation,Root parent,,South-South Cooperation
+766,Belt and Road Initiative: UNCTAD Platform,Leaf child,South-South Cooperation,South-South Cooperation > Belt and Road Initiative: UNCTAD Platform
+1914,China INT-0T-NBF Project: Global South Research,Leaf child,South-South Cooperation,South-South Cooperation > China INT-0T-NBF Project: Global South Research
+1618,CIDCA Project: Economic Diversification and Resilience in Barbados,Leaf child,South-South Cooperation,South-South Cooperation > CIDCA Project: Economic Diversification and Resilience in Barbados
+767,South-South Integration and the SDGs: 2030Agenda Project,Leaf child,South-South Cooperation,South-South Cooperation > South-South Integration and the SDGs: 2030Agenda Project
+892,UN-DESA 2030 Project:  Green development in Asian BRI Partner Countries,Leaf child,South-South Cooperation,South-South Cooperation > UN-DESA 2030 Project:  Green development in Asian BRI Partner Countries
+768,UNDA Project 1617L: Policies for Economic Growth in Southern Africa,Leaf child,South-South Cooperation,South-South Cooperation > UNDA Project 1617L: Policies for Economic Growth in Southern Africa
+742,UNDA Project 2326D: South-South cooperation to finance SDGs,Leaf child,South-South Cooperation,South-South Cooperation > UNDA Project 2326D: South-South cooperation to finance SDGs
+1732,UNDA Project 2427M: Green Transformation in Latin America,Leaf child,South-South Cooperation,South-South Cooperation > UNDA Project 2427M: Green Transformation in Latin America
+857,Statistics,Root parent,,Statistics
+1907,2030 Agenda Sub-Fund project TOAZ: Beyond GDP,Leaf child,Statistics,Statistics > 2030 Agenda Sub-Fund project TOAZ: Beyond GDP
+1906,Beyond GDP,Leaf child,Statistics,Statistics > Beyond GDP
+1661,Illicit Financial Flows,Leaf child,Statistics,Statistics > Illicit Financial Flows
+1639,Project TKAZ: Joint SDG Fund Project: Support to Egypt,Leaf child,Statistics,Statistics > Project TKAZ: Joint SDG Fund Project: Support to Egypt
+1562,Project TMAY: Illicit financial flows and policy formulation,Leaf child,Statistics,Statistics > Project TMAY: Illicit financial flows and policy formulation
+858,Statistics Capacity Building,Leaf child,Statistics,Statistics > Statistics Capacity Building
+859,Statistics E-Learning,Leaf child,Statistics,Statistics > Statistics E-Learning
+1637,Trade-in-Services Statistics (TiSSTAT),Leaf child,Statistics,Statistics > Trade-in-Services Statistics (TiSSTAT)
+860,UEMOA – Project RAF0TBCR,Leaf child,Statistics,Statistics > UEMOA – Project RAF0TBCR
+1429,UNDA Project 1617A: Statistics Trade Preferences and NTMs,Leaf child,Statistics,Statistics > UNDA Project 1617A: Statistics Trade Preferences and NTMs
+1641,UNDA Project 1617AL: Illicit financial flows in Latin America,Leaf child,Statistics,Statistics > UNDA Project 1617AL: Illicit financial flows in Latin America
+1642,UNDA Project 2023K: illicit financial flows in Asia-Pacific,Leaf child,Statistics,Statistics > UNDA Project 2023K: illicit financial flows in Asia-Pacific
+1720,UNDA Project 2326M: Measuring and Curbing Illicit Financial Flows,Leaf child,Statistics,Statistics > UNDA Project 2326M: Measuring and Curbing Illicit Financial Flows
+1733,UNDA Project 2427K: Trade in Services in CARICOM,Leaf child,Statistics,Statistics > UNDA Project 2427K: Trade in Services in CARICOM
+1905,UNDA Project 2629F: Digital trade statistics for gender-responsive policies,Leaf child,Statistics,Statistics > UNDA Project 2629F: Digital trade statistics for gender-responsive policies
+861,UNDAP - Inclusive Growth: Tanzania and Zanzibar,Leaf child,Statistics,Statistics > UNDAP - Inclusive Growth: Tanzania and Zanzibar
+862,Technical Cooperation,Root parent,,Technical Cooperation
+1826,SDG fund project MPTFO: Amplifying digital opportunities in cross-border trade,Leaf child,Technical Cooperation,Technical Cooperation > SDG fund project MPTFO: Amplifying digital opportunities in cross-border trade
+1643,UNDA Project 2023Y: Social Protection for COVID-19 Responses,Leaf child,Technical Cooperation,Technical Cooperation > UNDA Project 2023Y: Social Protection for COVID-19 Responses
+864,Technology and Logistics,Root parent,,Technology and Logistics
+865,ASYCUDA (Customs modernization and automation),Leaf child,Technology and Logistics,Technology and Logistics > ASYCUDA (Customs modernization and automation)
+1939,EU Project TPAC: Comoros Economic Integration Acceleration Programme,Leaf child,Technology and Logistics,Technology and Logistics > EU Project TPAC: Comoros Economic Integration Acceleration Programme
+1579,IsDB Project 32TXB: Trans-Saharan road transport corridor,Leaf child,Technology and Logistics,Technology and Logistics > IsDB Project 32TXB: Trans-Saharan road transport corridor
+876,P166,Leaf child,Technology and Logistics,Technology and Logistics > P166
+1561,Training and Capacity Building,Child and parent,Technology and Logistics,Technology and Logistics > Training and Capacity Building
+880,TrainForTrade,Leaf child,Training and Capacity Building,Technology and Logistics > Training and Capacity Building > TrainForTrade
+881,Transport and Trade Logistics,Child and parent,Technology and Logistics,Technology and Logistics > Transport and Trade Logistics
+1630,AfDB Project RAF0TIBO: Trade Facilitation in Central Africa,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > AfDB Project RAF0TIBO: Trade Facilitation in Central Africa
+1656,Capacity-building for transit transport coordinators,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > Capacity-building for transit transport coordinators
+885,Climate change adaptation and maritime transport,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > Climate change adaptation and maritime transport
+1736,EU IMPACT Project: Improving Pacific Island Customs and Trade,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > EU IMPACT Project: Improving Pacific Island Customs and Trade
+1634,German Project TJBI: WTO Trade Facilitation Agreement,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > German Project TJBI: WTO Trade Facilitation Agreement
+1921,GGSP COTONI Project: Cotonou-Niamey Corridor (Benin section),Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > GGSP COTONI Project: Cotonou-Niamey Corridor (Benin section)
+1728,Global Supply Chain Forum 2024,Child and parent,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > Global Supply Chain Forum 2024
+1795,Global Supply Chain Forum 2024 (3rd NTFC),Leaf child,Global Supply Chain Forum 2024,Technology and Logistics > Transport and Trade Logistics > Global Supply Chain Forum 2024 > Global Supply Chain Forum 2024 (3rd NTFC)
+1793,Global Supply Chain Forum 2024 (High-level),Leaf child,Global Supply Chain Forum 2024,Technology and Logistics > Transport and Trade Logistics > Global Supply Chain Forum 2024 > Global Supply Chain Forum 2024 (High-level)
+1760,Global Supply Chain Forum 2024 (KEY SPEAKERS),Leaf child,Global Supply Chain Forum 2024,Technology and Logistics > Transport and Trade Logistics > Global Supply Chain Forum 2024 > Global Supply Chain Forum 2024 (KEY SPEAKERS)
+1794,Global Supply Chain Forum 2024 (Parallel Session),Leaf child,Global Supply Chain Forum 2024,Technology and Logistics > Transport and Trade Logistics > Global Supply Chain Forum 2024 > Global Supply Chain Forum 2024 (Parallel Session)
+1775,Global Supply Chain Forum 2024 (Side Event),Leaf child,Global Supply Chain Forum 2024,Technology and Logistics > Transport and Trade Logistics > Global Supply Chain Forum 2024 > Global Supply Chain Forum 2024 (Side Event)
+1663,HMRC Project TLAL:  Accelerate trade facilitation,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > HMRC Project TLAL:  Accelerate trade facilitation
+1631,HMRC-WCO project TICF: WTO trade facilitation agreement,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > HMRC-WCO project TICF: WTO trade facilitation agreement
+884,International Maritime and Transport Law,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > International Maritime and Transport Law
+1917,Project TOBK: TIPs in PACER Plus Countries,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > Project TOBK: TIPs in PACER Plus Countries
+1652,Project X31Y: Maritime connectivity in ASEAN and Pacific,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > Project X31Y: Maritime connectivity in ASEAN and Pacific
+800,Project: East African Community trade portals,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > Project: East African Community trade portals
+1791,Review of Maritime Transport (Series),Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > Review of Maritime Transport (Series)
+1694,TFWA Project TLAP: Trade Facilitation West Africa (ECOWAS),Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > TFWA Project TLAP: Trade Facilitation West Africa (ECOWAS)
+879,Trade Facilitation,Child and parent,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > Trade Facilitation
+1870,EU Project TOAX: SIECA Reform Tracker,Leaf child,Trade Facilitation,Technology and Logistics > Transport and Trade Logistics > Trade Facilitation > EU Project TOAX: SIECA Reform Tracker
+1918,TradeMark Project TOBN: Trade Information Portal in DR Congo,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > TradeMark Project TOBN: Trade Information Portal in DR Congo
+882,Transport Blog Posts,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > Transport Blog Posts
+883,Transport Infrastructure and Services,Child and parent,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > Transport Infrastructure and Services
+1909,Korea Project: Global Port Infrastructure Sufficiency Index (PISI),Leaf child,Transport Infrastructure and Services,Technology and Logistics > Transport and Trade Logistics > Transport Infrastructure and Services > Korea Project: Global Port Infrastructure Sufficiency Index (PISI)
+1655,UNDA Project 1415O: Climate change impacts and adaptation,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > UNDA Project 1415O: Climate change impacts and adaptation
+1565,UNDA Project 2023X: Transport and trade connectivity in the age of COVID-19,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > UNDA Project 2023X: Transport and trade connectivity in the age of COVID-19
+1653,UNDA Project 2225E: Smart Ports for African countries,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > UNDA Project 2225E: Smart Ports for African countries
+1665,UNDA Project 2225U: Blockchain for trade facilitation,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > UNDA Project 2225U: Blockchain for trade facilitation
+1735,UNDA Project 2326F: ASYREC in the Pacific region,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > UNDA Project 2326F: ASYREC in the Pacific region
+1789,UNDA Project 2427C: Food Supply Chains,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > UNDA Project 2427C: Food Supply Chains
+1858,UNDA Project 2528D: Climate-smart trade facilitation,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > UNDA Project 2528D: Climate-smart trade facilitation
+1833,UNDA Project 809AP: Cross-border Transport in LLDCs,Leaf child,Transport and Trade Logistics,Technology and Logistics > Transport and Trade Logistics > UNDA Project 809AP: Cross-border Transport in LLDCs
+886,"Transport, Climate Change Impacts and Adaptation [DO NOT USE]",Leaf child,Technology and Logistics,"Technology and Logistics > Transport, Climate Change Impacts and Adaptation [DO NOT USE]"
+1431,UNDA Project 1415Q: Capacity-building for shift to sustainable freight transport,Leaf child,Technology and Logistics,Technology and Logistics > UNDA Project 1415Q: Capacity-building for shift to sustainable freight transport
+887,UNDA Project 1415Q: Shift towards sustainable freight transport,Leaf child,Technology and Logistics,Technology and Logistics > UNDA Project 1415Q: Shift towards sustainable freight transport
+888,UNDA Project 1819L: STI Policy in Africa and Asia,Leaf child,Technology and Logistics,Technology and Logistics > UNDA Project 1819L: STI Policy in Africa and Asia
+889,UNDA Project 1819N: Skills for e-Commerce in South-East Asia,Leaf child,Technology and Logistics,Technology and Logistics > UNDA Project 1819N: Skills for e-Commerce in South-East Asia
+796,Trade and the creative economy,Standalone root,,Trade and the creative economy
+890,UN-CEB Inter-agency Cluster,Standalone root,,UN-CEB Inter-agency Cluster
+898,UNCTAD and South-South Cooperation BAPA+40,Standalone root,,UNCTAD and South-South Cooperation BAPA+40
+1797,UNCTAD at 60,Root parent,,UNCTAD at 60
+1799,UNCTAD at 60 (Key Speakers),Leaf child,UNCTAD at 60,UNCTAD at 60 > UNCTAD at 60 (Key Speakers)
+1798,UNCTAD at 60 Pre-event,Leaf child,UNCTAD at 60,UNCTAD at 60 > UNCTAD at 60 Pre-event
+917,UNCTAD at COP27,Standalone root,,UNCTAD at COP27
+893,UNCTAD at COP28,Root parent,,UNCTAD at COP28
+1765,COP28 Side Event,Leaf child,UNCTAD at COP28,UNCTAD at COP28 > COP28 Side Event
+1764,COP28 Trade Day,Leaf child,UNCTAD at COP28,UNCTAD at COP28 > COP28 Trade Day
+1763,COP28 Trade House,Leaf child,UNCTAD at COP28,UNCTAD at COP28 > COP28 Trade House
+1592,UNCTAD at COP29,Root parent,,UNCTAD at COP29
+1832,"COP29 Climate Finance, Investment and Trade Day",Leaf child,UNCTAD at COP29,"UNCTAD at COP29 > COP29 Climate Finance, Investment and Trade Day"
+1831,COP29 Side Event,Leaf child,UNCTAD at COP29,UNCTAD at COP29 > COP29 Side Event
+1830,COP29 Trade and Investment House,Leaf child,UNCTAD at COP29,UNCTAD at COP29 > COP29 Trade and Investment House
+1901,UNCTAD at COP30,Root parent,,UNCTAD at COP30
+1902,UNCTAD at COP30: Event,Leaf child,UNCTAD at COP30,UNCTAD at COP30 > UNCTAD at COP30: Event
+1868,UNCTAD at FFD4,Root parent,,UNCTAD at FFD4
+1869,UNCTAD at FFD4 PrepCom,Leaf child,UNCTAD at FFD4,UNCTAD at FFD4 > UNCTAD at FFD4 PrepCom
+899,UNCTAD at the UN Oceans Conference 2022,Standalone root,,UNCTAD at the UN Oceans Conference 2022
+1861,UNCTAD at the UN Oceans Conference 2025,Root parent,,UNCTAD at the UN Oceans Conference 2025
+1864,UNOC3 Blue Zone,Leaf child,UNCTAD at the UN Oceans Conference 2025,UNCTAD at the UN Oceans Conference 2025 > UNOC3 Blue Zone
+1865,UNOC3 Green Zone,Leaf child,UNCTAD at the UN Oceans Conference 2025,UNCTAD at the UN Oceans Conference 2025 > UNOC3 Green Zone
+904,UNCTAD Blogs,Standalone root,,UNCTAD Blogs
+1762,UNCTAD E-Week 2023,Standalone root,,UNCTAD E-Week 2023
+910,UNCTAD Home,Standalone root,,UNCTAD Home
+911,UNCTAD NTFC Forum Africa 2018,Standalone root,,UNCTAD NTFC Forum Africa 2018
+1647,UNCTAD NTFC Global Forum 2022,Standalone root,,UNCTAD NTFC Global Forum 2022
+912,UNCTAD NTMs Week,Standalone root,,UNCTAD NTMs Week
+1547,UNCTAD15,Root parent,,UNCTAD15
+1619,Conference Document,Leaf child,UNCTAD15,UNCTAD15 > Conference Document
+1623,Conference Event,Child and parent,UNCTAD15,UNCTAD15 > Conference Event
+1628,Committee of the Whole,Leaf child,Conference Event,UNCTAD15 > Conference Event > Committee of the Whole
+1629,General Debate,Leaf child,Conference Event,UNCTAD15 > Conference Event > General Debate
+1626,High-level Event,Leaf child,Conference Event,UNCTAD15 > Conference Event > High-level Event
+1627,Press Event,Leaf child,Conference Event,UNCTAD15 > Conference Event > Press Event
+1620,Event Document,Leaf child,UNCTAD15,UNCTAD15 > Event Document
+1611,Forum,Child and parent,UNCTAD15,UNCTAD15 > Forum
+1612,Civil Society Forum,Leaf child,Forum,UNCTAD15 > Forum > Civil Society Forum
+1613,Creative Industries and Trade Digitization Forum,Leaf child,Forum,UNCTAD15 > Forum > Creative Industries and Trade Digitization Forum
+1614,Gender Forum,Leaf child,Forum,UNCTAD15 > Forum > Gender Forum
+1615,Global Commodities Forum,Leaf child,Forum,UNCTAD15 > Forum > Global Commodities Forum
+1616,Youth Forum,Leaf child,Forum,UNCTAD15 > Forum > Youth Forum
+1624,Pre-event,Leaf child,UNCTAD15,UNCTAD15 > Pre-event
+1621,Reference Document,Leaf child,UNCTAD15,UNCTAD15 > Reference Document
+1625,Side Event,Leaf child,UNCTAD15,UNCTAD15 > Side Event
+1622,Statement,Leaf child,UNCTAD15,UNCTAD15 > Statement
+1605,UNCTAD15 Commentary and Analysis,Leaf child,UNCTAD15,UNCTAD15 > UNCTAD15 Commentary and Analysis
+1606,UNCTAD15 Impact Story,Leaf child,UNCTAD15,UNCTAD15 > UNCTAD15 Impact Story
+1604,UNCTAD15 News,Leaf child,UNCTAD15,UNCTAD15 > UNCTAD15 News
+1845,UNCTAD16,Root parent,,UNCTAD16
+1883,UNCTAD16: Concept Notes,Leaf child,UNCTAD16,UNCTAD16 > UNCTAD16: Concept Notes
+1882,UNCTAD16: Conference Documents,Leaf child,UNCTAD16,UNCTAD16 > UNCTAD16: Conference Documents
+1881,UNCTAD16: Country Statements,Leaf child,UNCTAD16,UNCTAD16 > UNCTAD16: Country Statements
+1899,UNCTAD16: Exhibition,Leaf child,UNCTAD16,UNCTAD16 > UNCTAD16: Exhibition
+1888,UNCTAD16: Forum,Leaf child,UNCTAD16,UNCTAD16 > UNCTAD16: Forum
+1885,UNCTAD16: General debate,Leaf child,UNCTAD16,UNCTAD16 > UNCTAD16: General debate
+1887,UNCTAD16: Group Ministerial,Leaf child,UNCTAD16,UNCTAD16 > UNCTAD16: Group Ministerial
+1886,UNCTAD16: High-level event,Leaf child,UNCTAD16,UNCTAD16 > UNCTAD16: High-level event
+1900,UNCTAD16: Interviews,Leaf child,UNCTAD16,UNCTAD16 > UNCTAD16: Interviews
+1891,UNCTAD16: Negotiations,Leaf child,UNCTAD16,UNCTAD16 > UNCTAD16: Negotiations
+1889,UNCTAD16: Parallel event,Leaf child,UNCTAD16,UNCTAD16 > UNCTAD16: Parallel event
+1890,UNCTAD16: Press event,Leaf child,UNCTAD16,UNCTAD16 > UNCTAD16: Press event
+1880,UNCTAD16: Reference Documents,Leaf child,UNCTAD16,UNCTAD16 > UNCTAD16: Reference Documents
+1435,UNGIS Dialogue [DO NOT USE],Standalone root,,UNGIS Dialogue [DO NOT USE]
+1563,Youth,Root parent,,Youth
+918,Youth eFounders Fellowship Programme,Leaf child,Youth,Youth > Youth eFounders Fellowship Programme
+919,Youth eFounders Profiles of Fellows,Leaf child,Youth,Youth > Youth eFounders Profiles of Fellows
+920,Youth Network,Leaf child,Youth,Youth > Youth Network
+1583,Youth Network: inspirational stories,Leaf child,Youth,Youth > Youth Network: inspirational stories

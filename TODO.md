@@ -57,6 +57,103 @@ Drupal production save yet.
 
 ### Needs verification against a real document
 
+- [x] **Stale XMP metadata shadowing the edited /Info dict in Acrobat** –
+      fixed 2026-09-15, found by the user inspecting real Acrobat Document
+      Properties for `TD/B/73/L.3` (all 6 languages) and node 52790's
+      English PDF: `applyPdfMetadata()` correctly wrote Title/Author/Subject
+      to the classic `/Info` dictionary, but every real UN document PDF
+      (Word export) already carries an XMP metadata packet with the
+      translator's own Word "Author" and whatever Title they'd typed
+      (often just the symbol, sometimes a literal `'Untitled'` placeholder)
+      — and `compressPdf()`, which always runs first, re-serializes that
+      same stale packet via Ghostscript's pdfwrite rather than dropping it.
+      Acrobat prefers XMP over `/Info` when both are present, so it showed
+      the stale pre-edit data (wrong Title, translator as Author) even
+      though our edit had succeeded. Fixed by having `applyPdfMetadata()`
+      delete the catalog's `/Metadata` key outright, making `/Info` the
+      only metadata a viewer can read. Regenerated and replaced all 6
+      `TD/B/73/L.3` files (OneDrive + Drupal node 52798) and node 52790's
+      English file (OneDrive + Drupal) after the fix.
+- [x] **`-dAutoRotatePages` left at its PDFSETTINGS preset default** –
+      fixed 2026-09-15 on code review (not a visible failure this time):
+      Ghostscript's own `-dPDFSETTINGS` presets set `/AutoRotatePages` to
+      `/All` (`ebook`, this project's default) or `/PageByPage` (`screen`),
+      confirmed by reading `gs_pdfwr.ps` directly — meaning a page could be
+      silently rotated by Ghostscript's internal text-orientation
+      heuristic with no warning. Same class of bug as the color-conversion
+      one above. Fixed with `-dAutoRotatePages=/None` for every quality.
+- [x] **Ghostscript's `pdfwrite` corrupts JPX (JPEG2000) image streams —
+      broken on Apple PDFKit (iPhone Safari/Mail/Preview/Quick Look,
+      and macOS Preview)** – fixed 2026-09-15/16, user-reported: node
+      52790's published "Looking Beyond GDP" was missing its photos on
+      iPhone. **Root cause, precisely identified after an initial
+      wrong turn** (see below): `compressPdf()`'s output for a JPX image
+      is byte-different from the source — not identical, as first
+      assumed from matching `pdfimages -list` sizes. Diffing the raw
+      stream bytes directly found it: Ghostscript's `pdfwrite` device
+      appends a spurious 2-byte `0D 0A` (`\r\n`) immediately after the
+      JPEG2000 codestream's own End-Of-Codestream marker (`FF D9`) —
+      confirmed present in a **bare `gs -sDEVICE=pdfwrite` rewrite with
+      *no* compression/quality flags at all**, so this has nothing to do
+      with `-dPDFSETTINGS`, color conversion, rotation, duplicate
+      detection, or font subsetting — it's `pdfwrite`'s generic
+      stream-serialization code appending what it assumes is a harmless
+      trailing newline before `endstream`, without knowing JPEG2000 is a
+      strict binary format sensitive to exact termination. Apple's
+      PDFKit rejects/blanks the image on this trailing garbage; Poppler,
+      OpenJPEG, and (per Chrome's own JPX support) presumably PDFium all
+      tolerate it and decode fine regardless — which is exactly why this
+      passed every visual check done with non-Apple tools.
+      **Confirmed with a controlled, surgical test**: stripping only
+      those 2 trailing bytes from each JPX stream in an otherwise-
+      untouched Ghostscript-rewritten copy, via `qlmanage -t` (macOS
+      Quick Look, PDFKit-based — the first tool found that actually
+      reproduces the bug locally, no device needed), flips the file from
+      broken to rendering correctly. This is now the standing local
+      regression test for this class of bug — see "Local PDFKit
+      rendering test" below.
+      **The earlier working theory (\"JPEG2000-in-PDF is broadly fragile
+      across viewers\") was too broad and led to an incorrect secondary
+      finding, now retracted**: `UNCTAD_ALDC/2026-2 (Poverty in
+      Nigeria)/aldc2026d2_en.pdf` and `UNCTAD_DIAE/2026-1 (Sustainable
+      finance monitor)/diae2026d1_en.pdf` were flagged as "likely" to
+      have the same mobile bug purely because they also contain JPX
+      images. **This was wrong** — checked directly, byte-for-byte: none
+      of their JPX streams have the trailing `0D 0A` corruption (they
+      were processed by a different tool, `Producer: pypdf`, never
+      Ghostscript's `pdfwrite`), and both render correctly via `qlmanage`
+      and were confirmed by the user to render correctly on a real
+      iPhone. **They are not broken. Do not re-flag them without new
+      evidence.** The actual, narrow rule: the bug is specific to files
+      that went through Ghostscript's `pdfwrite` with a `/JPXDecode`
+      image in them — not to JPEG2000 in PDF generally.
+      **Fixed** with `-dPassThroughJPXImages=false` in `compressPdf()`,
+      forcing Ghostscript to fully decode and re-encode JPX images as
+      JPEG instead of (attempting to) pass them through — this sidesteps
+      the corruption entirely rather than patching around it, at the
+      cost of the source's original JPEG2000 compression (in practice
+      the JPEG output came out *smaller* here anyway). Verified: (1)
+      visually pixel-identical across 3 diverse pages before/after,
+      (2) via `qlmanage` showing a correctly-rendered thumbnail,
+      (3) on the live production URL directly, with cache disabled,
+      confirming 0 `/JPXDecode` / 11 `/DCTDecode`.
+      **Also caught in this verification**: a real, separate Cloudflare
+      caching gap — the very first fetch of the live URL right after
+      saving still returned the stale old file (`cf-cache-status: HIT`,
+      `max-age=2592000`), resolving on its own within ~10-20 seconds. See
+      the file-replacement section of the skill for the standing
+      guidance this produced: always re-fetch the live public URL with
+      caching disabled after replacing a file, don't trust the Drupal
+      save confirmation alone.
+
+  **Local PDFKit rendering test** (new capability, worth reusing for any
+  future "renders wrong on Apple devices" report): `qlmanage -t -s 1024
+  -o <dir> <file>.pdf` generates a thumbnail via macOS Quick Look, which
+  uses the same PDFKit rendering stack as iOS Safari/Mail/Preview — no
+  physical device needed. A thumbnail file size in the tens-of-KB range
+  for a photo-heavy cover page is a strong signal of a blank/broken
+  render; compare against a known-good file's thumbnail size as a
+  baseline before concluding anything from a single number.
 - [ ] **PDF metadata editing** (`src/pdf-metadata.js`): confirm against a
       real document, opened in Acrobat, that Title/Author/Subject/Keywords/
       Language/print-presets/Initial View all look right to Angela – not
@@ -417,6 +514,29 @@ Drupal production save yet.
       the symbol alone. Worth checking for a same-titled Sessional
       Document sibling by hand on every future CRP filing, not just when
       something looks obviously duplicated.
+- [x] **`extractSymbolFromPdfText()` missed a symbol whose slashes render
+      with surrounding whitespace** – found and fixed 2026-09-14, a real
+      Publication (`UNCTAD/SDDS/INF/2026/1`) whose only symbol occurrence
+      is on its last (colophon) page, where `pdftotext` extracts it as a
+      wide-letter-spaced `UNCTAD / SDDS / INF / 2026 / 1` rather than the
+      tight form the original regex expected. Added a second fallback
+      pattern requiring at least two `/segment` groups (three segments
+      total) before it fires – deliberately not just "allow whitespace
+      around any slash" – so it doesn't false-positive on an unrelated
+      capitalized word sitting near an unrelated slash elsewhere on the
+      page. The matched result has its whitespace stripped before
+      returning, so callers always see the same tight form the tight-regex
+      path already produced.
+- [x] **`compressPdf()` had no timeout – a malformed/degenerate PDF could
+      hang Ghostscript, and this function, indefinitely** – found on code
+      review, 2026-09-15, alongside the `AutoRotatePages`/JPX fixes above.
+      Switched from `execFileSync` to `spawnSync` (needed anyway so a
+      successful run's stderr – e.g. a future compatibility warning, the
+      same shape that first hinted at the colour-conversion bug – is
+      visible instead of only reachable via a thrown error) with a
+      `timeoutMs` option, default 120000 (2 min); a timeout now throws a
+      clear `PdfCompressError` instead of leaving the caller's process
+      hung with no feedback.
 
 ### Open product decisions (ask, don't guess)
 
@@ -455,6 +575,69 @@ chart conversion) exist. Token is configured at
 `~/.un-datawrapper/config.json`; `d3-lines` (chart `ZkeeG`), `d3-bars`
 (chart `ZmNe2`) and `to-web` (source `T4lIe` → copy `lw8LX`) have all been
 run for real and verified against `GET /v3/charts/{id}`.
+
+- [x] **`grouped-column-chart`'s CSV orientation is the opposite of a
+      plain `column-chart`'s** – confirmed 2026-09-21 building 2 real
+      charts from scratch (`gr4Gz`/`HtXAA`, OPT/West Bank/Gaza GDP and
+      GDP per capita, 2022 vs 2025) for a report on UNCTAD assistance to
+      the Palestinian people. Not CLI-supported (`create`'s
+      `SUPPORTED_CHART_TYPES` is `d3-lines`/`column-chart`/`d3-bars`
+      only), so built manually via `createChart`/`uploadData` — first
+      attempt used the same "first column = x-axis category, remaining
+      columns = series" shape a plain `column-chart` expects
+      (`Region,2022,2025`), which rendered completely backwards: years on
+      the x-axis, regions as the colour-grouped series, with the
+      intended year-pair blue/yellow (`resolveYearPairColors`) silently
+      unused since its colour-category keys (`"2022"`/`"2025"`) didn't
+      match any real series name in that orientation. Confirmed against
+      a real, already-correct `grouped-column-chart` in the account
+      (`Q9ULE`, `GET /v3/charts/Q9ULE/data`): the convention is inverted
+      — **first column = the colour/series grouping, remaining columns =
+      the x-axis categories**. Fixed by transposing the CSV
+      (`Year,Occupied Palestinian Territory,West Bank,Gaza Strip`, year
+      values as rows) — confirmed correct via `exportChart` PNG render
+      only after the transpose; setting `visualize.transpose` had no
+      effect either way, it's genuinely about the CSV's own column order.
+      **Check any real precedent chart's actual `/data` export before
+      assuming a new-to-this-tool chart type shares `column-chart`'s
+      orientation** — it doesn't necessarily.
+- [ ] **`multiple-columns`' `color-category` map didn't visibly change
+      anything** – found alongside the above, same session, building a
+      third chart (`d0yVo`, Gaza/West Bank productive sectors as % of
+      2022 output). Set `color-category.map` keyed by the two column
+      headers (`"Gaza Strip (% of 2022)"` blue, `"West Bank (% of 2022)"`
+      yellow) plus `color-by-column: true` (the already-documented gate
+      from the country-group/year-pair rules) — both panels still
+      rendered in the same default blue, confirmed via `exportChart`.
+      Not investigated further this session (the two panels are already
+      clearly labelled, so it didn't block shipping the chart) — a real,
+      still-open gap: `multiple-columns` may need a different field
+      entirely to recolour individual column-panels, distinct from the
+      `color-by-column` behaviour already confirmed for `d3-lines`/bar
+      types elsewhere in this doc.
+
+- [x] **`to-web` real run, 2026-09-16** – source `yhDaG` (grouped-column,
+      "services content of export value added") → copy `zVt0a`, folder
+      `439369`. No written brief this time; used the source chart's own
+      hidden print headline (`hide-title: true`, real text living in the
+      styled `<strong>Figure N</strong>` title HTML, same convention noted
+      above) for the web title, and used a sibling chart from the same
+      report (`Q9ULE`, "final demand" companion to this "export value
+      added" chart) as an explicit style reference per the user's own
+      instruction. **One real, chart-type-specific deviation from
+      `to-web`'s own default, found by diffing against that reference**:
+      `categoryLabels.position` – the documented rule elsewhere in this
+      file ("Stacked-chart series labels default to a colour-key legend,
+      never direct") was derived from a *stacked*-column chart and doesn't
+      hold here – `Q9ULE`, a human-confirmed correct **grouped**-column
+      chart, actually uses `position: 'direct'` (with `show-color-key:
+      true` alongside it, both coexisting), not `'color-key'`. Patched
+      `zVt0a` to `'direct'` + `label-alignment: 'left'` to match `Q9ULE`
+      exactly rather than trust the generic default for this chart family.
+      Verified with side-by-side `exportChart` PNG renders of both charts
+      and a readback confirming `yhDaG` (source) was left untouched. Not
+      yet published or logged in Drupal – user hadn't asked for that step
+      as of this entry.
 
 - [x] **`to-web` command** – added 2026-08-27: turns an existing print/
       Publications chart into a new web-theme chart via `POST /charts/{id}
@@ -892,3 +1075,67 @@ run for real and verified against `GET /v3/charts/{id}`.
       Datawrapper maps) and could inform the scatter-plot case.
 - [ ] `--json` output on `create`/`check` – implemented, not yet checked
       against a real downstream consumer.
+
+## `un-audit-project`
+
+- [x] **`SYNC-PROD` is gated only on `buildChanged`, not on remaining
+      vuln count – confirmed against a real run** – 2026-09-21, investigated
+      after the user asked why `2026-palestine_report` showed a `sync-prod`
+      run with no prod-impact vulnerabilities. `src/pipeline.js` (~line
+      260-329): `syncProdStatus` only checks whether the built output
+      differs before/after the update+fix step (`buildChanged`, via
+      `diffBuildFiles`) – it never looks at `remainingProdImpact` or the
+      vulnerability counts at all. A routine non-security dependency bump
+      that changes the build output triggers `sync-prod` exactly the same
+      as a real vulnerability fix would.
+      **Root cause of the build change itself, traced deeper than "an
+      audit fix happened"**: `src/pipeline.js:221` runs `npm update`
+      *unconditionally*, before `npm audit fix` (line 222), on every real
+      (non-dry-run) run – regardless of whether the baseline audit found
+      anything. `npm update` bumps every dependency to the latest version
+      matching its `package.json` semver range, vulnerability or not. For
+      `2026-palestine_report`'s commit `e491984`, replaying `npm audit
+      --json` and `npm audit fix --dry-run --json` against the exact
+      pre-commit lockfile (copied into a scratch dir, no install)
+      confirmed **zero vulnerabilities and zero proposed audit-fix
+      changes** – `npm audit fix` alone would have left `react`/
+      `react-dom`/`scheduler`/`@unctad-infovis/general-tools`/
+      `@unctad-infovis/unctad-flags` exactly where they already were
+      (19.2.8/0.27.0/1.7.2/1.0.2). The actual bump to 19.3.0/0.28.0/1.7.3/
+      1.0.3 in the real commit came entirely from the `npm update` step,
+      which then changed the minified bundle
+      (`dist/js/*.min.js`/`dist/css/*.min.css`/`dist/index.html`) enough
+      to trip `buildChanged` and fire `sync-prod` – all five bumps were
+      patch/minor releases within already-declared `^` ranges, none
+      security-driven. The commit message `chore: npm audit fix + update`
+      (a fixed string in `commitAll(...)`, line ~281/285) is accurate –
+      it covers both steps, not just the audit-fix one, which is easy to
+      miss since the `SYNC-PROD` report column implies a security
+      connection that isn't actually there.
+      **Not a bug** – this is the pipeline working as designed (keep
+      dependencies current, not just vulnerability-free) – but worth
+      knowing when reading a report row: a `sync-prod` with `PROD-IMPACT:
+      0` almost always means "routine `npm update` changed the bundle",
+      not "a vulnerability was silently fixed in prod."
+
+## Cross-project audits
+
+- [x] **Highcharts version survey across all UNCTAD projects** –
+      2026-09-21, read-only, no files changed. Surveyed all 111
+      `package.json` files under `~/Work/unctad` (51 with a direct
+      `highcharts` dependency), cross-referenced each against its
+      `package-lock.json`-resolved version. By year of project: 2022 (11
+      projects, all `10.3.3`); 2023 (18 projects, split `10.3.3`/`11.4.8`);
+      2024 (7 projects, all `11.4.8`); 2025 (10 projects, mostly `12.6.0`,
+      one outlier `2025-tariffs_dashboard` on `13.0.2`); 2026 (2 projects,
+      both `13.0.0`). Current latest upstream is `13.0.2` (confirmed via
+      web search). No project declares `highcharts-react-official` or
+      `highmaps` as a separate dependency. `un-init-project` itself has no
+      Highcharts dependency.
+      **Security relevance checked**: zero new Highcharts CVEs reported in
+      2026; the only 2026 advisory activity (`CLSA-2026-1782867614`,
+      2026-08-04) is a TuxCare/CloudLinux backport of two old CVEs
+      (XSS – fixed upstream in v9; ReDoS in `SvgRenderer.js` – fixed
+      upstream in v6.1.0). Every version in use across every project
+      surveyed (`10.3.3` through `13.0.2`) already ships well past both
+      fixes – no security-driven upgrade need identified for any project.
