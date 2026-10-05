@@ -1053,6 +1053,113 @@ run for real and verified against `GET /v3/charts/{id}`.
          leaving bare "Developing" (no such substring) untouched.
       Both fixes verified against `classifyCountryGroup`/
       `buildCountryGroupLabelOverrides` directly, not just visually.
+- [ ] **Two-series charts with no country-group/year-pair match still default to UN blue + UN yellow when styled by hand** –
+      confirmed twice 2026-09-23 (`5ygsg`: Domestic vs External debt; `hXIzd`:
+      2025 vs Average 2015–2025) – neither matches the existing country-group
+      or year-pair rules, yet the user set `color-category.map` to
+      `{UN_BLUE, UN_YELLOW}` manually both times. Not yet generalized into
+      `datawrapper-constants.js`/`to-web` – open question is whether it
+      should fire for any unmatched two-series chart or only a narrower
+      case. Ask before coding.
+- [ ] **`y-grid-format`/`value-labels-format` should be set explicitly from
+      the data's real unit, never left on Datawrapper's "auto"** – `to-web`
+      never sets either; `auto` silently mis-rounds (already seen on
+      `tables`/`d3-scatter-plot`) and, on large values, abbreviates to k/M
+      (confirmed on a 6-figure Djibouti chart, ~530 000 rendering as
+      "530k"; fixed with an explicit `'0,0'` format, matching the project's
+      space-grouped-never-abbreviated number convention). `maxInnerLabels: 3`
+      (caps non-endpoint point labels on a dense line) seen once on
+      `5ygsg`, not yet confirmed as a fixed default.
+- [ ] **"No brackets in description" is broader than just unit
+      abbreviations** – any parenthetical aside (e.g. `"(Index: 2015 =
+      100)"`) should be folded into prose, not just unit shorthand like
+      `(%)`; a genuine citation parenthetical like `"(UNCTAD)"` is still
+      fine. Year/period always goes last in the sentence (confirmed 4x).
+      Unit wording: "percentage" (not "per cent"), stated as prose before
+      the year. "US$" → always "dollars" in prose.
+- [ ] **`text-annotations.position.x`'s coordinate system is chart-type/
+      axis-type dependent** – a literal date-time string
+      (`"2017/04/09 06:26"`) on a `d3-lines` chart with a time x-axis, vs.
+      percentage-of-plot-width on categorical/bar-family charts. Check the
+      axis type before assuming either convention.
+- [ ] **Root-cause bug: the country-group/year-pair colour rule, and
+      `buildLineStyles`'s legend/width rules, only fire when the source
+      chart already had a non-empty `color-category.map`** –
+      `create-datawrapper-pipeline.js` ~line 200-201 gates the whole block
+      on `sourceColorMap && Object.keys(sourceColorMap).length > 0`, so it
+      only ever *recolours* an existing map, never derives one from
+      CSV/series names when the source had none (common – many print
+      charts rely on Datawrapper's default palette instead of an explicit
+      map). Confirmed across 4 real chart-type families: bar, grouped-
+      column, stacked-column, d3-lines (`sXZca`, `pl6sk`, `ftd2O`/`zVNei`).
+      On d3-lines specifically, `buildLineStyles` also never ran at all
+      (no direct-label-off, no shared-legend, no thickest-line) for the
+      same reason. **Not fixed** – needs the series-name source widened to
+      fall back to the uploaded CSV's header/category-column values when
+      `sourceColorMap` is empty. Separately: the always-thickest-line
+      default should probably have an exception for noisy daily-frequency
+      data – not yet confirmed with a concrete example.
+- [ ] **A literal blank CSV row used as a print-only visual group-spacer is
+      an anti-pattern to flag, not carry through** – confirmed on `sXZca`:
+      fixed by adding a real `Category` column and turning on
+      `group-by-column: true` + `show-group-labels: true` instead of the
+      blank-row hack. Not automated (naming the group boundaries is a
+      content decision) – flag and ask on any bar/column-family
+      conversion with a blank CSV row.
+- [ ] **Y-axis-extend-to-next-gridline threshold** – extend `custom-range`'s
+      max to the next grid-step multiple when the real max sits roughly
+      half a step or more past the last labeled gridline (confirmed
+      needed on `hXIzd`, ~60% into the next step; confirmed *not* needed
+      on `zVNei`, ~3% in). Two data points, not coded. Separately,
+      **y-axis doesn't have to start at 0 for an index/rebased series**
+      (e.g. "2015 = 100") that only moves one direction from its
+      baseline – confirmed once on `pl6sk` (`custom-range-y:
+      ["80","220"]`), not coded.
+- [ ] **`to-web` clears `custom-ticks*` on conversion but never
+      `custom-range`/`custom-range-y`** – confirmed on `zVNei`: a stray
+      print-source typo range (`["200","1200"]` against real data
+      spanning 0–12 400) carried straight through untouched. Should get
+      the same clear-or-sanity-check treatment as `custom-ticks*`.
+- [ ] **Stacked chart types should sort the largest segment to the
+      bottom** (`visualize['sort-values']: true`) – not yet applied
+      automatically by `to-web` for `stacked-column-chart`/stacked types;
+      confirmed as the user's explicit preference on `zVNei`.
+- [ ] **Abbreviation-opening applies to any data-driven category/row
+      label, not just LDC/SIDS** – confirmed on "SDR" → "Special Drawing
+      Rights (SDR)" on `zVNei`; requires a direct CSV/data edit (same
+      mechanism as the existing `multiple-columns` axis-label caveat),
+      not a metadata patch. A renamed label leaves a harmless stale,
+      now-unused key behind in `color-category.map`.
+- [x] **A print source chart's data can be outright wrong, not just
+      stale** – confirmed on 3 of 5 Djibouti report charts when re-sourced
+      from an authoritative xlsx: (1) years with genuinely missing data
+      (`#VALUE!`/`..`) should stay blank, not `0`; (2) one Datawrapper
+      source chart (`hxPQ0`) showed the *wrong metric* with cyclically
+      swapped row labels (Djibouti/LDC/LMC rotated one position) – a
+      chart's own title/intro is not evidence it shows what it claims,
+      spot-check real values against an independent source; (3) a
+      natural-disasters period breakdown had a genuine data revision
+      (100 000-person swap between two EM-DAT periods), confirmed via the
+      raw event log, not an extraction error.
+- [x] **Two tooling gotchas re-uploading corrected CSVs**: a bash heredoc
+      (`cat > file << 'EOF'`) can silently collapse consecutive tabs in a
+      row with many blank cells, shifting real values into the wrong
+      columns – verify per-row column count programmatically, or build
+      the file with Python/Node instead of a hand-typed heredoc. And
+      `uploadData` on an existing chart can silently reset
+      `color-category.map`/leave a stale `custom-range` from the previous
+      data – re-verify manual styling fixes after *every* `uploadData`
+      call, not just once at the end.
+- [x] **A print reference chart's own secondary axis can be genuinely
+      mislabeled, not a sign the extracted data is wrong** – confirmed on
+      Djibouti's GDP chart: the reference's "Millions of constant 2015
+      dollars" right axis was off by ~90–100x (the real series is
+      690→3,481 *million*, i.e. billions). Resolved via an economic-
+      plausibility check (Djibouti's real GDP order of magnitude) plus
+      matching proportional growth shape, not just visual shape-matching.
+      When a print reference's axis reading conflicts with independently-
+      sourced data, sanity-check real-world magnitude before assuming the
+      extracted data is wrong.
 
 ### Deferred, not built yet
 

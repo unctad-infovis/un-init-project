@@ -484,6 +484,19 @@ Datawrapper editor session can do that the API token can't:
    step**, after every other fix, not before — and when in doubt whether a
    batch of already-published charts is current, check timestamps rather
    than assume.
+   **Caveat found 2026-10-05, checking 20 already-published charts before
+   a Drupal-logging batch**: the `lastModifiedAt` vs `publishedAt`
+   timestamp heuristic has both false positives and needs a browser
+   confirmation either way — most charts showed a 1-second gap (just
+   Datawrapper's own internal publish-process noise, not a real edit),
+   while one chart showed a genuine 13-minute gap yet the editor's
+   Publish & Embed page still read "Your visualization is published."
+   with no "needs to be republished" banner at all (not stale). Only one
+   of the 20 (a 3-hour gap) was actually stale. **Don't trust the
+   timestamp diff alone to decide which charts need republishing** —
+   it's a reasonable first filter to prioritize checking, but the
+   authoritative signal is the Publish & Embed page's own banner text,
+   checked per chart in the browser.
 4. Note the exact published URL from the "Link to your visualization"
    field for the Drupal step below — it includes a version number
    (`https://datawrapper.dwcdn.net/<id>/<publicVersion>/`) that changes
