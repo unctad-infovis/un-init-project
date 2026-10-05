@@ -18,7 +18,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "peerDependencies": {
-    "highcharts": "^12.6.0 || ^13.0.0"
+    "highcharts": "^12.6.1 || ^13.1.0"
   },
   "author": "Teemo Tebest <teemo.tebest@gmail.com>",
   "license": "ISC"

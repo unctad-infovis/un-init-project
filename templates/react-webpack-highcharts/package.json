@@ -43,7 +43,7 @@
     "webpack-dev-server": "^5.2.2"
   },
   "dependencies": {
-    "highcharts": "^12.3.0",
+    "highcharts": "^13.1.1",
     "intersection-observer": "^0.12.2",
     "react-is-visible": "^1.2.0"
   }

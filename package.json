@@ -31,5 +31,8 @@
     "chalk": "^5.3.0",
     "pdf-lib": "^1.17.1",
     "csv-parse": "^5.6.0"
+  },
+  "overrides": {
+    "highcharts": "^13.1.1"
   }
 }
