@@ -1219,6 +1219,37 @@ run for real and verified against `GET /v3/charts/{id}`.
       "Share & Embed" box actually incrementing** (cross-checked against
       `GET /v3/charts/{id}`'s `publishedAt` going recent) – check that,
       not the banner, before moving to the next chart in a batch.
+- [x] **`metadata.data.changes` doesn't reliably patch a bar chart's own
+      row/category label, even though it works for column headers** –
+      confirmed 2026-10-06 fixing two country names on a single-series
+      horizontal `d3-bars` chart (`FE3Iw`): a `data.changes` entry
+      targeting `column: 0` (the label column) saved correctly and showed
+      up in `GET /v3/charts/{id}`'s `metadata.data.changes`, but never
+      appeared in the rendered chart (`exportChart`, re-checked after a
+      delay to rule out caching) – re-publishing afterward didn't help
+      either. The already-documented successful uses of `data.changes`
+      (the "2000-2009"→"2000–2009" period headers, the "Manifacturing"
+      typo) were both column-header (`row: 0`) or interior-cell edits, not
+      a row-label/category-axis edit. **For a bar-chart-family row label,
+      skip `data.changes` and re-upload the corrected CSV via
+      `uploadData` directly** – same category as the already-documented
+      `multiple-columns` axis-label caveat (the label comes from the raw
+      data, not an overlay), now confirmed to also apply to plain
+      `d3-bars`, not just `multiple-columns`.
+- [x] **Official-UNCTAD-country-name check applied retroactively to the
+      20 TDR2026 web charts** – only two charts
+      had individual country names in their data at all (`FE3Iw`/`tFFRs`,
+      both lists of ~25 countries); everything else used region/country-
+      group aggregates, which this rule doesn't cover. Found and fixed 2
+      real mismatches, both in `FE3Iw`: "Moldova" → "Republic of Moldova",
+      "Macedonia" → "North Macedonia". `tFFRs`, despite a very similar
+      country list, had zero mismatches. A prose country name in a chart
+      title/description (e.g. "Democratic Republic of the Congo" in
+      `ZqaLy`'s title) is **not** held to the abbreviated statistical-
+      classification spelling ("Dem. Rep. of the Congo") – the TDR2026
+      PDF itself uses the full name in running prose/captions, only
+      UNCTADstat's own data tables use the abbreviated form. The rule
+      applies to data labels (legend/axis/category values), not prose.
 
 ### Deferred, not built yet
 
