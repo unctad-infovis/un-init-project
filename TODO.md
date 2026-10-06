@@ -1160,6 +1160,48 @@ run for real and verified against `GET /v3/charts/{id}`.
       When a print reference's axis reading conflicts with independently-
       sourced data, sanity-check real-world magnitude before assuming the
       extracted data is wrong.
+- [ ] **Real bug: `classifyCountryGroup` only matches bare "developed"/
+      "developing", so almost every real series name falls through
+      unclassified** – confirmed 2026-10-06 on the "World of Debt" web
+      summary charts: two already-published source charts both had
+      "Developed Countries" coloured `#004987` (UN_DARK_BLUE, the SIDS
+      colour) instead of UN_BLUE, because the regex requires an exact
+      `/^developed$/i`/`/^developing$/i` match and "Developed Countries"/
+      "Developing Countries Excluding China" never match at all – `to-web`
+      silently left whatever the source already had. The user manually
+      corrected both to UN_BLUE after copying. **Needs a wider match**
+      (word-boundary prefix, stripping a trailing "Countries" and
+      qualifiers like "Excluding China") rather than requiring the bare
+      word – not yet fixed.
+- [ ] **Multi-region categorical data (not a developed/developing pair)
+      gets the full 4-colour UN palette, with an "excluding China" variant
+      sharing its parent region's colour family at the dark shade** –
+      confirmed 2026-10-06, two real charts: a 4-region panel (Africa→
+      yellow, Developing Asia and Oceania→blue, Latin America and the
+      Caribbean→dark yellow, Developing Asia and Oceania Excluding China→
+      dark blue) and a 3-region area chart using the same first three.
+      Same pairing logic as SIDS=dark-blue-of-developed/LDC=dark-yellow-
+      of-developing, extended to an arbitrary region set. Not automated –
+      no existing rule covers non-developed/developing multi-region
+      categoricals at all.
+- [ ] **A bounded percentage/share metric with a narrow real range can
+      have its y-axis zoomed to the data's own range, not just an index-
+      rebased series** – confirmed on a real external-debt-share line
+      chart (range 44–53%, axis set to 40–55 rather than 0–100).
+      Broadens the already-logged "index=100 doesn't need to start at 0"
+      exception: the real criterion is a bounded, narrow-range metric
+      where starting at 0 flattens the visible trend, not specifically an
+      index/rebased series.
+- [x] **"In X of US dollars" should drop both "in" and "US", reading as
+      bare "X of dollars"** – confirmed 2026-10-06: user changed "in
+      trillions of US dollars" to "trillions of dollars". Refines the
+      already-logged "US$ → dollars" rule with the exact construction to
+      use (no leading "in", no "US").
+- [x] **Explicit `y-grid-format` needs decimal precision matched to the
+      data, not just any non-auto value** – confirmed on two sibling
+      charts same day: `'0'` (no decimals) for a whole-percentage metric,
+      `'0.0'` (one decimal) for a chart whose values are like 1.2/5.6.
+      Refines the already-logged "set explicit y-grid-format" rule.
 
 ### Deferred, not built yet
 
