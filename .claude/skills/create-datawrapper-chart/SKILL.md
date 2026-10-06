@@ -497,7 +497,14 @@ Datawrapper editor session can do that the API token can't:
 1. Navigate to the publish step, screenshot to confirm the preview looks
    right (title, colours, legend text, source line) — this is the same
    visual check as Step 1, just as the last gate before it goes live.
-2. Click **Publish now** (or **Republish** if already published).
+2. Click **Publish now** (or **Republish** if already published) — **often
+   needs a 2nd, sometimes a 3rd, click**; confirmed 2026-10-06 across a
+   20-chart batch, roughly a third silently failed on the first 2 clicks.
+   Don't trust the banner text or the version-history panel alone (both
+   can show a stale "published"/"Published version" state for several
+   seconds, or never reflect a click that didn't register) — check that
+   the `publicUrl` version number in the "Share & Embed" box actually
+   incremented before moving to the next chart.
 3. **Any metadata patch made after a chart was already published leaves
    the live version stale** — the publish step will show "Republish", not
    "Publish now", and the "Current version" history panel's top entry

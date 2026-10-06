@@ -1202,6 +1202,23 @@ run for real and verified against `GET /v3/charts/{id}`.
       charts same day: `'0'` (no decimals) for a whole-percentage metric,
       `'0.0'` (one decimal) for a chart whose values are like 1.2/5.6.
       Refines the already-logged "set explicit y-grid-format" rule.
+- [x] **The Publish & Embed page's "Republish" button needs 2 clicks far
+      more often than the already-documented "sometimes 1 extra click"
+      note suggests, and the page's own banner/version-history panel can
+      lag behind reality** – confirmed 2026-10-06 across a 20-chart
+      republish batch (metadata-only edits, no visualize changes): roughly
+      a third of the charts silently failed to republish on the first
+      2-click attempt (banner still read "Your visualization is published"
+      steady-state, no "Congrats" message, `publicUrl` version number
+      unchanged) and needed a 3rd click. The visible banner text and the
+      right-hand version-history panel are not reliable confirmation by
+      themselves – they can show a stale "Published version" tag for
+      several seconds while a click is still being processed, or fail to
+      reflect a click that didn't register at all. **The only fully
+      reliable success signal is the `publicUrl` version number in the
+      "Share & Embed" box actually incrementing** (cross-checked against
+      `GET /v3/charts/{id}`'s `publishedAt` going recent) – check that,
+      not the banner, before moving to the next chart in a batch.
 
 ### Deferred, not built yet
 
