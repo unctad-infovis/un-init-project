@@ -265,6 +265,45 @@ workflow manually:
   rows/categories should stay thin. Judgment call, not a hard threshold —
   check what the chart actually looks like with few rows before deciding.
 
+## Country names: use the official UNCTAD name
+
+Confirmed with the user 2026-10-06, applies to **every** chart-building path
+(`create`, `to-web`, and preparing a chart directly) whenever a country name
+appears anywhere user-visible — a category/row label, a legend entry, a
+title, a description, a note: individual country names (not region/country-
+group aggregates like "Africa" or "Developing countries", which are a
+separate, already-documented rule) must use the **official UNCTAD name**,
+not a common/informal one. **One standing exception**: "United States", not
+the official "United States of America" — don't invent further exceptions
+on your own judgement; ask the user first if a chart seems to call for one.
+
+- **Source list**: `data/UN_Country_Names.csv` (249 current economies, Code
+  + "Official UNCTAD name"), a snapshot of UNCTADstat's own classification –
+  <https://unctadstat.unctad.org/EN/Classifications/DimCountries_TargetEconomies_Classification.xls>.
+  Load it via `loadOfficialCountryNames()` in
+  `src/datawrapper-country-names.js` rather than re-fetching the XLS live
+  (the source file drifts over time – this is a snapshot, not guaranteed
+  current years from now).
+- **Fast path**: `COMMON_INFORMAL_TO_OFFICIAL` in the same module maps the
+  handful of informal names actually seen in real charts so far (Turkey →
+  Türkiye, Vietnam → Viet Nam, Russia → Russian Federation, South/North
+  Korea → Republic of Korea / Dem. People's Rep. of Korea, Laos → Lao
+  People's Dem. Rep., Bolivia/Venezuela/Iran/Moldova/Tanzania's long-form
+  names, Czech Republic → Czechia, Cape Verde → Cabo Verde, Swaziland →
+  Eswatini, Macedonia → North Macedonia, Ivory Coast → Côte d'Ivoire,
+  Brunei → Brunei Darussalam, DR Congo → Dem. Rep. of the Congo, Congo-
+  Brazzaville → Congo, Syria → Syrian Arab Republic, Micronesia's long
+  form) plus the "United States" exception itself. Not exhaustive — fall
+  back to `loadOfficialCountryNames()` for anything not listed there.
+- **How to apply**: whenever a source chart/CSV/brief names an individual
+  country, check it against the list before it goes into the web copy — in
+  category/row labels this is a data edit (same mechanism as the LDC/SIDS
+  label-opening rule: a direct CSV/`metadata.data.changes` edit, since the
+  label comes from the data, not a metadata override), in prose
+  (title/description/notes) it's a plain text edit. Not automated inside
+  `to-web`/`create` yet — this is a manual check per chart, same as the
+  other data-driven-label caveats in this document.
+
 ## Rules baked into the code (don't re-derive these by hand)
 
 All in `src/datawrapper-constants.js` unless noted, confirmed against real
