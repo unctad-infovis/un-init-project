@@ -1250,6 +1250,45 @@ run for real and verified against `GET /v3/charts/{id}`.
       PDF itself uses the full name in running prose/captions, only
       UNCTADstat's own data tables use the abbreviated form. The rule
       applies to data labels (legend/axis/category values), not prose.
+- [x] **Converting a chart from `multiple-columns`/`grouped-column-chart`
+      to plain `column-chart`** (via `PATCH /v3/charts/{id}` with
+      `{ type: 'column-chart' }`, top-level field, not under `metadata`)
+      – confirmed 2026-10-14 on a real single-series TDR2026 chart
+      (`M6YSV`, Figure III.7A): works cleanly and the existing `visualize`
+      object survives the switch, but two real gotchas surfaced
+      immediately after:
+      - **A metadata PATCH that bundles `describe` together with the
+        *entire* carried-over `visualize` object (spread from before the
+        type change) can silently no-op the whole call** – `PATCH`
+        returned `200`, but neither `describe` nor `visualize` actually
+        changed on re-fetch. Isolating `describe` alone, then `visualize`
+        alone, in separate calls both worked individually. Root cause not
+        fully isolated (which specific leftover `multiple-columns`-only
+        key triggered it), but the practical rule: **after changing a
+        chart's `type`, patch `describe` and `visualize` in separate
+        calls, not combined in one**, and always re-fetch to confirm
+        before moving on rather than trusting a `200`.
+      - **A custom y-axis tick beyond the auto-detected range needs
+        `custom-range-y` set *together with* `custom-ticks-y` – setting
+        `custom-ticks-y` alone has no visible effect**, even though it
+        saves correctly and the API round-trips it unchanged. Confirmed
+        by setting only `custom-ticks-y` via the API (silently no visual
+        effect across multiple re-exports), then reproducing the exact
+        same final field values through the live editor UI (`Custom
+        range` max + `Custom ticks`, both under Refine → Vertical axis),
+        which *did* render correctly – **and an API-only export then
+        reflected the same fix once the chart had also been saved once
+        through the editor UI**, even though the stored metadata was
+        provably identical before and after that UI save. This means
+        `exportChart`/the API GET response are not reliable proof a
+        visual change has actually propagated to the render when the
+        only edits were made via the API – the previously-documented
+        "exportChart renders the chart exactly as published" assumption
+        has a real exception here, at least for axis-range-dependent
+        ticks on `column-chart`. When an API-only patch doesn't show up
+        in an `exportChart` render despite round-tripping correctly in
+        the metadata, try the same edit once through the live editor UI
+        before concluding the field is wrong.
 
 ### Deferred, not built yet
 
