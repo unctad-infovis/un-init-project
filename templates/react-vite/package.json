@@ -28,5 +28,8 @@
   "dependencies": {
     "@unctad-infovis/general-tools": "^1.0.0",
     "@unctad-infovis/minisite-tools": "^1.0.0"
+  },
+  "allowScripts": {
+    "fsevents@2.3.3": true
   }
 }
