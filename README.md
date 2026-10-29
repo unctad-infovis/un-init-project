@@ -43,7 +43,7 @@ Default template is `react-vite`. Example: `un-init-project 2026-climate`
 
 | Package | What it's for |
 |---|---|
-| `general-tools` | Shared React components (`ButtonAnchor`, `ButtonShare`, `ChartDataWrapper`, `CircleFlag`, `Image`, `ProgressBar`, `Quote`, `RollingNumber`, `Select`, `Tooltip`, `UNCTADSiteHeader`, `BackToTop`), helpers (`BasePath`/`resolveAsset`, `LoadFile`, `CsvToJson`, `FormatNr`, `RoundNr`, `UseIsVisible`, `UseClickOutside`, `UseCountUp`) and base design-token styles (`colors.css`, `basics.css`, `styles.css`). |
+| `general-tools` | Shared React components (`ButtonAnchor`, `ButtonShare`, `ChartDataWrapper`, `CircleFlag`, `Image`, `ProgressBar`, `Quote`, `RollingNumber`, `Select`, `Tooltip`, `UNCTADSiteHeader`, `BackToTop`), helpers (`BasePath`/`resolveAsset`, `LoadFile`, `CsvToJson`, `FormatNr`, `RoundNr`, `UseIsVisible`, `UseClickOutside`, `UseCountUp`, `PinFallback`) and base design-token styles (`colors.css`, `basics.css`, `styles.css`). |
 | `minisite-tools` | Report/minisite layout components (`Header`, `HeaderChapter`, `Footer`, `SideScrollingText`). More project-specific than `general-tools` — check whether a project's actual content differs from the package defaults before assuming it's a safe drop-in (see [Reusing vs. forking a component](#reusing-vs-forking-a-shared-component)). |
 | `map-tools` | Highcharts map helpers: TopoJSON processing (`ProcessTopoObject`, `ProcessTopoObjectPolygons`), disputed-territory colour resolution (`GetColor`, `GetValue`), border/mapline series (`CreateMaplineSeries`), and `styles.css` for Highcharts button/tooltip chrome. |
 | `unctad-flags` | Round country/region flag SVGs. Not bundled into your project — see [Hosted assets](#hosted-assets-unctad-flags-and-unctad-icons). |

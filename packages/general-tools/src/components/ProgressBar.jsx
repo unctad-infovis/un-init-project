@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react';
+import pinFallback from '../helpers/PinFallback.js';
 
 import './ProgressBar.css';
 
 function ProgressBar({ selector }) {
   const progressRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const chapters = window.appRef.current.querySelector(selector);
@@ -43,8 +45,11 @@ function ProgressBar({ selector }) {
     };
   }, [selector]);
 
+  // Where the host page makes position: sticky impossible, the bar is pinned by hand
+  useEffect(() => pinFallback(containerRef.current, () => 0), []);
+
   return (
-    <div className="container_progress_bar">
+    <div className="container_progress_bar" ref={containerRef}>
       <div className="section">
         <div ref={progressRef} className="progress_bar" />
       </div>
