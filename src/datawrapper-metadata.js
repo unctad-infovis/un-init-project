@@ -88,7 +88,20 @@ export function normalizeSourceLine(rawSource) {
 
   if (!remainder) return 'UN Trade and Development (UNCTAD)';
 
-  if (!/^(calculations |estimates )?based on\s+/i.test(remainder)) {
+  // The source text's own lead-in verb (e.g. "calculation based on X",
+  // "analysis based on Y") already supplies the connecting clause to
+  // UNCTAD – confirmed 2026-11-03 as a real bug on several real charts
+  // (tg1KQ, ygDX5, fKGlo, uZjC9, Kyjxf): the old test only recognised
+  // "based on" when it was the very first word(s) of the remainder, so a
+  // remainder like "2026 calculation based on UNEP ..." or "analysis
+  // based on regional trade agreement ..." didn't match (it starts with
+  // "2026 calculation"/"analysis", not "based on") and got a second,
+  // redundant "based on" prepended, producing "based on 2026 calculation
+  // based on UNEP ..." / "based on analysis based on regional trade
+  // agreement ...". Checking anywhere in the remainder (not just anchored
+  // at its start) catches the lead-in-noun-then-"based on" shape too,
+  // while still matching the original anchored case.
+  if (!/\bbased on\s+/i.test(remainder)) {
     remainder = `based on ${remainder}`;
   }
 
