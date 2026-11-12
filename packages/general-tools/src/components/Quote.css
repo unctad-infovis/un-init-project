@@ -35,6 +35,35 @@
         width: calc(139px / 1.5);
       }
     }
+    &.quote--bar {
+      margin: 40px 0;
+      max-width: none;
+      blockquote {
+        margin: 0;
+        padding: 0 0 0 24px;
+        &:before {
+          background-color: var(--un-color-blue);
+          background-image: none;
+          bottom: 0;
+          display: block;
+          height: auto;
+          width: 4px;
+        }
+        .quote {
+          font-size: clamp(var(--un-font-size-xl), 2.2vw, 32px);
+          font-style: normal;
+          font-weight: var(--un-font-weight-bold);
+          line-height: 1.4;
+          margin-bottom: 20px;
+        }
+        .author {
+          line-height: 1.5;
+          .name {
+            font-weight: var(--un-font-weight-bolder);
+          }
+        }
+      }
+    }
     @media (max-width: 600px) {
       blockquote {
         padding: 56px 0 0 0;
