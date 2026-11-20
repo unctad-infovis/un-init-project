@@ -151,6 +151,54 @@ npm run sync-prod       # azcopy dist/ -> storage.unctad.org/<project>/
 
 `dist/` is committed to git in most projects (needed for `sync-gh-pages`'s subtree push to work) — check an individual project's convention before assuming otherwise.
 
+### Drupal app manifest
+
+Every scaffolded project ships `public/assets/drupal-app.json`, the machine-readable
+description Drupal needs to embed the app: `title`, the `index`/`js`/`css` paths
+relative to the manifest itself, the `container` markup to place in the page,
+`script_type`, a `thumbnail` and a `version` counter.
+
+```json
+{
+  "schema": 1,
+  "title": "__PROJECT_NAME__",
+  "index": "../index.html",
+  "container": "<div id=\"app-root-__PROJECT_NAME__\" class=\"app-root-__PROJECT_NAME__\">Loading...</div>",
+  "script_type": "module",
+  "js": ["../js/__PROJECT_NAME__.min.js"],
+  "css": ["font/fonts.css", "../css/__PROJECT_NAME__.min.css"],
+  "thumbnail": "img/thumbnail.png",
+  "version": "0"
+}
+```
+
+`un-init-project` injects the real project name at scaffold time (it's one of
+`INJECT_FILES` in `bin/init-project.js`), so `title`/`container`/`js`/`css`
+are correct from the start. Two things still need manual attention per project:
+
+* **`title`** — defaults to the project's slug (e.g. `2026-rmt_report`); change
+  it to the actual display title if Drupal should show something more readable.
+* **`thumbnail`** — the template ships the placeholder path `img/thumbnail.png`,
+  but no placeholder image; add a real image under `public/assets/img/` and
+  update the path before the manifest is used.
+
+`scripts/postbuild.js` bumps `version` by 1 on every `npm run build`, writing
+the result to both the source copy in `public/assets/` and the copy Vite
+already placed in `dist/assets/` — this is how Drupal (or a cache-busting
+layer in front of it) can tell a new build apart from the last one. Because
+the counter lives in the committed `public/` copy, it persists correctly
+across builds; don't hand-edit `version` or reset it.
+
+**Rollout status**: `2026-rmt_report` is the only existing project set up as a
+Drupal "media type" this way so far. Every other already-scaffolded project is
+still embedded in Drupal the old way, with hand-written `<script>`/`<link>`
+tags pointing at `storage.unctad.org` (see an individual project's README
+"Embedding" section). The plan is to migrate those projects to the manifest
+method too, but that's a later, separate effort — don't assume a project has
+`drupal-app.json` wired up on the Drupal side just because the file exists in
+its repo (every project scaffolded from now on has the file, but not
+necessarily a matching Drupal media type yet).
+
 ## Auditing and updating existing projects
 
 `un-audit-project <path>` walks every scaffolded project under `<path>` (or audits a single project directly) and, per project: skips it if the git working tree isn't clean, runs `npm update` + `npm audit fix`, rebuilds only if dependencies changed, diffs the build output against `HEAD`, and commits + pushes (`--no-push` to skip) whatever actually changed. If the production JS/CSS changed, it also runs `npm run sync-prod`.
