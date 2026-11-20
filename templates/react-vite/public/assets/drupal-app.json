@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "title": "__PROJECT_NAME__",
+  "index": "../index.html",
+  "container": "<div id=\"app-root-__PROJECT_NAME__\" class=\"app-root-__PROJECT_NAME__\">Loading...</div>",
+  "script_type": "module",
+  "js": [
+    "../js/__PROJECT_NAME__.min.js"
+  ],
+  "css": [
+    "font/fonts.css",
+    "../css/__PROJECT_NAME__.min.css"
+  ],
+  "thumbnail": "img/thumbnail.png",
+  "version": "0"
+}

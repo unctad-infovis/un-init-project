@@ -13,6 +13,7 @@ const INJECT_FILES = [
   'index.html',
   'package.json',
   'README.md',
+  'public/assets/drupal-app.json',
 ];
 
 /*********************************************

@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "postbuild": "node -e \"import fs from 'node:fs';const p='dist/index.html',h=fs.readFileSync(p,'utf8');fs.writeFileSync(p,h.replace(/href=\\\"\\//g,'href=\\\"./').replace(/src=\\\"\\//g,'src=\\\"./'));\"",
+    "postbuild": "node scripts/postbuild.js",
     "start": "vite --open",
     "start_public": "vite --open --host",
     "preview": "vite preview",

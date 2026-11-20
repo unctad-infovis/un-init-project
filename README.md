@@ -143,7 +143,7 @@ A few CSS-embedded icons (`ButtonAnchor.css`, `Quote.css`) reference the `storag
 Every scaffolded project has the same deploy scripts:
 
 ```
-npm run build           # vite build + postbuild (rewrites absolute paths to relative, versions asset URLs)
+npm run build           # vite build + scripts/postbuild.js (relative paths, bumps `version` in public/assets/drupal-app.json; add img/thumbnail.png)
 git push && git push unctad main   # both GitHub and the Azure DevOps mirror
 npm run sync-gh-pages   # git subtree push --prefix dist origin gh-pages
 npm run sync-prod       # azcopy dist/ -> storage.unctad.org/<project>/
