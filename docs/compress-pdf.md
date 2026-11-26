@@ -52,3 +52,36 @@ total: 4.3 MB -> 0.7 MB  (-84%)
 
 Exits non-zero if any input file was missing or failed to compress, so
 it's safe to check the exit code in a script.
+
+## Blend-mode safety net
+
+Some InDesign exports place a photo inside a transparency group using a
+colour-blend effect (e.g. `Multiply`, common on cover pages) in a way that
+can trigger a genuine Ghostscript `pdfwrite` bug: it silently drops the
+image and replaces it with a flat colour, with no error and exit code 0
+(see `TODO.md` for the full technical writeup). Every compression run
+automatically guards against this:
+
+1. Pages combining an image with a non-`Normal` blend mode are flagged as
+   candidates (cheap, near-zero cost on the overwhelming majority of
+   documents, which don't use blend effects at all — flagging alone isn't
+   proof of breakage, since the same construct is just as often used on
+   pages that compress perfectly fine).
+2. The whole document is compressed normally, then each candidate page is
+   independently verified — rendered before/after via macOS Quick Look
+   (the same PDFKit rendering stack the bug actually manifests in) and
+   pixel-diffed.
+3. Only pages that actually changed in a way consistent with real content
+   loss are reverted to their original, untouched bytes; every other page
+   keeps full compression.
+
+If a page was preserved this way, the CLI prints which one(s) and why:
+
+```
+      page(s) 1 use a colour-blend effect Ghostscript can silently corrupt — left at original resolution, not recompressed (see docs/compress-pdf.md).
+ok    report.pdf  23.7 MB -> 9.1 MB  (-62%)  =>  compressed/report.pdf
+```
+
+This precise, per-page verification requires `qlmanage` (built into
+macOS). On a platform without it, every candidate page is conservatively
+preserved instead (no pixel-diff check) — still safe, just less precise.

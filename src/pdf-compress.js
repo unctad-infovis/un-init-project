@@ -2,6 +2,8 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import zlib from 'node:zlib';
+import { PDFArray, PDFDict, PDFDocument, PDFName, PDFStream } from 'pdf-lib';
 
 /** Ghostscript itself is missing, or failed on this specific file — the caller should print `.message` plainly. */
 export class PdfCompressError extends Error {}
@@ -15,6 +17,217 @@ function hasGhostscript() {
   } catch {
     return false;
   }
+}
+
+function hasQlmanage() {
+  try {
+    execFileSync('qlmanage', ['-h'], { stdio: 'ignore' });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// Not `/Normal` or `/Compatible` (PDF spec treats the two as equivalent).
+const NORMAL_BLEND_MODES = new Set(['Normal', 'Compatible']);
+
+function asDict(context, value) {
+  if (value === undefined) return undefined;
+  const resolved = value instanceof PDFDict || value instanceof PDFStream ? value : context.lookup(value);
+  if (resolved instanceof PDFDict) return resolved;
+  if (resolved instanceof PDFStream) return resolved.dict;
+  return undefined;
+}
+
+function nameOf(obj) {
+  return obj?.asString ? obj.asString().replace(/^\//, '') : undefined;
+}
+
+/**
+ * Walks a page's (or a Form XObject's) `/Resources`, looking for a
+ * non-`/Normal` blend mode (`/ExtGState`'s `/BM`) and an image
+ * (`/XObject` with `/Subtype /Image`) anywhere in the same resource tree,
+ * recursing into nested Form XObjects (common in InDesign exports, which
+ * wrap nearly every placed image in its own transparency group).
+ */
+function scanResourcesForRiskyBlend(context, resDict, depth, state) {
+  if (!resDict || depth > 8) return;
+  const extGState = asDict(context, resDict.get(PDFName.of('ExtGState')));
+  if (extGState) {
+    for (const [, gsRef] of extGState.entries()) {
+      const bm = asDict(context, gsRef)?.get(PDFName.of('BM'));
+      if (!bm) continue;
+      const bmStr = nameOf(bm instanceof PDFArray ? bm.get(0) : bm);
+      if (bmStr && !NORMAL_BLEND_MODES.has(bmStr)) state.blendModes.add(bmStr);
+    }
+  }
+  const xObject = asDict(context, resDict.get(PDFName.of('XObject')));
+  if (xObject) {
+    for (const [, xoRef] of xObject.entries()) {
+      const xoDict = asDict(context, xoRef);
+      if (!xoDict) continue;
+      const subtype = nameOf(xoDict.get(PDFName.of('Subtype')));
+      if (subtype === 'Image') state.hasImage = true;
+      if (subtype === 'Form') scanResourcesForRiskyBlend(context, asDict(context, xoDict.get(PDFName.of('Resources'))), depth + 1, state);
+    }
+  }
+}
+
+/**
+ * Finds pages combining an image with a non-`/Normal` blend mode (`Multiply`,
+ * `HardLight`, etc.) — the precondition for a real, confirmed Ghostscript
+ * `pdfwrite` bug (found 2026-11-26, see TODO.md): a transparency group whose
+ * own blending colour space doesn't match an image drawn inside it (e.g. a
+ * `/CS /DeviceCMYK` group wrapping an RGB photo) can get silently dropped –
+ * replaced with a flat colour, no error, exit 0 – when Ghostscript rewrites
+ * the page. Confirmed on a real document: only 1 of 52 CMYK transparency
+ * groups (and only 1 page) actually broke, but there is no reliable way to
+ * predict *which* blend-mode page will break without re-deriving a chunk of
+ * Ghostscript's own transparency-compositing code – so every page matching
+ * this (deliberately broader-than-strictly-necessary) heuristic is treated
+ * as unsafe to recompress, trading a little extra file size on documents
+ * that use blend effects for guaranteed content safety.
+ *
+ * @returns {Promise<number[]>} 0-indexed page numbers to exclude from recompression.
+ */
+async function findRiskyBlendPages(pdfBytes) {
+  const doc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true, updateMetadata: false });
+  const risky = [];
+  doc.getPages().forEach((page, i) => {
+    const state = { blendModes: new Set(), hasImage: false };
+    scanResourcesForRiskyBlend(doc.context, page.node.Resources(), 0, state);
+    if (state.hasImage && state.blendModes.size > 0) risky.push(i);
+  });
+  return risky;
+}
+
+/**
+ * Rebuilds `compressedDoc` (already a full, same-page-order recompression of
+ * the whole original) with `brokenPages` (0-indexed) swapped back for their
+ * equivalent in `originalDoc` instead – a structural copy via `pdf-lib` (it
+ * doesn't re-encode streams, so the restored pages' content is exact).
+ */
+async function swapInOriginalPages(originalDoc, compressedDoc, brokenPages) {
+  const brokenSet = new Set(brokenPages);
+  const totalPages = originalDoc.getPageCount();
+  const final = await PDFDocument.create();
+  for (let i = 0; i < totalPages; i++) {
+    const [page] = await final.copyPages(brokenSet.has(i) ? originalDoc : compressedDoc, [i]);
+    final.addPage(page);
+  }
+  return final.save();
+}
+
+/** A minimal PNG decoder: 8-bit, non-interlaced, RGB or RGBA only (what `qlmanage -t` produces) — enough for the pixel-diff check below, nothing more. Throws on anything else. */
+function decodePNG(buf) {
+  if (buf.readUInt32BE(0) !== 0x89504e47) throw new Error('Not a PNG file.');
+  let pos = 8;
+  let width, height, bitDepth, colorType, interlace;
+  const idatChunks = [];
+  while (pos < buf.length) {
+    const len = buf.readUInt32BE(pos);
+    const type = buf.toString('ascii', pos + 4, pos + 8);
+    const dataStart = pos + 8;
+    if (type === 'IHDR') {
+      width = buf.readUInt32BE(dataStart);
+      height = buf.readUInt32BE(dataStart + 4);
+      bitDepth = buf.readUInt8(dataStart + 8);
+      colorType = buf.readUInt8(dataStart + 9);
+      interlace = buf.readUInt8(dataStart + 12);
+    } else if (type === 'IDAT') {
+      idatChunks.push(buf.subarray(dataStart, dataStart + len));
+    } else if (type === 'IEND') {
+      break;
+    }
+    pos = dataStart + len + 4; // skip CRC
+  }
+  if (bitDepth !== 8) throw new Error(`Unsupported PNG bit depth ${bitDepth}.`);
+  if (interlace !== 0) throw new Error('Interlaced PNG not supported.');
+  if (colorType !== 2 && colorType !== 6) throw new Error(`Unsupported PNG colour type ${colorType}.`);
+  const channels = colorType === 6 ? 4 : 3;
+
+  const raw = zlib.inflateSync(Buffer.concat(idatChunks));
+  const stride = width * channels;
+  const out = Buffer.alloc(height * stride);
+  let rawPos = 0;
+  for (let y = 0; y < height; y++) {
+    const filterType = raw[rawPos++];
+    const rowStart = y * stride;
+    const prevRowStart = (y - 1) * stride;
+    for (let x = 0; x < stride; x++) {
+      const rawByte = raw[rawPos++];
+      const a = x >= channels ? out[rowStart + x - channels] : 0;
+      const b = y > 0 ? out[prevRowStart + x] : 0;
+      const c = y > 0 && x >= channels ? out[prevRowStart + x - channels] : 0;
+      let value;
+      if (filterType === 0) value = rawByte;
+      else if (filterType === 1) value = rawByte + a;
+      else if (filterType === 2) value = rawByte + b;
+      else if (filterType === 3) value = rawByte + Math.floor((a + b) / 2);
+      else if (filterType === 4) {
+        const p = a + b - c;
+        const pa = Math.abs(p - a);
+        const pb = Math.abs(p - b);
+        const pc = Math.abs(p - c);
+        value = rawByte + (pa <= pb && pa <= pc ? a : pb <= pc ? b : c);
+      } else {
+        throw new Error(`Unsupported PNG filter type ${filterType}.`);
+      }
+      out[rowStart + x] = value & 0xff;
+    }
+  }
+  return { width, height, channels, data: out };
+}
+
+/** Mean absolute per-channel difference over the RGB channels only (ignores alpha). -1 if dimensions don't match. */
+function meanAbsRgbDiff(a, b) {
+  if (a.width !== b.width || a.height !== b.height) return -1;
+  const pixelCount = a.width * a.height;
+  let sum = 0;
+  for (let i = 0; i < pixelCount; i++) {
+    const ai = i * a.channels;
+    const bi = i * b.channels;
+    sum += Math.abs(a.data[ai] - b.data[bi]) + Math.abs(a.data[ai + 1] - b.data[bi + 1]) + Math.abs(a.data[ai + 2] - b.data[bi + 2]);
+  }
+  return sum / (pixelCount * 3);
+}
+
+/**
+ * Empirically calibrated against 3 real UNCTAD documents (2026-11-26): a
+ * page's ordinary JPEG/downsampling recompression noise measured 0.0–1.4 on
+ * this scale, while a page where Ghostscript actually dropped an image (the
+ * confirmed bug – see findRiskyBlendPages above) measured 36+. Leaves wide
+ * margin on both sides without being overfit to a single sample.
+ */
+const BLEND_CORRUPTION_DIFF_THRESHOLD = 5;
+
+/** Renders a single already-extracted page's PDF via macOS Quick Look (PDFKit – the same rendering stack the known bug actually manifests in) and decodes the resulting PNG. */
+function renderPageViaQuickLook(singlePageBytes, tmpDir, label) {
+  const pdfPath = path.join(tmpDir, `${label}.pdf`);
+  fs.writeFileSync(pdfPath, singlePageBytes);
+  execFileSync('qlmanage', ['-t', '-s', '400', '-o', tmpDir, pdfPath], { stdio: 'ignore' });
+  return decodePNG(fs.readFileSync(path.join(tmpDir, `${label}.pdf.png`)));
+}
+
+/**
+ * Checks whether a specific page actually changed in a way that looks like
+ * the blend-mode content-loss bug, by rendering that same page from both the
+ * original and the candidate-compressed document via Quick Look (PDFKit) and
+ * comparing pixels — directly testing the real symptom, rather than trying
+ * to statically predict which blend-mode pages Ghostscript will mishandle
+ * (confirmed unreliable: blend mode and group/image colour-space mismatch
+ * are both present just as often on pages that compress perfectly fine).
+ */
+async function pageWasCorrupted(originalDoc, compressedDoc, pageIndex, tmpDir) {
+  const origSingle = await PDFDocument.create();
+  (await origSingle.copyPages(originalDoc, [pageIndex])).forEach((p) => origSingle.addPage(p));
+
+  const compSingle = await PDFDocument.create();
+  (await compSingle.copyPages(compressedDoc, [pageIndex])).forEach((p) => compSingle.addPage(p));
+
+  const before = renderPageViaQuickLook(await origSingle.save(), tmpDir, `orig-${pageIndex}`);
+  const after = renderPageViaQuickLook(await compSingle.save(), tmpDir, `comp-${pageIndex}`);
+  return meanAbsRgbDiff(before, after) > BLEND_CORRUPTION_DIFF_THRESHOLD;
 }
 
 /**
@@ -47,8 +260,10 @@ function hasGhostscript() {
  * @param {number} [opts.monoDpi] - resolution for 1-bit (scanned/line-art) images, default 300
  * @param {number} [opts.timeoutMs] - kill Ghostscript if it hasn't finished after this long, default 120000 (2 min).
  *   Without this a malformed or degenerate PDF can hang the subprocess — and this whole function — indefinitely.
- * @returns {Promise<{bytes: Uint8Array, originalSize: number, compressedSize: number, skipped: boolean}>}
+ * @returns {Promise<{bytes: Uint8Array, originalSize: number, compressedSize: number, skipped: boolean, preservedPages: number[]}>}
  *   `skipped` is true when compression didn't actually shrink the file — `bytes` is then the original, byte-for-byte unchanged.
+ *   `preservedPages` (1-indexed) lists any pages excluded from recompression by the blend-mode safety net below —
+ *   empty on the overwhelming majority of documents, which don't use a non-`Normal` blend mode at all.
  */
 export async function compressPdf(pdfBytes, { quality = 'ebook', dpi, monoDpi = 300, timeoutMs = 120_000 } = {}) {
   if (!VALID_QUALITIES.includes(quality)) {
@@ -58,6 +273,77 @@ export async function compressPdf(pdfBytes, { quality = 'ebook', dpi, monoDpi = 
     throw new PdfCompressError('Ghostscript (gs) not found. Install it: brew install ghostscript');
   }
 
+  const originalSize = pdfBytes.length;
+  let riskyPages = [];
+  try {
+    riskyPages = await findRiskyBlendPages(pdfBytes);
+  } catch (err) {
+    // The scan is a safety net, not a requirement — a PDF pdf-lib can't
+    // parse (encrypted, malformed enough to confuse it) just forgoes the
+    // safeguard rather than blocking compression outright.
+    console.error(`[pdf-compress] Couldn't scan for risky blend-mode pages, compressing normally: ${err.message}`);
+  }
+
+  if (riskyPages.length === 0) {
+    const compressedBytes = await runGhostscriptCompress(pdfBytes, { quality, dpi, monoDpi, timeoutMs });
+    const compressedSize = compressedBytes.length;
+    if (compressedSize >= originalSize) return { bytes: pdfBytes, originalSize, compressedSize, skipped: true, preservedPages: [] };
+    return { bytes: compressedBytes, originalSize, compressedSize, skipped: false, preservedPages: [] };
+  }
+
+  // One or more pages combine an image with a non-`/Normal` blend mode — the
+  // precondition for the confirmed bug (see findRiskyBlendPages above), but
+  // not a reliable predictor of it by itself (empirically, pages that
+  // compress perfectly fine trigger the same static signal just as often).
+  // Compress the whole document normally first, then verify only the
+  // candidate pages against the real symptom and swap back just the ones
+  // that actually broke — maximizes compression while never shipping
+  // silently-corrupted content.
+  const compressedWhole = await runGhostscriptCompress(pdfBytes, { quality, dpi, monoDpi, timeoutMs });
+
+  let brokenPages;
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'un-pdf-verify-'));
+  try {
+    if (hasQlmanage()) {
+      const original = await PDFDocument.load(pdfBytes, { ignoreEncryption: true, updateMetadata: false });
+      const compressed = await PDFDocument.load(compressedWhole, { ignoreEncryption: true, updateMetadata: false });
+      brokenPages = [];
+      for (const i of riskyPages) {
+        try {
+          if (await pageWasCorrupted(original, compressed, i, tmpDir)) brokenPages.push(i);
+        } catch (err) {
+          // Couldn't verify this specific page (e.g. qlmanage choked on it) — fail safe, treat as broken.
+          console.error(`[pdf-compress] Couldn't verify page ${i + 1}, preserving it to be safe: ${err.message}`);
+          brokenPages.push(i);
+        }
+      }
+    } else {
+      // No Quick Look (non-macOS) — can't verify precisely, so every
+      // candidate page is conservatively treated as broken.
+      brokenPages = riskyPages;
+    }
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+
+  const preservedPages = brokenPages.map((i) => i + 1);
+  if (brokenPages.length === 0) {
+    const compressedSize = compressedWhole.length;
+    if (compressedSize >= originalSize) return { bytes: pdfBytes, originalSize, compressedSize, skipped: true, preservedPages };
+    return { bytes: compressedWhole, originalSize, compressedSize, skipped: false, preservedPages };
+  }
+
+  const original = await PDFDocument.load(pdfBytes, { ignoreEncryption: true, updateMetadata: false });
+  const compressed = await PDFDocument.load(compressedWhole, { ignoreEncryption: true, updateMetadata: false });
+  const compressedBytes = await swapInOriginalPages(original, compressed, brokenPages);
+
+  const compressedSize = compressedBytes.length;
+  if (compressedSize >= originalSize) return { bytes: pdfBytes, originalSize, compressedSize, skipped: true, preservedPages };
+  return { bytes: compressedBytes, originalSize, compressedSize, skipped: false, preservedPages };
+}
+
+/** The actual Ghostscript invocation — recompresses every page's images, no preserved-page safety net. */
+async function runGhostscriptCompress(pdfBytes, { quality, dpi, monoDpi, timeoutMs }) {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'un-pdf-compress-'));
   const inPath = path.join(tmpDir, 'in.pdf');
   const outPath = path.join(tmpDir, 'out.pdf');
@@ -175,17 +461,7 @@ export async function compressPdf(pdfBytes, { quality = 'ebook', dpi, monoDpi = 
     // another manual visual audit of the output.
     if (stderr) console.error(`[pdf-compress] Ghostscript warning (exit 0):\n${stderr}`);
 
-    const originalSize = pdfBytes.length;
-    const compressedBytes = fs.readFileSync(outPath);
-    const compressedSize = compressedBytes.length;
-
-    // Matches compress-pdf.sh's own "keep original if no gain" behaviour —
-    // a PDF that's already well-compressed (or mostly text/vectors, no
-    // large raster images) can come back the same size or larger.
-    if (compressedSize >= originalSize) {
-      return { bytes: pdfBytes, originalSize, compressedSize, skipped: true };
-    }
-    return { bytes: compressedBytes, originalSize, compressedSize, skipped: false };
+    return fs.readFileSync(outPath);
   } finally {
     fs.rmSync(tmpDir, { recursive: true, force: true });
   }

@@ -157,6 +157,86 @@ Drupal production save yet.
   for a photo-heavy cover page is a strong signal of a blank/broken
   render; compare against a known-good file's thumbnail size as a
   baseline before concluding anything from a single number.
+- [x] **A fourth distinct Ghostscript `pdfwrite` content-loss bug, found
+      2026-11-26** – user-reported (`un-compress-pdf` on a real document,
+      "Unlocking Potential: SME Integration in the Ugandan Iron and Steel
+      Value Chain"): the cover's photo silently vanished after
+      compression, replaced by a flat colour block, confirmed both via
+      `qlmanage -t` (PDFKit) and a direct page render (poppler) – not a
+      stale Finder thumbnail cache, ruled out by the user renaming and
+      moving the file. **Root cause, isolated with a bare
+      `gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.7` rewrite (no other
+      flags at all) that reproduced it**: the cover's photo sits inside a
+      transparency `/Group` whose own blending colour space is declared
+      `/CS /DeviceCMYK`, composited with a `/BM /Multiply` `ExtGState`,
+      while the actual image is RGB – a legitimate, if unusual, InDesign
+      export construct (every placed image in this document sits inside
+      its own CMYK transparency group – 52 of them – but this is the
+      *only* one in the whole 106-page document using a non-`Normal`
+      blend mode, confirmed by `grep`). Ghostscript's native-transparency-
+      preserving `pdfwrite` path can't correctly re-serialize this
+      specific mismatch and silently drops the image instead of erroring
+      – same failure *shape* as the earlier colour-conversion bug below
+      (content loss, no warning, exit 0) but a different trigger
+      (`-dColorConversionStrategy=/LeaveColorUnchanged`, already set,
+      does not help here) and **not fixable by any flag found so far**:
+      forcing `-dCompatibilityLevel=1.3` (pre-transparency PDF, forces
+      Ghostscript to flatten/rasterize instead of preserving the group)
+      does restore the photo, but changes its appearance in a different,
+      equally-wrong way – the photo now visibly bleeds up into the title
+      area, which neither PDFKit nor poppler show on the untouched
+      original, so this isn't a clean fix either, just a different kind
+      of wrong. Worked around manually for this one document first (split
+      with `qpdf --pages` into page 1 alone + pages 2–106, compressed only
+      the rest, reassembled with `qpdf --empty --pages`) – result 23.7 MB
+      -> 7.1 MB. **User pushed back on treating this as a one-off**
+      ("I think this happens to many documents as they like to do these
+      blends") – confirmed right: a second real UNCTAD document found in
+      this repo's own `tmp/` (`2617332_E_UNCTAD_DITC_TAB_2026_2_WEB.pdf`)
+      independently showed the same precondition (image + non-`Normal`
+      blend mode) on 11 pages, though in that document's case none of them
+      actually broke – which also proved blend-mode presence alone isn't
+      a reliable predictor of breakage (confirmed directly: page 12 of the
+      Uganda document carries the identical signal – `/BM /Multiply`,
+      CMYK group wrapping an RGB image – and compresses perfectly fine).
+      **General code fix now shipped in `src/pdf-compress.js`**: every
+      `compressPdf()` call scans for pages combining an image with a
+      non-`Normal` blend mode (`findRiskyBlendPages`, cheap, pdf-lib-only,
+      near-zero cost on the overwhelming majority of documents that don't
+      use blend effects at all) as *candidates*, compresses the whole
+      document in one normal pass, then verifies only those candidate
+      pages against the real symptom – renders each one before/after via
+      `qlmanage -t` (macOS Quick Look / PDFKit, the exact stack the bug
+      manifests in; confirmed Ghostscript's own renderer and poppler's
+      `pdftoppm` both *fail* to reproduce the bug and so can't be used for
+      this check) and decodes the resulting PNGs with a small hand-rolled
+      decoder (`zlib.inflateSync` + manual scanline unfiltering – no new
+      npm dependency) to compute a mean-pixel-diff. Empirically calibrated
+      against 3 real documents: ordinary JPEG/downsampling recompression
+      noise measures 0.0–1.4 on this scale; the confirmed content-loss
+      case measures 36+ – `BLEND_CORRUPTION_DIFF_THRESHOLD = 5` sits with
+      wide margin on both sides. Only pages whose diff crosses that
+      threshold get swapped back to their original, untouched bytes
+      (`swapInOriginalPages`, pdf-lib, same-index swap against the
+      full-document compression rather than a safe-subset split, so
+      Ghostscript's cross-page duplicate-image optimization isn't lost
+      either); everything else keeps full compression. Falls back to
+      preserving every candidate page conservatively (the old, coarser
+      behaviour) if `qlmanage` isn't available – e.g. off macOS, or if it
+      errors on a specific page – fail-safe by design: never silently
+      ships corrupted content, just sometimes over-preserves. Re-verified
+      end to end against the real Uganda report after the fix: correctly
+      narrows the 13 statically-flagged candidates down to just the one
+      actually-broken page (page 1), 23.7 MB -> 9.1 MB (-62%), cover
+      confirmed pixel-correct via `qlmanage -t`. `un-compress-pdf` now
+      also prints which page(s) (if any) were preserved and why.
+      **Diagnostic if a future document still shows this despite the
+      fix**: the same `grep -c "/BM /Multiply\|/BM /Screen\|/BM
+      /Darken\|/BM /Lighten\|/BM /Overlay"` against a `qpdf --qdf
+      --object-streams=disable` dump as before – should no longer be
+      needed in practice since detection is now automatic, but still
+      useful for manually narrowing down which page to inspect if
+      `qlmanage` itself is unavailable in a given environment.
 - [ ] **PDF metadata editing** (`src/pdf-metadata.js`): confirm against a
       real document, opened in Acrobat, that Title/Author/Subject/Keywords/
       Language/print-presets/Initial View all look right to Angela – not

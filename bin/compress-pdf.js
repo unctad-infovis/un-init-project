@@ -77,8 +77,13 @@ async function main() {
       totalIn += result.originalSize;
       totalOut += result.skipped ? result.originalSize : result.compressedSize;
 
+      if (result.preservedPages.length > 0) {
+        console.log(chalk.yellow(`      page(s) ${result.preservedPages.join(', ')} use a colour-blend effect Ghostscript can silently corrupt — left at original resolution, not recompressed (see docs/compress-pdf.md).`));
+      }
+
       if (result.skipped) {
-        console.log(`keep  ${src}  (${hsize(result.originalSize)}) — compression gained nothing, original left as-is`);
+        const reason = result.preservedPages.length > 0 ? 'preserving those pages outweighed the savings elsewhere' : 'compression gained nothing';
+        console.log(`keep  ${src}  (${hsize(result.originalSize)}) — ${reason}, original left as-is`);
         continue;
       }
 
