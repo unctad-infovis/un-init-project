@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="227.200391pt" height="156.267167pt" viewBox="0 0 227.200391 156.267167" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-26T14:26:14.625043</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 156.267167 
+L 227.200391 156.267167 
+L 227.200391 0 
+L 0 0 
+L 0 156.267167 
+z
+" style="fill: none"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 22.000391 140.470116 
+L 222.880391 140.470116 
+L 222.880391 7.414116 
+L 22.000391 7.414116 
+L 22.000391 140.470116 
+z
+" style="fill: none"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 8.5px; font-family: 'Liberation Sans'; text-anchor: middle; fill: #6f6f6f" x="22.000391" y="150.158349" transform="rotate(-0 22.000391 150.158349)">2010</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 8.5px; font-family: 'Liberation Sans'; text-anchor: middle; fill: #6f6f6f" x="93.743248" y="150.158349" transform="rotate(-0 93.743248 150.158349)">2015</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 8.5px; font-family: 'Liberation Sans'; text-anchor: middle; fill: #6f6f6f" x="165.486105" y="150.158349" transform="rotate(-0 165.486105 150.158349)">2020</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_4">
+      <path d="M 22.000391 140.470116 
+L 222.880391 140.470116 
+" clip-path="url(#pd6754d5de5)" style="fill: none; stroke: #e8e6e3; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_5"/>
+     <g id="text_4">
+      <text style="font-size: 8.5px; font-family: 'Liberation Sans'; text-anchor: end; fill: #6f6f6f" x="18.500391" y="143.564232" transform="rotate(-0 18.500391 143.564232)">0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_6">
+      <path d="M 22.000391 107.206116 
+L 222.880391 107.206116 
+" clip-path="url(#pd6754d5de5)" style="fill: none; stroke: #e8e6e3; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_7"/>
+     <g id="text_5">
+      <text style="font-size: 8.5px; font-family: 'Liberation Sans'; text-anchor: end; fill: #6f6f6f" x="18.500391" y="110.300232" transform="rotate(-0 18.500391 110.300232)">50</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_8">
+      <path d="M 22.000391 73.942116 
+L 222.880391 73.942116 
+" clip-path="url(#pd6754d5de5)" style="fill: none; stroke: #e8e6e3; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_9"/>
+     <g id="text_6">
+      <text style="font-size: 8.5px; font-family: 'Liberation Sans'; text-anchor: end; fill: #6f6f6f" x="18.500391" y="77.036232" transform="rotate(-0 18.500391 77.036232)">100</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_10">
+      <path d="M 22.000391 40.678116 
+L 222.880391 40.678116 
+" clip-path="url(#pd6754d5de5)" style="fill: none; stroke: #e8e6e3; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_11"/>
+     <g id="text_7">
+      <text style="font-size: 8.5px; font-family: 'Liberation Sans'; text-anchor: end; fill: #6f6f6f" x="18.500391" y="43.772232" transform="rotate(-0 18.500391 43.772232)">150</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_12">
+      <path d="M 22.000391 7.414116 
+L 222.880391 7.414116 
+" clip-path="url(#pd6754d5de5)" style="fill: none; stroke: #e8e6e3; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_13"/>
+     <g id="text_8">
+      <text style="font-size: 8.5px; font-family: 'Liberation Sans'; text-anchor: end; fill: #6f6f6f" x="18.500391" y="10.508232" transform="rotate(-0 18.500391 10.508232)">200</text>
+     </g>
+    </g>
+   </g>
+   <g id="line2d_14">
+    <path d="M 22.000391 75.484842 
+L 36.348962 71.753217 
+L 50.697533 70.431181 
+L 65.046105 67.212908 
+L 79.394676 62.561158 
+L 93.743248 59.712776 
+L 108.091819 55.712695 
+L 122.440391 50.288337 
+L 136.788962 46.922938 
+L 151.137533 41.580813 
+L 165.486105 34.85743 
+L 179.834676 29.210357 
+L 194.183248 21.946044 
+L 208.531819 16.302108 
+L 222.880391 10.740516 
+" clip-path="url(#pd6754d5de5)" style="fill: none; stroke: #009edb; stroke-width: 3; stroke-linecap: round"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 22.000391 140.470116 
+L 222.880391 140.470116 
+" style="fill: none; stroke: #cfcdc8; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pd6754d5de5">
+   <rect x="22.000391" y="7.414116" width="200.88" height="133.056"/>
+  </clipPath>
+ </defs>
+</svg>

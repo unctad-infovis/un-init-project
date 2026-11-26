@@ -1,5 +1,5 @@
 import {
-  buildBaseMetadata, SERIES_PALETTE, WARM_GREY, PALE_GREY,
+  buildBaseMetadata, SERIES_PALETTE, WARM_GREY, PALE_GREY, UN_BLUE,
   MAX_COLOURED_SERIES, RECOMMENDED_MAX_SERIES, isOtherSeriesName,
   LINE_WIDTH_THICKEST, classifyCountryGroup, COUNTRY_GROUP_LABELS,
 } from './datawrapper-constants.js';
@@ -150,7 +150,7 @@ export function assignPalette(seriesNames, { highlight, other } = {}) {
 
   if (highlight) {
     for (const name of colouredNames) {
-      colorMap[name] = name === highlight ? SERIES_PALETTE[0].hex : PALE_GREY;
+      colorMap[name] = name === highlight ? UN_BLUE : PALE_GREY;
     }
   } else {
     if (colouredNames.length > MAX_COLOURED_SERIES) {

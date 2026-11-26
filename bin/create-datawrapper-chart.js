@@ -2,9 +2,10 @@
 import chalk from 'chalk';
 
 import { runCheckPipeline, runCreatePipeline, runConvertToWebPipeline, CreateChartError } from '../src/create-datawrapper-pipeline.js';
-import { DatawrapperConfigError } from '../src/datawrapper-config.js';
+import { DatawrapperConfigError, loadApiToken } from '../src/datawrapper-config.js';
 import { DatawrapperApiError } from '../src/datawrapper-api.js';
 import { SERIES_PALETTE } from '../src/datawrapper-constants.js';
+import { lintChart, applySettingsToChart } from '../src/datawrapper-lint.js';
 
 function parseArgs(argv) {
   const args = argv.slice(2);
@@ -33,6 +34,59 @@ function printUsage() {
   console.error('    [--source-url <url>] [--notes <text>] [--folder <id>] [--highlight <series>] [--other <series>]');
   console.error('    [--print] [--strict] [--dry-run] [--json]');
   console.error('  un-create-datawrapper-chart to-web <sourceChartId> [--folder <id>] [--dry-run] [--json]');
+  console.error('  un-create-datawrapper-chart lint <chartId> [--json]');
+  console.error('  un-create-datawrapper-chart apply-settings <chartId> [--dry-run] [--json]');
+}
+
+function printLintResult(report, json) {
+  if (json) {
+    console.log(JSON.stringify(report, null, 2));
+    return;
+  }
+  console.log(chalk.bold(`Chart ${report.chartId} – "${report.title}" (${report.type})`));
+  if (report.isMapChart) {
+    console.log(chalk.red('  This is a map chart type – UNCTAD does not publish Datawrapper maps.'));
+  }
+  if (report.changed.length) {
+    console.log(chalk.yellow(`\nChanged needed (${report.changed.length}):`));
+    for (const c of report.changed) console.log(chalk.yellow(`  - ${c.name}: ${JSON.stringify(c.current)}  ->  ${JSON.stringify(c.target)}`));
+  }
+  if (report.alreadyCorrect.length) {
+    console.log(chalk.gray(`\nAlready correct: ${report.alreadyCorrect.map((c) => c.name).join(', ')}`));
+  }
+  if (report.notApplicable.length) {
+    console.log(chalk.gray(`Not applicable: ${report.notApplicable.map((c) => c.name).join(', ')}`));
+  }
+  if (report.textFindings.length) {
+    console.log(chalk.bold('\nContent findings (not fixed by this command):'));
+    for (const f of report.textFindings) console.log((f.severity === 'error' ? chalk.red : chalk.yellow)(`  - ${f.field}: ${f.message}`));
+  }
+  console.log(chalk.bold(`\n${report.compliant ? 'Compliant with the 11 settings.' : 'Not fully compliant – run apply-settings to fix the settings above.'}`));
+}
+
+function printApplySettingsResult(result, json) {
+  if (json) {
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+  console.log(chalk.bold(`Chart ${result.chartId} – "${result.title}"`));
+  if (result.changed.length === 0) {
+    console.log(chalk.gray('Already compliant – nothing to change.'));
+    return;
+  }
+  if (result.dryRun) {
+    console.log(chalk.bold('\nDRY RUN – no API write made. Patch that would be sent:\n'));
+    console.log(JSON.stringify(result.patch, null, 2));
+  } else {
+    console.log(chalk.bold('\nChanged:'));
+    for (const c of result.changed) console.log(`  ${c.name}  ${JSON.stringify(c.current)}  ->  ${JSON.stringify(c.target)}`);
+    const stillWrong = result.verified.changed;
+    if (stillWrong.length) {
+      console.log(chalk.red(`\n${stillWrong.length} setting(s) did not take – re-fetch disagrees with the patch:`));
+      for (const c of stillWrong) console.log(chalk.red(`  - ${c.name}: ${JSON.stringify(c.current)} (target ${JSON.stringify(c.target)})`));
+    }
+    console.log(chalk.bold('\nNot published.') + ' A PATCH changes the draft only – republish from the Datawrapper editor for this to go live.');
+  }
 }
 
 function printCheck(report, json) {
@@ -139,7 +193,7 @@ function printConvertResult(result, { json }) {
 async function main() {
   const { command, csvPath, flags } = parseArgs(process.argv);
 
-  if (!command || !csvPath || !['check', 'create', 'to-web'].includes(command)) {
+  if (!command || !csvPath || !['check', 'create', 'to-web', 'lint', 'apply-settings'].includes(command)) {
     printUsage();
     process.exit(1);
   }
@@ -159,6 +213,19 @@ async function main() {
         dryRun: Boolean(flags['dry-run']),
       });
       printConvertResult(result, { json });
+      return;
+    }
+
+    if (command === 'lint') {
+      const token = loadApiToken();
+      printLintResult(await lintChart({ token, chartId: csvPath }), json);
+      return;
+    }
+
+    if (command === 'apply-settings') {
+      const token = loadApiToken();
+      const result = await applySettingsToChart({ token, chartId: csvPath, dryRun: Boolean(flags['dry-run']) });
+      printApplySettingsResult(result, json);
       return;
     }
 

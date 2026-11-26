@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>UNCTAD Datawrapper chart guidelines</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 16mm; }
+  @page :first { margin: 0; }
+
+  :root {
+    --blue:#009EDB; --darkblue:#004987; --lightblue:#C5DFEF; --yellow:#FBAF17;
+    --warmgrey:#AEA29A; --purple:#A05FB4; --green:#72BF44;
+    --ochre:#B06E2A; --palegrey:#DED9D5; --red:#ED1847;
+    --ink:#14161a; --ink-2:#3f444b; --muted:#74787e;
+    --rule:#d9d7d2; --hair:#eceae6; --wash:#f5f4f1; --good:#1a7a3c; --bad:#a71f36;
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body { margin:0; font-family:"Liberation Sans",Arial,sans-serif;
+         font-size:9.6pt; line-height:1.5; color:var(--ink); }
+  h1,h2,h3 { font-family:Lora,Georgia,serif; font-weight:600; }
+  code { font-family:"Liberation Mono",Menlo,monospace; font-size:0.92em; background:var(--wash); padding:0 3px; border-radius:2px; }
+
+  /* cover */
+  .cover { height:297mm; padding:0 0 22mm; display:flex; flex-direction:column;
+           justify-content:space-between; break-after:page; }
+  .cover .pad { padding:0 20mm; }
+  .cover .bar { height:9mm; width:100%; margin-bottom:38mm;
+    background:linear-gradient(90deg,var(--blue) 0 25%,var(--yellow) 25% 50%,
+               var(--darkblue) 50% 75%,var(--ochre) 75% 100%); }
+  .cover .kicker { font-size:8.5pt; letter-spacing:.18em; text-transform:uppercase;
+                   color:var(--muted); font-weight:bold; }
+  .cover h1 { font-size:32pt; line-height:1.14; margin:7mm 0 0; max-width:17ch;
+              letter-spacing:-.015em; }
+  .cover .sub { font-size:11.5pt; color:var(--ink-2); margin-top:6mm;
+                max-width:48ch; line-height:1.45; }
+  .cover .foot { font-size:8.5pt; color:var(--muted); border-top:1px solid var(--rule);
+                 padding-top:4mm; }
+
+  .sec { break-before:page; }
+  .sec-head { border-top:2.5pt solid var(--blue); padding-top:3mm; margin-bottom:5mm; }
+  .sec-head .num { font-size:8pt; letter-spacing:.16em; text-transform:uppercase;
+                   color:var(--blue); font-weight:bold; }
+  .sec-head h2 { font-size:18pt; margin:1.5mm 0 0; letter-spacing:-.01em; }
+  .sec-head p { margin:2mm 0 0; color:var(--ink-2); max-width:62ch; }
+
+  .part > p { max-width:66ch; }
+  ul.rules { margin:3mm 0; padding-left:4.5mm; }
+  ul.rules li { margin-bottom:2mm; max-width:64ch; }
+  ul.rules li b { color:var(--ink); }
+
+  .rule { border-left:3px solid var(--blue); padding:2mm 0 2mm 4mm; margin:4mm 0;
+          background:var(--wash); }
+  .rule.warn { border-left-color:var(--red); }
+
+  table.t { border-collapse:collapse; width:100%; margin:3mm 0 5mm; font-size:9pt; }
+  table.t th, table.t td { border-bottom:1px solid var(--hair); padding:1.6mm 2mm; text-align:left; vertical-align:top; }
+  table.t th { color:var(--muted); font-weight:600; text-transform:uppercase; font-size:7.6pt; letter-spacing:.04em; }
+  table.t td code { white-space:nowrap; }
+
+  .pair { display:flex; gap:5mm; margin:4mm 0; align-items:flex-start; }
+  .pair .side { flex:1; min-width:0; }
+  .pair .side .tag { font-size:7.6pt; font-weight:bold; letter-spacing:.06em; text-transform:uppercase;
+                      padding:0.8mm 2.2mm; border-radius:2px; display:inline-block; margin-bottom:1.5mm; }
+  .pair .bad .tag { background:#fbe3e8; color:var(--bad); }
+  .pair .good .tag { background:#e3f3e9; color:var(--good); }
+  .pair .side figure { margin:0; border:1px solid var(--hair); border-radius:3px; padding:3mm; background:#fff; }
+  .pair .side figcaption { font-size:8.2pt; color:var(--ink-2); margin-top:1.5mm; }
+  .pair .side svg { width:100%; height:auto; display:block; }
+  .figure { margin:4mm 0; }
+  .figure figure { margin:0; border:1px solid var(--hair); border-radius:3px; padding:3mm; background:#fff; }
+  .figure figcaption { font-size:8.2pt; color:var(--ink-2); margin-top:1.5mm; }
+  .figure svg { width:100%; height:auto; display:block; }
+
+  .swatches { display:flex; flex-wrap:wrap; gap:3mm; margin:4mm 0; }
+  .swatches .sw { width:30mm; }
+  .swatches .chip { height:14mm; border-radius:3px; border:1px solid rgba(0,0,0,.08); }
+  .swatches .sw .label { font-size:8pt; margin-top:1.5mm; font-weight:600; }
+  .swatches .sw .hex { font-size:7.6pt; color:var(--muted); }
+
+  .check { list-style:none; margin:3mm 0; padding:0; columns:2; column-gap:8mm; }
+  .check li { break-inside:avoid; margin-bottom:2.5mm; padding-left:6mm; position:relative; font-size:9pt; }
+  .check li::before { content:""; position:absolute; left:0; top:0.3mm; width:3.6mm; height:3.6mm;
+                       border:1.3px solid var(--ink-2); border-radius:1px; }
+
+  .toc { margin-top:8mm; }
+  .toc .row { display:flex; justify-content:space-between; border-bottom:1px dotted var(--rule);
+              padding:2mm 0; font-size:10pt; }
+  .toc .row .n { color:var(--muted); }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="pad">
+    <div class="bar"></div>
+    <div class="kicker">UN Trade and Development · CER data visualisation</div>
+    <h1>Datawrapper chart guidelines</h1>
+    <p class="sub">How to prepare a web chart for unctad.org that needs no mechanical
+      corrections at review – chart type, colour, title, description, source, axes and
+      layout, in the order a reviewer actually checks them.</p>
+  </div>
+  <div class="pad toc">
+    <div class="row"><span>How to use this handbook</span><span class="n">2</span></div>
+    <div class="row"><span>Pre-submission checklist</span><span class="n">3</span></div>
+    <div class="row"><span>Part 1 — Data prep</span><span class="n">4</span></div>
+    <div class="row"><span>Part 2 — Chart type</span><span class="n">5</span></div>
+    <div class="row"><span>Part 3 — Colour</span><span class="n">7</span></div>
+    <div class="row"><span>Part 4 — Title</span><span class="n">9</span></div>
+    <div class="row"><span>Part 5 — Description</span><span class="n">10</span></div>
+    <div class="row"><span>Part 6 — Source and notes</span><span class="n">11</span></div>
+    <div class="row"><span>Part 7 — Lines, axes and labels</span><span class="n">12</span></div>
+    <div class="row"><span>Part 8 — Layout and Refine settings</span><span class="n">14</span></div>
+    <div class="row"><span>Part 9 — Common corrections</span><span class="n">15</span></div>
+    <div class="row"><span>Appendix — Palette</span><span class="n">16</span></div>
+  </div>
+  <div class="pad foot">Draft 1 · 2026-11-26 · figures use invented, plausible data – nothing here is a published UNCTAD statistic</div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="num">Before you start</div>
+    <h2>How to use this handbook</h2>
+    <p>You are the subject expert and the author of your chart. CER reviews and adjusts
+       before anything goes on unctad.org – this handbook exists so that review has as
+       little to do as possible.</p>
+  </div>
+  <div class="part">
+    <p>Each part below covers one thing a reviewer checks, in the order they check it:
+       is the data itself clean, is the chart type right for the question being asked,
+       are the colours doing a job, does the title state a finding, is every field's
+       text in the house style, and are the axes/layout settings the standard web
+       ones. Part 9 collects the corrections CER makes most often – if you only read
+       one part before submitting, read that one.</p>
+    <div class="rule">
+      <b>The one rule that matters most:</b> a chart makes one point. If you can't say
+      the point in one sentence, that sentence is missing – and it's your title.
+    </div>
+    <p>This handbook covers what a tool can check and what a person has to judge. It
+       doesn't replace review, and it can't cover every case your data might throw at
+       it – when something here doesn't fit, ask CER rather than forcing it.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="num">Before you submit</div>
+    <h2>Pre-submission checklist</h2>
+    <p>Run through this once before handing a chart to CER. Every item is explained in
+       the part referenced.</p>
+  </div>
+  <ul class="check">
+    <li>Numbers are numbers, not text with units/commas baked in (Part 1)</li>
+    <li>No blank rows, no "n/a"/".." placeholders left in numeric cells (Part 1)</li>
+    <li>No category value contains "&lt;" or "&gt;" (Part 1)</li>
+    <li>The chart type fits the question, not just the data's shape (Part 2)</li>
+    <li>Four coloured series or fewer where possible; never more than seven (Part 3)</li>
+    <li>Colours are assigned in the UNCTAD order, not picked by eye (Part 3)</li>
+    <li>Title is a finding, phrased as a sentence with a verb (Part 4)</li>
+    <li>Title isn't "Figure N"/"Chart N" – that numbering doesn't travel to the web (Part 4)</li>
+    <li>Description reads: what / breakdown / unit / period (Part 5)</li>
+    <li>Source starts with "UN Trade and Development (UNCTAD)" (Part 6)</li>
+    <li>Bars/columns start at zero, or the exception is stated in the notes (Part 7)</li>
+    <li>Never two vertical axes on one chart (Part 7)</li>
+    <li>Axis labels are on automatic, not hand-set custom ticks (Part 7)</li>
+    <li>Theme, locale, logo and sharing settings are the standard web ones (Part 8)</li>
+    <li>No em dash anywhere – en dash only, everywhere, every field</li>
+    <li>Not a Datawrapper map – UNCTAD doesn't publish those</li>
+  </ul>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="num">Part 1</div>
+    <h2>Data prep</h2>
+    <p>Most chart problems are data problems wearing a chart's clothes.</p>
+  </div>
+  <div class="part">
+    <ul class="rules">
+      <li><b>Numbers stay numbers.</b> <code>1,234</code> or <code>1 234.5</code> typed
+        into a cell reads as text, not a number, in Datawrapper – it won't plot, sort,
+        or format correctly. Let Datawrapper's own number formatting add thousands
+        separators at render time.</li>
+      <li><b>No units inside number cells.</b> <code>5%</code> or <code>120 kg</code>
+        in a cell is text. Put the unit in the column header or the chart's
+        description, and leave the cell as a plain number.</li>
+      <li><b>Leave missing data empty</b>, not <code>n/a</code>, <code>..</code>, or
+        <code>-</code>. Datawrapper treats an empty cell as "no data" and a text
+        placeholder as, again, text that breaks the series.</li>
+      <li><b>Percentages are fed as 0–100, not 0–1.</b> Datawrapper's <code>0%</code>
+        number format appends the percent sign without multiplying – <code>0.85</code>
+        renders as <code>0</code>; <code>85</code> renders as <code>85%</code>. This is
+        the opposite of a spreadsheet formula and is easy to get backwards.</li>
+      <li><b>No category value may contain "&lt;" or "&gt;".</b> A label like
+        <code>Limited reported trade (&lt;$100k)</code> silently fails Datawrapper's
+        colour matching – the whole category vanishes from the legend with no error,
+        and every row in it falls back to the default colour. Move the detail into a
+        note; keep the category label plain.</li>
+      <li><b>A header row that's itself a number</b> (e.g. a stray data value sitting
+        where "Year" should be) means the file has no real header row – its first
+        data row is being read as column names and silently dropped. Check row one.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="num">Part 2</div>
+    <h2>Chart type</h2>
+    <p>The shape of the data suggests a type; the question being asked should confirm it.</p>
+  </div>
+  <div class="part">
+    <table class="t">
+      <tr><th>Data shape</th><th>Chart type</th></tr>
+      <tr><td>Years/dates, 1–6 numeric series</td><td><code>d3-lines</code> (line chart)</td></tr>
+      <tr><td>Categories, one series, ≤ 12 rows</td><td><code>column-chart</code></td></tr>
+      <tr><td>Categories, one series, &gt; 12 rows or long labels</td><td><code>d3-bars</code> (horizontal bars)</td></tr>
+      <tr><td>Categories, several series summing to a total</td><td><code>stacked-column-chart</code></td></tr>
+      <tr><td>Categories, several independent series</td><td><code>grouped-column-chart</code></td></tr>
+      <tr><td>Two numeric columns, no time dimension</td><td><code>d3-scatter-plot</code></td></tr>
+      <tr><td>2–5 categories, share of a whole</td><td><code>d3-donuts</code> / <code>d3-pies</code></td></tr>
+    </table>
+    <div class="figure">
+      <figure><object type="image/svg+xml" data="../examples/handbook-figures/07-chart-types.svg"></object></figure>
+      <figcaption>Seven common shapes and the type each one usually fits.</figcaption>
+    </div>
+    <div class="pair">
+      <div class="side bad">
+        <span class="tag">harder to read</span>
+        <figure><object type="image/svg+xml" data="../examples/handbook-figures/04a-pie.svg"></object></figure>
+        <figcaption>A pie with many thin slices – angle differences under ~15° are hard to compare by eye.</figcaption>
+      </div>
+      <div class="side good">
+        <span class="tag">clearer</span>
+        <figure><object type="image/svg+xml" data="../examples/handbook-figures/04b-ranked-bar.svg"></object></figure>
+        <figcaption>The same data as a ranked bar chart – length is easier to compare than angle.</figcaption>
+      </div>
+    </div>
+    <div class="figure">
+      <figure><object type="image/svg+xml" data="../examples/handbook-figures/04c-donut.svg"></object></figure>
+      <figcaption>A donut works better than a pie when there's a meaningful total for the centre label – still five categories at most, largest first from twelve o'clock.</figcaption>
+    </div>
+    <p>Datawrapper has no beeswarm/packed-scatter type. If the question genuinely needs
+       one, the layout can be precomputed and fed in as an ordinary scatter plot – ask
+       CER; this is a real, working technique, not a workaround to avoid.</p>
+    <div class="rule warn">UNCTAD does not publish Datawrapper maps on unctad.org – the
+      boundaries don't follow UN cartographic conventions. A map-shaped question needs a
+      different tool.</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="num">Part 3</div>
+    <h2>Colour</h2>
+    <p>Colour should carry meaning, not decorate. The UNCTAD palette is assigned in a
+       fixed order so the same category reads the same colour across every chart.</p>
+  </div>
+  <div class="part">
+    <div class="figure">
+      <figure><object type="image/svg+xml" data="../examples/handbook-figures/01-colour-order.svg"></object></figure>
+      <figcaption>Series get the UNCTAD palette in order, not whatever Datawrapper's colour picker opens with.</figcaption>
+    </div>
+    <ul class="rules">
+      <li><b>Four series is the target; seven is the hard limit.</b> More than seven
+        coloured series on one chart — stop and either group the tail into "Other" or
+        split into two charts.</li>
+      <li>A series named <b>Other</b>, <b>Rest of world</b>, or <b>All other …</b>
+        always gets warm grey and moves to the end of the legend, regardless of where
+        it sits in the data.</li>
+      <li><b>Red is reserved</b> for highlighting and annotation lines – never assign
+        it to an ordinary series.</li>
+      <li><b>Country groups get a fixed, separate mapping</b>, not the plain sequence
+        above: Developed → UN blue, Developing → UN yellow, SIDS → UN dark blue, LDCs
+        → UN dark yellow. Always this pairing, whichever groups a chart actually shows.</li>
+    </ul>
+    <div class="pair">
+      <div class="side bad">
+        <span class="tag">too many series</span>
+        <figure><object type="image/svg+xml" data="../examples/handbook-figures/02a-too-many-series.svg"></object></figure>
+        <figcaption>Nine regions, nine colours – the legend becomes the main thing on the page.</figcaption>
+      </div>
+      <div class="side good">
+        <span class="tag">grouped</span>
+        <figure><object type="image/svg+xml" data="../examples/handbook-figures/02b-grouped-other.svg"></object></figure>
+        <figcaption>The smallest regions grouped into "Other" (warm grey, last) – four lines carry the story.</figcaption>
+      </div>
+    </div>
+    <div class="figure">
+      <figure><object type="image/svg+xml" data="../examples/handbook-figures/03-highlight.svg"></object></figure>
+      <figcaption>Highlighting one series: it keeps its colour, every other coloured series goes pale grey instead of competing for attention.</figcaption>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="num">Part 4</div>
+    <h2>Title</h2>
+    <p>The title states the finding. Everything else on the chart supports it.</p>
+  </div>
+  <div class="part">
+    <ul class="rules">
+      <li><b>A sentence with a verb</b>, not a subject label. "FDI inflows rose in 15 of
+        21 member states" states a finding; "FDI inflows by country" states a topic.</li>
+      <li><b>Never starts with print figure numbering</b> – "Figure 7", "Fig. 2", "Chart
+        3", "Table 1" are references to a page layout that doesn't exist on the web.</li>
+      <li><b>No trailing full stop.</b></li>
+      <li><b>Under about 90 characters.</b> Three lines on a phone screen is fine; four
+        is not.</li>
+    </ul>
+    <div class="pair">
+      <div class="side bad"><span class="tag">topic, not finding</span><p style="margin:0;font-size:10pt">"Foreign direct investment in ASEAN, 2021–2025"</p></div>
+      <div class="side good"><span class="tag">states the finding</span><p style="margin:0;font-size:10pt">"Foreign direct investment in ASEAN reaches a record 246 billion dollars"</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="num">Part 5</div>
+    <h2>Description</h2>
+    <p>Four elements, comma-separated, always in this order.</p>
+  </div>
+  <div class="part">
+    <div class="rule">what the data is, the breakdown, the unit, the period<br>
+      <code>Vegetable oil production, by crop, millions of metric tons, 1961–2023</code></div>
+    <ul class="rules">
+      <li><b>Brackets are for abbreviations only</b> – use commas for everything else.</li>
+      <li><b>No trailing full stop.</b></li>
+      <li><b>En dash for year ranges</b>: <code>2010–2024</code>, never
+        <code>2010-2024</code>.</li>
+      <li><b>Spell an abbreviation out on first use</b>: "Gross domestic product (GDP)
+        per capita", not a bare "GDP" with no expansion anywhere on the chart.</li>
+      <li>A bracketed unit shorthand reads awkwardly in prose – "by volume (kg) and
+        value (USD)" should read "by volume in kilograms and value in dollars".
+        A genuine citation parenthetical, like "UN Trade and Development (UNCTAD)",
+        is not this case.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="num">Part 6</div>
+    <h2>Source and notes</h2>
+    <p>The source line always names UNCTAD in full, and always the same way.</p>
+  </div>
+  <div class="part">
+    <table class="t">
+      <tr><th>When</th><th>Template</th></tr>
+      <tr><td>UNCTAD's own data</td><td><code>UN Trade and Development (UNCTAD).</code></td></tr>
+      <tr><td>Someone else's, reproduced</td><td><code>UN Trade and Development (UNCTAD) based on [source].</code></td></tr>
+      <tr><td>UNCTAD computed the figures</td><td><code>UN Trade and Development (UNCTAD) calculations based on [source].</code></td></tr>
+      <tr><td>UNCTAD modelled or imputed</td><td><code>UN Trade and Development (UNCTAD) estimates based on [source].</code></td></tr>
+    </table>
+    <ul class="rules">
+      <li>Never "UNCTAD" alone, never the French form on an English page.</li>
+      <li>The source line is the <b>only</b> field that ends with a full stop, and only
+        when it's a genuine "based on …" sentence.</li>
+      <li>Name the database where one exists: "based on UNCTADstat", "based on the
+        FDI/MNE database".</li>
+      <li>Fill the source URL field only when a real public landing page exists for it.</li>
+      <li>Notes carry methodology detail and definitions the source line and
+        description have no room for – multiple separate facts read better each on
+        their own line than run together in one paragraph.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="num">Part 7</div>
+    <h2>Lines, axes and labels</h2>
+    <p>Axes should show the data honestly; labels should need no manual tuning.</p>
+  </div>
+  <div class="part">
+    <div class="pair">
+      <div class="side bad">
+        <span class="tag">truncated axis</span>
+        <figure><object type="image/svg+xml" data="../examples/handbook-figures/05a-truncated-axis.svg"></object></figure>
+        <figcaption>Axis starts at 94 – a modest change looks like a dramatic jump.</figcaption>
+      </div>
+      <div class="side good">
+        <span class="tag">zero baseline</span>
+        <figure><object type="image/svg+xml" data="../examples/handbook-figures/05b-zero-baseline.svg"></object></figure>
+        <figcaption>Same data, axis starts at zero – the real size of the change is honest.</figcaption>
+      </div>
+    </div>
+    <div class="pair">
+      <div class="side bad">
+        <span class="tag">two vertical axes</span>
+        <figure><object type="image/svg+xml" data="../examples/handbook-figures/06a-dual-axis.svg"></object></figure>
+        <figcaption>Two different scales on one chart invite a misleading visual comparison.</figcaption>
+      </div>
+      <div class="side good">
+        <span class="tag">indexed to one base</span>
+        <figure><object type="image/svg+xml" data="../examples/handbook-figures/06b-indexed.svg"></object></figure>
+        <figcaption>Both series indexed to the same starting value – one axis, one honest comparison.</figcaption>
+      </div>
+    </div>
+    <div class="pair">
+      <div class="side bad">
+        <span class="tag">empty headroom</span>
+        <figure><object type="image/svg+xml" data="../examples/handbook-figures/08a-axis-max-empty.svg"></object></figure>
+        <figcaption>Axis maximum far above the highest value – a wide empty band above every bar.</figcaption>
+      </div>
+      <div class="side good">
+        <span class="tag">fit to the data</span>
+        <figure><object type="image/svg+xml" data="../examples/handbook-figures/08b-axis-max-good.svg"></object></figure>
+        <figcaption>The top gridline sits just above the highest value (peak 195 → maximum 200).</figcaption>
+      </div>
+    </div>
+    <div class="figure">
+      <figure><object type="image/svg+xml" data="../examples/handbook-figures/09-line-style.svg"></object></figure>
+      <figcaption>Thick solid for measured data; dashed for an estimate or projection – never smoothed/curved lines, since a curve implies data between points that wasn't actually measured.</figcaption>
+    </div>
+    <ul class="rules">
+      <li><b>Bars and columns start at zero.</b> The rare exception (a measure with no
+        natural zero, e.g. an index or an average age) must be stated in the notes, and
+        a line chart should be considered first.</li>
+      <li><b>Never two vertical axes</b> on one chart – use two charts, or index both
+        series to a common base instead.</li>
+      <li><b>Axis tick labels stay on automatic.</b> Hand-set custom ticks are a
+        print-layout habit that doesn't travel – annotate a specific point instead of
+        overriding the whole axis.</li>
+      <li><b>Vertical axis labels sit inside the plot area</b>, not floating outside it.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="num">Part 8</div>
+    <h2>Layout and Refine settings</h2>
+    <p>Eleven settings, the same on every UNCTAD web chart. A reviewer checks these
+       first because they're the fastest ones to get wrong and the fastest to fix.</p>
+  </div>
+  <div class="part">
+    <table class="t">
+      <tr><th>#</th><th>Setting</th><th>Target</th></tr>
+      <tr><td>1</td><td>Locale</td><td><code>en-CH</code></td></tr>
+      <tr><td>2</td><td>Theme</td><td><code>UNCTAD 2024 – Web and social media</code></td></tr>
+      <tr><td>3</td><td>Logo</td><td>on, "arrow"</td></tr>
+      <tr><td>4</td><td>Data download</td><td>on</td></tr>
+      <tr><td>5</td><td>Image download (PNG)</td><td>on</td></tr>
+      <tr><td>6</td><td>SVG download</td><td>off</td></tr>
+      <tr><td>7</td><td>PDF download</td><td>off</td></tr>
+      <tr><td>8</td><td>Embed block</td><td>off</td></tr>
+      <tr><td>9</td><td>Social sharing</td><td>on</td></tr>
+      <tr><td>10</td><td>Share target</td><td>"the site it's embedded in"</td></tr>
+      <tr><td>11</td><td>Vertical axis labels</td><td>Inside</td></tr>
+    </table>
+    <p>A figure destined for a PDF publication instead of the web uses the Publications
+       theme, and settings 3–8 don't apply to it.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="num">Part 9</div>
+    <h2>Common corrections</h2>
+    <p>What CER's review changes most often – fix these yourself and review has almost
+       nothing left to do.</p>
+  </div>
+  <div class="part">
+    <ul class="rules">
+      <li>Locale left on a Datawrapper default instead of <code>en-CH</code>.</li>
+      <li>Axis labels left on automatic placement instead of set to Inside.</li>
+      <li>Source line phrased differently from the templates in Part 6 – almost every
+        chart has its own variant; there are only four correct shapes.</li>
+      <li>Palette picked by eye in the colour dialog instead of assigned in the
+        documented order.</li>
+      <li>A title that names the subject ("FDI by country") instead of the finding
+        ("FDI rose in most member states").</li>
+      <li>An em dash somewhere in the text fields – house style is the en dash,
+        everywhere, every field.</li>
+      <li>A hyphen used for a year range ("2010-2024") instead of an en dash
+        ("2010–2024").</li>
+      <li>Custom tick values left over from a print layout, now showing stale or
+        misaligned labels on the web version.</li>
+      <li>A category label still carrying a bracketed threshold like "(&lt;$100k)" –
+        move it to the notes before it silently breaks the legend.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="num">Appendix</div>
+    <h2>Palette</h2>
+    <p>Assigned to ordinary series strictly in this order.</p>
+  </div>
+  <div class="part">
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:var(--darkblue)"></div><div class="label">1 · UN dark blue</div><div class="hex">#004987</div></div>
+      <div class="sw"><div class="chip" style="background:var(--blue)"></div><div class="label">2 · UN blue</div><div class="hex">#009EDB</div></div>
+      <div class="sw"><div class="chip" style="background:var(--lightblue)"></div><div class="label">3 · Light blue</div><div class="hex">#C5DFEF</div></div>
+      <div class="sw"><div class="chip" style="background:var(--yellow)"></div><div class="label">4 · UN yellow</div><div class="hex">#FBAF17</div></div>
+      <div class="sw"><div class="chip" style="background:var(--warmgrey)"></div><div class="label">5 · Warm grey</div><div class="hex">#AEA29A</div></div>
+      <div class="sw"><div class="chip" style="background:var(--purple)"></div><div class="label">6 · Purple</div><div class="hex">#A05FB4</div></div>
+      <div class="sw"><div class="chip" style="background:var(--green)"></div><div class="label">7 · Green</div><div class="hex">#72BF44</div></div>
+    </div>
+    <p>Role colours, used by a specific rule rather than the plain sequence above:</p>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:var(--ochre)"></div><div class="label">UN dark yellow</div><div class="hex">#B06E2A · LDCs only</div></div>
+      <div class="sw"><div class="chip" style="background:var(--palegrey)"></div><div class="label">Pale grey</div><div class="hex">#DED9D5 · muted / context</div></div>
+      <div class="sw"><div class="chip" style="background:var(--red)"></div><div class="label">Red</div><div class="hex">#ED1847 · highlight only, never a series</div></div>
+    </div>
+    <div class="rule">Country groups: Developed → UN blue · Developing → UN yellow ·
+      SIDS → UN dark blue · LDCs → UN dark yellow. Always this pairing.</div>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="214.160406pt" height="149.608421pt" viewBox="0 0 214.160406 149.608421" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-26T14:26:14.354540</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 149.608421 
+L 214.160406 149.608421 
+L 214.160406 0 
+L 0 0 
+L 0 149.608421 
+z
+" style="fill: none"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 152.726915 109.058063 
+C 159.592496 102.610853 164.363702 94.246038 166.418221 85.054647 
+C 168.472741 75.863255 167.717189 66.263064 164.250114 57.506232 
+C 160.783039 48.749399 154.762029 41.23395 146.972409 35.94013 
+C 139.182788 30.646309 129.978619 27.814737 120.560406 27.814737 
+L 120.560406 44.730947 
+C 126.588062 44.730947 132.478731 46.543154 137.464088 49.931199 
+C 142.449445 53.319244 146.302891 58.129131 148.521819 63.733504 
+C 150.740747 69.337877 151.2243 75.481999 149.909408 81.36449 
+C 148.594516 87.24698 145.540944 92.600461 141.146972 96.726676 
+z
+" style="fill: #009edb; stroke: #ffffff; stroke-width: 1.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 82.545124 102.42393 
+C 86.464343 107.818272 91.487226 112.317142 97.279064 115.620748 
+C 103.070903 118.924355 109.500124 120.95765 116.138306 121.585143 
+C 122.776488 122.212636 129.472832 121.420072 135.781115 119.260264 
+C 142.089399 117.100456 147.866317 113.622468 152.726915 109.058063 
+L 141.146972 96.726676 
+C 138.036189 99.647895 134.338961 101.873807 130.30166 103.256084 
+C 126.264359 104.638362 121.978699 105.145603 117.730262 104.744007 
+C 113.481826 104.342412 109.367124 103.041103 105.660347 100.926795 
+C 101.953571 98.812487 98.738926 95.93321 96.230625 92.480831 
+z
+" style="fill: #fbaf17; stroke: #ffffff; stroke-width: 1.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 84.354395 44.851993 
+C 77.708431 52.885583 73.921617 62.907096 73.594119 73.328235 
+C 73.266622 83.749375 76.416708 93.988889 82.545124 102.42393 
+L 96.230625 92.480831 
+C 92.308439 87.082405 90.292384 80.529116 90.501983 73.859587 
+C 90.711581 67.190057 93.135142 60.776289 97.388559 55.634791 
+z
+" style="fill: #004987; stroke: #ffffff; stroke-width: 1.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 120.560406 27.814737 
+C 113.643747 27.814737 106.811642 29.341893 100.553262 32.286864 
+C 94.294881 35.231834 88.763239 39.522615 84.354395 44.851993 
+L 97.388559 55.634791 
+C 100.21022 52.223989 103.75047 49.47789 107.755834 47.593108 
+C 111.761197 45.708327 116.133744 44.730947 120.560406 44.730947 
+z
+" style="fill: #aea29a; stroke: #ffffff; stroke-width: 1.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'Liberation Sans'; text-anchor: middle; fill: #1a1a1a" x="120.560406" y="75.281044" transform="rotate(-0 120.560406 75.281044)">1.6</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 8px; font-family: 'Liberation Sans'; text-anchor: middle; fill: #6f6f6f" x="120.560406" y="87.212207" transform="rotate(-0 120.560406 87.212207)">trillion dollars</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 7.6px; font-family: 'Liberation Sans'; fill: #1a1a1a" transform="translate(172.114262 51.403992)">Transport</text>
+    <text style="font-size: 7.6px; font-family: 'Liberation Sans'; fill: #1a1a1a" transform="translate(172.114262 61.823043)">38%</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 7.6px; font-family: 'Liberation Sans'; fill: #1a1a1a" transform="translate(104.926172 127.907733)">Travel</text>
+    <text style="font-size: 7.6px; font-family: 'Liberation Sans'; fill: #1a1a1a" transform="translate(107.736985 137.451002)">27%</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 7.6px; font-family: 'Liberation Sans'; fill: #1a1a1a" transform="translate(4.32 70.964581)">Business services</text>
+    <text style="font-size: 7.6px; font-family: 'Liberation Sans'; fill: #1a1a1a" transform="translate(49.9295 80.507851)">21%</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 7.6px; font-family: 'Liberation Sans'; fill: #1a1a1a" transform="translate(77.946038 22.535763)">Other</text>
+    <text style="font-size: 7.6px; font-family: 'Liberation Sans'; fill: #1a1a1a" transform="translate(81.741288 32.062407)">14%</text>
+   </g>
+  </g>
+ </g>
+</svg>

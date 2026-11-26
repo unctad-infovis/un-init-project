@@ -1,7 +1,10 @@
 # TODO
 
 Repo-wide tracking of what's still unverified before a tool is trusted for
-real, unsupervised use.
+real, unsupervised use. This is a dated, append-only dev log — read it for
+*why* something works the way it does, or what's still unverified, not as
+a usage guide. For usage docs, see the [root README](README.md) and
+[`docs/`](docs/).
 
 ## `un-init-project`
 
@@ -818,6 +821,168 @@ run for real and verified against `GET /v3/charts/{id}`.
       problems this one silently loses a data point rather than just
       reading it oddly.
 
+- [x] **Handover-bundle reconciliation, live theme-palette re-check, two
+      new gap-closing checks** – 2026-11-26. The user received a bundle of
+      research from an earlier Claude Chat session
+      (`/Users/teelmo/Downloads/handover/`) and asked for it to be folded
+      into this tooling. Diffing the bundle against the repo confirmed most
+      of it (`briefs/dwchart-cli-brief.md`, `reference/unctad-chart-
+      constants.md`) was already absorbed months ago into
+      `src/datawrapper-constants.js`/`datawrapper-metadata.js`/
+      `create-datawrapper-pipeline.js` and this CLI, which is now
+      considerably more mature than that original brief. What was genuinely
+      new:
+      - **Live theme palette re-check** – `GET /v3/themes/unctad?extend=true`
+        → `data.colors.groups[0].colors[1]` returned
+        `#004987, #009EDB, #C5DFEF, #FBAF17, #AEA29A, #A05FB4, #72BF44` – a
+        different order (and two extra colours) from what
+        `SERIES_PALETTE` documented. Per the user's explicit decision
+        ("use the colours in Datawrapper, even if they don't match the
+        UNCTAD documentation"), `SERIES_PALETTE` was reordered to match the
+        live theme, and `MAX_COLOURED_SERIES` raised 6 → 7. This had to be
+        done as a decoupling, not a blind reorder: `UN_BLUE`/`UN_YELLOW`/
+        `UN_DARK_BLUE`/`UN_DARK_YELLOW` were previously derived *by array
+        index* from `SERIES_PALETTE`, and `resolveCountryGroupColors`/
+        `resolveYearPairColors` (proven, live-in-production rules) consume
+        those named constants – naively reordering the array would have
+        silently miscoloured every future country-group/year-pair chart.
+        Gave each named constant its own literal hex instead. Caught a
+        second near-miss the same way: `assignPalette()`'s `--highlight`
+        mode used `SERIES_PALETTE[0].hex`, which would have silently
+        changed from UN blue to UN dark blue after the reorder – fixed to
+        reference `UN_BLUE` directly. Verified via `node -e` that
+        `resolveCountryGroupColors`/`resolveYearPairColors` output is
+        byte-identical to before the refactor.
+      - **Two real correctness gaps closed**, from the bundle's
+        `reference/datawrapper-api-notes.md`, confirmed absent from this
+        repo by `grep` before adding them: a category value containing
+        `<`/`>` silently breaks Datawrapper's colour matching with no error
+        (new `detectAngleBracketCategories()` in `src/csv-inspect.js`,
+        blocking in `create`, a non-blocking warning in `check`, and an
+        error-severity finding in `to-web` if a source chart's
+        `color-category.map` already carries one); and percent data must be
+        fed as 0–100, not 0–1, since Datawrapper's `0%` format appends the
+        sign without multiplying (new non-blocking check in
+        `detectDataProblems`).
+      - **`lint`/`apply-settings` built** – see the "Deferred, not built
+        yet" entry above.
+      - **Reference material reorganized** into
+        `.claude/skills/create-datawrapper-chart/references/` (matching the
+        sibling `upload-documents` skill's pattern): `api-gotchas.md`,
+        `chart-type-playbook.md`, `good-practices-2026-11-review.md`
+        (empirical findings from a live review of 6 real Datawrapper
+        folders – `value-label-visibility: 'always'` and `sort-by: 'first'`
+        as de facto bar-chart defaults, the benchmark-line annotation
+        pattern, the `vX09U` abandoned-draft caution, the `zpDzx` stale-
+        map-key example), `apply-unctad-settings.md`, and a portable,
+        dependency-free `UNCTAD-datawrapper-ai-guide.md` for an AI session
+        on a colleague's machine without this repo.
+      - **Visual PDF handbook built** – `references/handbook/handbook.html`
+        + `pdf.mjs` (Playwright/Chromium, already cached locally, no fresh
+        browser download needed), `npm run build-handbook` regenerates
+        `UNCTAD-datawrapper-chart-guidelines.pdf` (16 pages: how-to-use,
+        pre-submission checklist, 9 content parts, palette appendix),
+        using the 15 synthetic-data example figures ported from the
+        handover bundle (`references/examples/handbook-figures/`,
+        `make_figs.py`). First draft only – a graphic-designer pass and
+        content review remain separate human steps, same as the original
+        handover's own stated plan.
+      - The seaweed-exports beeswarm worked example
+        (`references/examples/seaweed/`) was ported as the reference
+        implementation for the beeswarm-faking technique now documented in
+        `chart-type-playbook.md`.
+
+- [x] **Documentation restructured repo-wide** – 2026-11-26, user-requested
+      review of "all documentation for all tools". Found real gaps while
+      reading each tool's actual source against its docs: `un-compress-pdf`
+      had no dedicated documentation at all (just a one-line mention);
+      `un-init-project`'s README didn't mention that `basePath = $UN_PATH/
+      <current year>` (projects land one directory deeper than documented);
+      the CLI's auto-opening the new project in Sublime Text (`subl .`) was
+      undocumented and will throw if `subl` isn't on `PATH`; `templates/
+      shared/` has no `package.json` and would silently scaffold a broken
+      project if ever passed as `template_name` (not blocked in code,
+      just documented as "don't pass this"). Split the 390-line root
+      `README.md` into `docs/` (`scaffolding.md`, `packages.md`,
+      `assets.md`, `deploying.md`, `audit-project.md`,
+      `upload-documents.md`, `compress-pdf.md`, `datawrapper-chart.md`),
+      leaving `README.md` as a ~55-line index + quick start. Applied the
+      same reference-file-extraction pattern already used for
+      `create-datawrapper-chart` (see above) to `upload-documents/
+      SKILL.md` (695 → 391 lines): the Drupal form walkthrough, taxonomy
+      workflow, and troubleshooting/edge cases moved to
+      `references/{drupal-form-guide,taxonomy-workflow,troubleshooting}.md`,
+      keeping the "Never publish" safety rule inline rather than behind an
+      optional read. Also promoted `create-datawrapper-chart/SKILL.md`'s
+      remaining "Rules baked into the code" section (177 lines of `to-web`
+      pipeline-internal bug history) to `references/
+      to-web-conversion-rules.md`. Verified every relative link across all
+      24 touched/created markdown files resolves to a real file (a small
+      Python link-checker, not by eye).
+
+- [x] **Country-name check partially automated** – 2026-11-26, user asked
+      whether official-UNCTAD-name checking was part of the Datawrapper
+      process; it wasn't – `src/datawrapper-country-names.js`
+      (`loadOfficialCountryNames()`, `COMMON_INFORMAL_TO_OFFICIAL`) existed
+      only as a manual-process helper for `SKILL.md`'s "Country names"
+      section, never imported anywhere in `src/`/`bin/`. User chose to wire
+      it in now rather than leave it manual. Added
+      `detectInformalCountryNames()` to `src/csv-inspect.js` (checks the
+      CSV category column, deduplicated per distinct value so panel data
+      doesn't produce one warning per row, non-blocking in both `check` and
+      `create`); a matching check in `runConvertToWebPipeline`'s
+      `sourceColorMap` loop in `src/create-datawrapper-pipeline.js`
+      (warning-severity, alongside the existing `<`/`>` error-severity
+      check in the same loop); and `checkCountryNames()` in
+      `src/datawrapper-lint.js`, wired into `lintChart`'s `textFindings`.
+      All three check only against `COMMON_INFORMAL_TO_OFFICIAL`'s curated
+      fast-path list (not the full 249-economy `data/UN_Country_Names.csv`)
+      to keep false-positive risk low on a category column that might not
+      be countries at all – deliberately narrower than the full manual
+      process, which still applies for anything outside that list or in
+      prose fields (title/description/notes). Verified: `check` on a
+      synthetic CSV correctly flagged "Turkey"/"Vietnam" while leaving
+      "Türkiye"/"France" alone, with "Turkey" appearing twice in the data
+      deduplicated into one message; `lint` against a real chart (`zpDzx`)
+      ran clean with no regression and no false positive.
+
+- [x] **Datawrapper process made consistent regardless of session/prompt
+      wording** – 2026-11-26, user asked for the chart-creation process to
+      be reviewed so it doesn't depend on how a given session or prompt
+      happens to phrase the request. Three standing requirements were
+      already present somewhere in `SKILL.md` (destination-folder
+      confirmation was in "Step 0", framed only around the `to-web`/brief
+      workflow; the "human makes the final call" idea was implicit in the
+      publish-gating language; browser-vs-`exportChart` preference was only
+      stated as "when Chrome isn't available") but none applied visibly to
+      every path (`check`/`create` as much as `to-web`) or were phrased as
+      non-negotiable. Added a single "Every run needs these three things"
+      section near the top of `SKILL.md`, applying to every command: (1)
+      always confirm the destination folder with the user – never let
+      `DEFAULT_FOLDER_ID`'s `437477` fallback (a legitimate, already-
+      confirmed draft-mockups default, see the 2026-08-27 entry above) stand
+      in for actually asking; (2) a human always makes the final call –
+      every run ends with handing back the editor URL and saying a human
+      still needs to look, even when every automated check passed; (3)
+      prefer the user's own Chrome (this skill's `allowed-tools` already
+      include `claude-in-chrome`) over `exportChart`'s PNG whenever a real
+      look at how something renders or behaves is in question, not just as
+      a fallback. Mirrored the same three points into
+      `docs/datawrapper-chart.md` (for human readers) and into
+      `references/UNCTAD-datawrapper-ai-guide.md` (as hard rules 8–9 plus a
+      new workflow step 0), since that file is meant to work standalone on
+      a machine without this repo or its browser tooling – phrased the
+      Chrome-preference rule there generically ("if your environment has a
+      way to view the live editor") rather than referencing `claude-in-
+      chrome` by name. No code changes – this was a documentation/process
+      consistency pass, not a new check; `DEFAULT_FOLDER_ID`'s code-level
+      fallback is intentionally left in place as a safety net, not removed,
+      since the process-level fix (always ask first) is what actually
+      prevents a chart landing in the wrong place, and removing the
+      fallback would contradict the already-confirmed 2026-08-27 decision
+      that `437477` is a fine permanent default for when it's genuinely
+      needed.
+
 ### Needs verification against a real API call
 
 - [x] **Metadata shape for `d3-lines`** – verified 2026-08-27. Real
@@ -1292,9 +1457,24 @@ run for real and verified against `GET /v3/charts/{id}`.
 
 ### Deferred, not built yet
 
-- [ ] `lint` – fetch an existing chart, report it against the guidelines.
-- [ ] `apply-settings` – apply just the section-3.1 settings to an
-      existing draft.
+- [x] **`lint` / `apply-settings` – built 2026-11-26**, as part of
+      reconciling a handover bundle of earlier Claude Chat research
+      (`src/datawrapper-lint.js`, wired into `bin/create-datawrapper-chart.js`).
+      `lint` fetches a chart, diffs it against `buildBaseMetadata()`'s 11
+      settings (a target key absent from the chart's own
+      `metadata.visualize` is reported "not applicable", not "non-compliant"
+      – e.g. a donut chart has no `y-grid-labels`), runs `validateChartText`
+      against its current `describe` fields, flags `isMapChartType`, and
+      does a best-effort palette check (any `color-category.map` hex not in
+      the known UNCTAD palette/role list gets a warning – not a strict
+      order check, since country-group/year-pair/highlight exceptions are
+      real and legitimate). `apply-settings` diffs the same way and patches
+      only those 11 keys, re-fetches to verify, and always reports the
+      chart as not published. Verified against three known-good real charts
+      (all fully compliant) and one known abandoned draft, `vX09U` (correctly
+      flagged: `en-US` locale, placeholder title, sharing disabled,
+      `y-grid-labels: auto`) – see
+      `.claude/skills/create-datawrapper-chart/references/good-practices-2026-11-review.md`.
 - [ ] `publish` – the only command that would make anything public;
       `publishChart()` exists in `src/datawrapper-api.js` but is
       deliberately never called from any CLI command yet.

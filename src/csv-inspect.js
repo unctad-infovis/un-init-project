@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import { parse } from 'csv-parse/sync';
+import { COMMON_INFORMAL_TO_OFFICIAL } from './datawrapper-country-names.js';
 
 // Node has no built-in CSV module the way Python does; a hand-rolled
 // splitter would get quoted-field/embedded-comma handling subtly wrong in
@@ -79,11 +80,91 @@ export function detectMissingHeaderRow(header) {
   return `Column ${numericHeaderIdx + 1}'s header is "${header[numericHeaderIdx]}" – a number, not a label. This file likely has no header row; its first data row is being read as column names and silently dropped from the data. Add a header row before charting.`;
 }
 
+/**
+ * A category value containing `<` or `>` (e.g. "Limited reported trade
+ * (<$100k)") is silently dropped from Datawrapper's colour-category
+ * matching – the category vanishes from the legend and every row in it
+ * falls back to the default series colour, with no error anywhere.
+ * Confirmed on a real chart (see references/api-gotchas.md). Checked only
+ * on the first column, since that's the one that becomes category/legend
+ * labels for every chart shape this tool builds. Exported separately (like
+ * detectMissingHeaderRow above) because `create` must block on this rather
+ * than just warn – it's silent data corruption, not a formatting nuisance.
+ */
+export function detectAngleBracketCategories(header, rows) {
+  for (const [rowIdx, row] of rows.entries()) {
+    const value = (row[0] ?? '').trim();
+    if (value.includes('<') || value.includes('>')) {
+      return `Row ${rowIdx + 2}, column "${header[0] ?? 1}": category value "${value}" contains "<" or ">" – Datawrapper silently fails to colour-match this and the category vanishes from the legend. Move the detail into a note and strip the bracket from the value itself.`;
+    }
+  }
+  return null;
+}
+
+/**
+ * Datawrapper's `0%` number format appends the percent sign without
+ * multiplying – feed it 85, not 0.85, or the axis silently reads "0". This
+ * only warns (doesn't block `create`) since a column legitimately holding
+ * small fractional values isn't impossible, just unusual for a column whose
+ * header reads as a percentage.
+ */
+function detectPercentAsFraction(header, rows) {
+  const problems = [];
+  header.forEach((h, colIdx) => {
+    if (colIdx === 0 || !/%|percent|share/i.test(h ?? '')) return;
+    const values = rows
+      .map((r) => (r[colIdx] ?? '').trim())
+      .filter((v) => v !== '' && !PLACEHOLDER_VALUES.has(v.toLowerCase()))
+      .map((v) => Number(v.replace(/[, ]/g, '')))
+      .filter((v) => !Number.isNaN(v));
+    if (values.length === 0) return;
+    if (values.every((v) => v >= -1.5 && v <= 1.5)) {
+      problems.push(`Column "${h}" looks like a percentage but every value is between -1.5 and 1.5 – Datawrapper's "0%" format appends the sign without multiplying, so this likely needs to be fed as 0–100 (e.g. 85), not as a fraction (0.85).`);
+    }
+  });
+  return problems;
+}
+
+/**
+ * An informal/common country name (e.g. "Turkey", "USA", "Vietnam") where
+ * UNCTAD style requires the official name (e.g. "Türkiye", "United
+ * States", "Viet Nam") – see SKILL.md's "Country names" convention. Only
+ * checks the first column (the one that becomes category/legend labels),
+ * and only against `COMMON_INFORMAL_TO_OFFICIAL`'s curated fast-path list
+ * (not the full ~249-economy `data/UN_Country_Names.csv`), to keep the
+ * false-positive risk low on a category column that isn't countries at
+ * all – that list is a bare handful of informal spellings, not generic
+ * words, so an accidental match is unlikely. Non-blocking: a style
+ * convention to fix before publishing, not a silent render break like the
+ * angle-bracket check above. Deduplicated per distinct value (panel data
+ * repeats the same country across many rows) rather than one message per
+ * row.
+ */
+function detectInformalCountryNames(header, rows) {
+  const counts = new Map();
+  for (const row of rows) {
+    const value = (row[0] ?? '').trim();
+    if (Object.hasOwn(COMMON_INFORMAL_TO_OFFICIAL, value)) {
+      counts.set(value, (counts.get(value) ?? 0) + 1);
+    }
+  }
+  return [...counts.entries()].map(([informal, count]) => {
+    const official = COMMON_INFORMAL_TO_OFFICIAL[informal];
+    return `Column "${header[0] ?? 1}" uses "${informal}" (${count} row${count > 1 ? 's' : ''}) – the official UNCTAD name is "${official}".`;
+  });
+}
+
 export function detectDataProblems(header, rows) {
   const problems = [];
 
   const missingHeaderProblem = detectMissingHeaderRow(header);
   if (missingHeaderProblem) problems.push(missingHeaderProblem);
+
+  const angleBracketProblem = detectAngleBracketCategories(header, rows);
+  if (angleBracketProblem) problems.push(angleBracketProblem);
+
+  problems.push(...detectPercentAsFraction(header, rows));
+  problems.push(...detectInformalCountryNames(header, rows));
 
   const emptyHeaderIdx = header.findIndex((h) => !h || !h.trim());
   if (emptyHeaderIdx !== -1) problems.push(`Column ${emptyHeaderIdx + 1} has no header – likely a merged/split header row.`);

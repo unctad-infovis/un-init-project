@@ -33,6 +33,20 @@ document in Drupal.
 **Default target is `uat-unctad.org`, not production**, until the user says
 otherwise. Never touch `unctad.org` itself unless explicitly told to.
 
+This skill's supporting reference material lives under `references/`:
+- `references/drupal-form-guide.md` — the full "Add content → Official
+  Document" field-by-field walkthrough (Step 3).
+- `references/taxonomy-workflow.md` — the Thematic/Sitemap/Product
+  taxonomy process.
+- `references/troubleshooting.md` — known edge cases and recovery steps.
+- `references/thematic_taxonomy_list.md`,
+  `references/Product_and_Sitemap_Taxonomies.xlsx` — original source
+  copies for the taxonomy term lists (`data/*.txt`/`*.csv` are the
+  converted, actually-loaded copies — see `taxonomy-workflow.md`).
+
+See also [docs/upload-documents.md](../../../docs/upload-documents.md) in
+the root README's documentation for the CLI/pipeline half of this tool.
+
 ## What this does, given an email
 
 - Reads the email — either a real `.eml` (pulling both the body and its
@@ -301,132 +315,17 @@ Agenda/Publication-Chapter distinction yet, see TODO.md):
   simply isn't restricted-flaggable under that type and you don't need to
   set anything.
 
-Then:
-- Fill **Title** (English), **Symbol**, **Agenda Item** (sessional only —
-  publications ignore this field), **Published Date**. **Before Save,
-  search `admin/content?title=<the title>&type=official_document` for a
-  same-titled sibling** — a CRP that supplements a main sessional report
-  naturally carries the exact same descriptive title as that report, and
-  real precedent (confirmed 2026-09-07: `TD/B/WP/287`, no suffix, paired
-  with `TD/B/WP(75)/CRP.2`, titled with a trailing `" [Supporting
-  materials]"`) is to disambiguate the CRP's Drupal title with that exact
-  suffix when this happens. This isn't derivable from the symbol alone —
-  check by hand every time a CRP's title looks like it might already exist
-  as another node.
-- Leave **Embargo** blank unless the user says otherwise.
-- **Taxonomy (Thematic/Sitemap/Product)**: ask the user whether this
-  document needs taxonomies at all before doing the matching work below —
-  see "Taxonomy workflow" for the full three-taxonomy process (sourcing,
-  mention-count evidence, the per-taxonomy bar, presentation format).
-  Applies to every content type, not just Publications — for a Sessional
-  Document, still run the process and still ask; don't assume blank by
-  default just because that was the old guidance (see that section's own
-  note on what's superseded). Always confirm candidates with the user
-  before applying any of the three fields — never apply unconfirmed.
-  Sitemap Taxonomy, when used, conventionally includes "UNCTAD Home" for
-  a Publication so it appears under "Latest Publications" — still subject
-  to the same confirm-first rule, not an automatic addition.
-- Do **not** change the **Language** field on the node itself — that's the
-  website's display language, not the document's language (guideline is
-  explicit about this).
-- For each language file in `manifest.languages` that has a `stagedPath`,
-  in this fixed order — English, French, Spanish, Arabic, Chinese, Russian
-  — click **Add file** (after the first), select the language, upload the
-  staged PDF (not the original), and only fill the Title field for French
-  or Spanish uploads (the English title is already on the node; other
-  languages don't get a Title field at all).
-- Fill **Associated meetings**: don't guess the meeting title from the
-  symbol's session number — **search for the real node first**:
-  `<site>/admin/content?title=<keywords>&type=meeting` (e.g.
-  `title=commodities+and+development&type=meeting`), find the matching
-  row, and open its **Edit** link to read the node id straight out of the
-  URL (`/node/<nid>/edit`). Then, in the Associated meetings field, click
-  the first autocomplete box and **don't click the suggestion** — clicking
-  it has been observed to *append* the canonical `"Label (nid)"` text
-  after whatever you'd typed instead of replacing it, leaving a malformed
-  value. Instead type the exact canonical string yourself:
-  `<Label> (<nid>)`, using the node's real title and the nid you just
-  looked up. Verify by re-reading the field before moving on.
-  **UAT and production are not kept in sync**: a Meeting that exists on
-  `unctad.org` may simply not exist yet on `uat-unctad.org` (confirmed
-  case: a just-published 17th-session Meeting existed on production the
-  same week it was still missing from UAT). A missing meeting on UAT is
-  expected, not a bug — ask the user whether to leave the field blank for
-  that run rather than inventing an id or pulling one from production.
-
-  **The field can be entirely absent from the Create form — that's not a
-  bug either.** Confirmed 2026-09-03 on production, twice, on independent
-  fresh page loads (full page-text dump showed the form jumping straight
-  from "Bibliographic type" to "Create publication", no Associated
-  meetings section anywhere): file the document anyway, don't block on
-  it. After Save, open `node/<id>/edit` — for a Sessional Document whose
-  Symbol/committee matches an existing Meeting, the Associated meetings
-  section reappears there **already correctly populated**, and the live
-  node page shows it too, labelled "Referenced:". This is a computed
-  reverse reference resolved from the Meeting side (not a value this form
-  actually writes), so it is never fillable on Create for this content
-  type — the earlier "search admin/content, type the canonical string"
-  procedure above only actually applies on the runs where the field does
-  show up on Create. If it's missing, just check the edit page after
-  Save rather than treating the gap as something to fix or ask about.
-
-### Companion Publication-type page (important publications)
-
-Some publications also have a separate **Publication** content type node
-(not to be confused with the Official Document's "Publication" Document
-Type) — a richer landing page/microsite at `unctad.org/publication/<slug>`,
-built independently by the dev team, often with heavy custom paragraph
-content (dashboards, data-viz sections, timelines). It can **pre-exist**
-the Official Document filing by weeks — confirmed case: node `52673`
-("Looking Beyond GDP") was created 17/08/2026 by a developer, a full month
-before the companion Official Document node `52790` was filed
-(14/09/2026). Do not create one yourself; only fill an existing one.
-
-After filing/updating the Official Document node, check whether a
-companion Publication node exists:
-`admin/content?title=<the title>&type=publication`. If unsure whether this
-particular publication is "important" enough to have one, ask the user
-rather than assuming — most documents don't get one.
-
-If a companion node is found, open its edit form and fill/verify these
-fields (confirmed machine names from node `52673`, 2026-09-15):
-- `field_subtitle` — same subtitle text used on the Official Document node.
-- `field_symbol` — same symbol.
-- `field_cover_image` — the cover JPG the pipeline already generates for
-  every Publication at `manifest.coverImagePath`
-  (`<parsed.base>_en_cover.jpg`, from `generateCoverImage()` in
-  `src/upload-pipeline.js`). That file is produced on every run today but
-  nothing currently uploads it anywhere — the Official Document content
-  type has no cover-image field at all, so this companion node is the only
-  place it belongs. Upload it here.
-- `field_documents` (labelled "Downloads", a paragraph-based repeating
-  field with per-row weight + entity-autocomplete) — reference the same
-  English PDF already uploaded to the Official Document node. Exact click
-  interaction not yet confirmed against a real form — screenshot each step
-  and verify the resulting reference before trusting it, same caution as
-  the Associated-meetings autocomplete elsewhere in this doc.
-
-Also present on this content type but **out of scope for auto-fill**
-unless the user asks: Thematic/Sitemap/Product Taxonomy (same three
-fields as the Official Document node — confirm whether to mirror the same
-choices rather than assuming), `field_alternative_title`,
-`field_media_collection`, `field_minisite_link`, `field_featured`, and
-others unrelated to this incident.
-
-**Never overwrite a value a human already set** — read the field's current
-value first (same rule as everywhere else in this skill) and only fill it
-if genuinely empty, or confirm with the user before changing something
-already populated.
-
-This step exists because of a real incident (2026-09-15): node `52673`
-sat with these four fields empty for a month after being built, until a
-colleague (Timothy Sullivan) noticed and filled them in by hand — initially
-reported as if something had gone missing/broken, but the actual root
-cause (confirmed via both nodes' revision histories) was simply that no
-step in this process had ever filled the companion node at all, even
-though the source data (and, for the cover image, the generated file
-itself) was sitting right there in the Official Document filing the whole
-time.
+Then fill Title, Symbol, Agenda Item, Published Date, Taxonomy, the
+per-language file uploads, and Associated meetings — including the CRP
+same-titled-sibling check, the taxonomy confirm-first rule, the fixed
+language upload order, and the Associated-meetings autocomplete gotcha
+(don't click the suggestion; UAT/production aren't in sync; the field is
+sometimes computed, not fillable, on Create). Also check for a companion
+**Publication**-type landing-page node (distinct from the Official
+Document's "Publication" Document Type) and fill its four relevant fields
+if one exists. **All of this is in
+`references/drupal-form-guide.md`** — read it before filling the form,
+don't re-derive it from memory.
 
 ## Never publish — leave that to the user
 
@@ -484,212 +383,23 @@ retrying fixed it; every subsequent AJAX call that run returned `200`.
 Treat a 403 here as "reload and retry once" before treating it as a real
 blocker.
 
-## Correcting a file on an already-filed document
+## Taxonomy, troubleshooting, and known gaps
 
-If a filed document's PDF turns out to be wrong (bad metadata, missing
-images, wrong content) and the user has given explicit one-time
-permission to fix that specific file (see the overwrite rule in Step 1),
-don't recreate the node — replace the file in place:
+Three topics are documented in their own reference files rather than
+inline here, so this file doesn't keep growing:
 
-1. Open the node's edit page, find the Files entry, and use its
-   **"Replace this file"** link — it opens a dedicated page at
-   `admin/content/files/replace/<fid>`, separate from the node edit form.
-2. That page shows the current filename/size under "Original" — **read
-   it and confirm it matches the file you actually mean to replace**
-   before uploading, especially when replacing several languages in a
-   row (fid order isn't always the same as the on-page language order).
-3. Upload the corrected file and click **Save**. The filename stays the
-   same (confirmed: uploading a differently-named local file still saves
-   under the original's filename) — Drupal replaces the bytes at the
-   same fid, so the node's own reference to it needs no further edit.
-4. **A stale-click gotcha, seen repeatedly on this exact page**: the
-   first Save click after an upload frequently doesn't register (the
-   page still shows the file selected, no "The file was replaced."
-   status message) — screenshot or re-read the page after clicking, and
-   click Save again if the status message hasn't appeared. Don't assume
-   one click was enough just because nothing errored.
-5. **Verify the live public URL afterward, with caching disabled — don't
-   trust the "The file was replaced." message alone.** Confirmed
-   2026-09-15: right after a successful save, the very first fetch of
-   `unctad.org/system/files/official-document/<filename>` still returned
-   the *old* file — Cloudflare was serving a cached copy
-   (`cf-cache-status: HIT`, the site's `Cache-Control` is `max-age=2592000`,
-   30 days). It resolved on its own within roughly 10-20 seconds (a
-   second fetch showed `age: 7`, i.e. a freshly-cached copy), consistent
-   with the save triggering a purge rather than waiting out the full
-   TTL — but that window is real. From a logged-in tab,
-   `await fetch(url, { cache: 'no-store' }).then(r => r.arrayBuffer())`
-   via `javascript_tool` and checking `.byteLength` against the size you
-   just uploaded is a fast, reliable way to confirm the public copy has
-   actually caught up before telling the user it's fixed.
-
-## unctad.org / uat-unctad.org can be slow or unresponsive
-
-Both sites are known to be intermittently slow, or to return `503
-Service Unavailable`, independent of anything this tool does (confirmed
-by the user 2026-09-02 as a recurring condition, not a one-off — hit
-directly around a Save action that day, response page 503'd even though
-the node had actually saved). Consequences for driving these forms:
-- A click (Save, Add File, etc.) that appears to do nothing is not
-  necessarily a failed click — wait a few seconds and re-check the page
-  before assuming you need to click again.
-- **Never repeat a Save click just because nothing visibly happened.**
-  Check `admin/content` (filtered by title, sorted by Updated) to see
-  whether the node was already created first. Repeating Save blind risks
-  creating duplicate nodes.
-- File-upload AJAX responses on the Files widget can take several
-  seconds longer than usual on a slow day — wait for the spinner next to
-  "Choose File" to actually clear (confirm the filename + size appear)
-  before doing anything else with that file entry.
-- If a page (or the whole site) is 503ing, wait and retry navigation a
-  couple of times before concluding something is actually broken; it's
-  usually transient.
-
-After Save: verify every uploaded language is listed on the resulting page.
-**Never click the browser back button afterward** — the guideline is
-explicit that this returns you to the just-submitted form, not the node.
-Instead return to Content and filter **Authored by** on the current user to
-confirm the entry logged correctly, per the guideline's own closing step.
-
-## Resolved: Restricted → Final lifecycle
-
-An English-only "Advance copy" gets logged as Restricted; later the full
-translated set arrives (this is literally what TD/B/73/5 was — Restricted
-on 2026-08-26 while English-only, unrestricted the same day once all 6
-languages were attached). The guideline itself never says what to do here,
-but the user gave an explicit standing rule: **when all 6 languages are
-attached, Restricted should not be used** — `reconcileRestrictedWithLanguages`
-in `src/doc-classify.js` applies this automatically (only when the *sole*
-reason for Restricted was the Advance-copy marking; a `/R.` symbol or a
-Conference Room Paper stays Restricted regardless of language completeness,
-since those are Restricted for reasons unrelated to translation status).
-Still open: whether completing the record means editing that *same* node
-(this is what was done for TD/B/73/5) or creating a fresh one and
-unpublishing/deleting the restricted original — ask if it's not obvious
-from context which the user wants.
-
-## Resolved: file-naming underscore convention
-
-Angela confirmed (2026-08-26): follow the written guideline exactly — a
-single underscore only before the language suffix, nowhere else — not her
-own past OneDrive practice (which had inconsistently added one before the
-d/r/l segment too). Implemented in `src/doc-naming.js`. Her reply also
-surfaced `TD/B/WP/...` (Working Party) needing "TD/B/" dropped entirely
-like the commissions, which wasn't previously handled — see that module's
-header comment for the full worked-example set.
-
-## Taxonomy workflow: Thematic, Sitemap, Product
-
-Standing process (2026-09-14), applies to **every content type**, not
-just Publications — supersedes the older per-content-type rules below
-(kept for their historical context, not as current instructions).
-
-**Always ask the user first whether this document needs taxonomies at
-all** before doing any of the matching work below — not every document
-warrants tagging, and this is a judgment call for the user to make, not
-something to assume from content type alone.
-
-**Sources — only suggest terms that already exist in these, never invent
-one:**
-- **Thematic** — `data/Thematic_Taxonomy_List.txt` (one term per line, no
-  ID; original source copy at `.claude/skills/upload-documents/
-  references/thematic_taxonomy_list.md`).
-- **Sitemap** — `data/Sitemap_Taxonomy.csv`, converted from the Sitemap
-  sheet of `.claude/skills/upload-documents/references/
-  Product_and_Sitemap_Taxonomies.xlsx` (the original workbook, kept for
-  provenance/re-conversion if it's ever updated).
-- **Product** — `data/Product_Taxonomy.csv`, converted from that same
-  workbook's Product sheet. **This is now the canonical Product Taxonomy
-  source for every content type, including Sessional Documents** — the
-  older `data/Sessional_Document_Product_Taxonomy.txt` (Angela's
-  hand-curated 20-term subset, 2026-08-26) is superseded by this fuller
-  sheet plus the judgment process below, not a separate track anymore.
-
-Each Sitemap/Product CSV row carries **Term ID, Term name, Hierarchy
-role, Parent names, Full hierarchy path(s)** — the hierarchy columns are
-real evidence for judging fit, not just decoration: a term's place in the
-tree often clarifies what it actually covers (e.g. a "Leaf child" term's
-`Full hierarchy path(s)` shows the exact parent category it sits under).
-**Exclude any row whose Term name contains the substring "DO NOT USE"** —
-these are hierarchy-scaffolding placeholders, never valid tags themselves;
-the exact bracket wording varies (`[DO NOT USE]`, `[PARENT DO NOT USE]`,
-`[PARENT TERM - DO NOT USE]`, `[PARENT - DO NOT USE]` all appear in the
-real workbook) — match on the substring, not one exact phrase.
-`loadProductOrSitemapTaxonomy()` in `src/taxonomy.js` does this filtering
-automatically; don't re-implement it inline.
-
-**Tooling** (`src/taxonomy.js`): `loadTaxonomyList()` /
-`suggestThematicCandidatesWithCounts(text, terms)` for Thematic;
-`loadProductOrSitemapTaxonomy(csvPath)` /
-`suggestProductOrSitemapCandidates(text, terms)` for Sitemap and Product
-— both return every term with at least one mention, plus its count
-(`countMentions()`, a whole-phrase case-insensitive match), sorted by
-count descending (Sitemap/Product) or alphabetically (Thematic, per the
-guideline's own instruction for that field). **This tooling only surfaces
-candidates with evidence — it never decides "is this a main area", that's
-still your judgment call**, reading the actual document, applying the bar
-below.
-
-**Shared "main area" rule, different bar per taxonomy.** Only suggest a
-term that reflects a recurring theme, a substantive section, or a central
-focus of the document — not a passing or single-sentence mention.
-Calibrate to document length: a handful of mentions can be significant in
-a short paper but not in a 200-page report — don't apply a fixed numeric
-threshold across documents of very different lengths.
-- **Sitemap — stricter.** It determines page placement, so suggest fewer
-  terms, only the ones you're genuinely confident about.
-- **Thematic — looser.** It's just on-site keywords, so err on the side
-  of inclusion.
-- **Product — real judgment, not best-effort pattern-matching.** Many
-  publications belong to an existing series (a flagship report series,
-  etc.) — if a Product term for that series exists, it likely fits. A
-  Product term for a parent event or series is for that event's/series'
-  own page, not automatically for every document connected to it — check
-  the actual fit, a family resemblance alone isn't enough. **If no
-  existing series or term genuinely matches, the correct answer is no
-  Product taxonomy suggestion at all** — don't force a near-fit just to
-  have something to show.
-
-**Presenting suggestions to the user:**
-- Thematic: alphabetical, `Term name [N mentions]`.
-- Sitemap and Product: `Term name (Term ID) [N mentions]` — e.g. `Africa
-  (1067) [30 mentions]` — plus a short reason it clears the bar (or, for
-  Product, a short reason nothing qualifies if that's the honest answer).
-  This gives the user the actual evidence to make their own call, not
-  just a claim to trust.
-
-**Lessons from a real review (Beyond GDP, node 52790, colleague Timothy
-Sullivan, 2026-09-15)** — his edits confirmed the mechanical
-mention-counting above is a starting point, not the final answer:
-- **Concept vs. literal name is the biggest gap, confirmed repeatedly.**
-  Several of his additions had zero literal occurrences of the term's own
-  name — e.g. Development indicators matched on the word "indicator"
-  (13×), Gender equality on a "women's pay" example section (4×), SDG 16
-  on "institution"/"trust"/"peace" (8+7+3×), Statistics and data on
-  "statistic" (9×). A literal-substring count will always miss these —
-  when reading the document yourself, actively look for the *concept*
-  each taxonomy term represents, not just its exact name string.
-- **A repeated example within one section isn't the same as a document-wide
-  theme.** Africa was in the original candidate list (30 mentions) but got
-  removed from both Thematic and Sitemap on final review — it turned out
-  to be one recurring regional example inside a single chart/section, not
-  a genuine focus of the publication as a whole. High mention count is
-  evidence to check, not evidence to apply automatically.
-- **Parent and child Sitemap terms can both genuinely apply** — Statistics
-  and Beyond GDP (its own child page) were both added; don't assume adding
-  the more specific term makes the broader parent redundant, or vice
-  versa.
-- **Watch for stray punctuation when an autocomplete value gets typed
-  in** — one applied term round-tripped as `"SDG 16 Peace, Justice and
-  Strong Institutions (1157)"` with literal, stored quote marks around it.
-  Re-read a taxonomy field's actual saved value after applying it, the
-  same way this skill already double-checks the Associated-meetings
-  autocomplete elsewhere.
-
-## Known gaps — ask, don't guess
-
-One thing isn't answered by any of the three guideline PDFs — if you hit
-it live, stop and ask the user rather than picking an answer:
-
-- **Wrong file/language caught after Save**: the guideline only covers
-  catching a wrong upload before saving.
+- **`references/taxonomy-workflow.md`** — the Thematic/Sitemap/Product
+  taxonomy process: where the term lists live, the mention-counting
+  tooling, the different "main area" bar per taxonomy, and lessons from a
+  real human review that corrected the mechanical candidates. Read this
+  before filling any of the three taxonomy fields in Step 3 — always ask
+  the user first whether the document needs taxonomies at all.
+- **`references/troubleshooting.md`** — correcting a file on an
+  already-filed document (the "Replace this file" flow, a stale-click
+  gotcha, and a real Cloudflare-caching gotcha when verifying the fix);
+  unctad.org/uat-unctad.org being intermittently slow or 503ing and what
+  that means for Save/Add-File clicks; the Restricted → Final lifecycle
+  rule (all 6 languages attached ⇒ clear Restricted, unless it's a `/R.`
+  symbol or a CRP); the file-naming underscore convention; and one known
+  gap (a wrong file/language caught only after Save) with no guideline
+  answer — ask the user rather than guessing.

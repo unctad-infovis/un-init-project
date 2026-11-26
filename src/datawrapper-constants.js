@@ -4,6 +4,20 @@
 // unctad-datawrapper-settings-procedure.md and UNCTAD-chart-guidelines.pdf
 // – aren't available in this repo or found anywhere else on this machine).
 // Verified against the live UNCTAD Datawrapper team per the brief.
+//
+// 2026-11-26: SERIES_PALETTE's default sequential order was re-aligned to
+// match the live `unctad` theme's own categorical colour list
+// (`GET /v3/themes/unctad?extend=true` -> data.colors.groups[0].colors[1]:
+// #004987, #009EDB, #C5DFEF, #FBAF17, #AEA29A, #A05FB4, #72BF44) rather than
+// the other way around – an explicit user decision, even though this means
+// the generic default order no longer matches some earlier written
+// guidance (and the theme has no slot at all for #B06E2A/#DED9D5). The
+// named colour constants below (UN_BLUE, UN_DARK_YELLOW, etc.) are literal
+// hex values, not array-index lookups into SERIES_PALETTE – this matters
+// because resolveCountryGroupColors/resolveYearPairColors below depend on
+// exact named colours (e.g. LDCs = UN_DARK_YELLOW = #B06E2A, a colour the
+// theme's own categorical list doesn't carry) that must never silently
+// shift just because the generic palette order changed.
 
 export const DEFAULT_ORGANIZATION_ID = 'unctad';
 // Confirmed by the user against a real folder URL
@@ -48,30 +62,39 @@ export function buildBaseMetadata({ print = false } = {}) {
   };
 }
 
-// Assigned to named series strictly in this order.
-export const SERIES_PALETTE = [
-  { name: 'UN blue', hex: '#009EDB' },
-  { name: 'UN yellow', hex: '#FBAF17' },
-  { name: 'UN dark blue', hex: '#004987' },
-  { name: 'UN dark yellow', hex: '#B06E2A' },
-  { name: 'purple', hex: '#A05FB4' },
-  { name: 'green', hex: '#72BF44' },
-];
+// Named colours, as literal hex values – deliberately NOT derived from
+// SERIES_PALETTE's array order (see the 2026-11-26 note above). Rules below
+// that name one of these (country groups, year pairs) keep working exactly
+// as before no matter how the generic sequential order changes.
+export const UN_BLUE = '#009EDB';
+export const UN_YELLOW = '#FBAF17';
+export const UN_DARK_BLUE = '#004987';
+export const UN_DARK_YELLOW = '#B06E2A'; // not in the theme's own categorical list – a deliberate semantic choice for LDCs, not a default-sequence pick
+export const LIGHT_BLUE = '#C5DFEF';
+export const PURPLE = '#A05FB4';
+export const GREEN = '#72BF44';
 
 export const WARM_GREY = '#AEA29A'; // named group: "Other", "Rest of world"
 export const PALE_GREY = '#DED9D5'; // background/context series, not what the title is about
 // Reserved for highlighting/annotation lines only – never assigned to a series automatically.
 export const RESERVED_RED = '#ED1847';
 
-export const MAX_COLOURED_SERIES = 6;
-export const RECOMMENDED_MAX_SERIES = 4;
+// Assigned to ordinary (non-country-group) series strictly in this order.
+// Matches the live `unctad` theme's own default categorical colour list –
+// see the 2026-11-26 note above for why this is the theme's order rather
+// than the earlier documented UN-blue-first order.
+export const SERIES_PALETTE = [
+  { name: 'UN dark blue', hex: UN_DARK_BLUE },
+  { name: 'UN blue', hex: UN_BLUE },
+  { name: 'light blue', hex: LIGHT_BLUE },
+  { name: 'UN yellow', hex: UN_YELLOW },
+  { name: 'warm grey', hex: WARM_GREY },
+  { name: 'purple', hex: PURPLE },
+  { name: 'green', hex: GREEN },
+];
 
-// Named lookups into SERIES_PALETTE for the country-group colour rule below –
-// keeps that rule's intent readable instead of repeating raw hex codes.
-export const UN_BLUE = SERIES_PALETTE[0].hex;
-export const UN_YELLOW = SERIES_PALETTE[1].hex;
-export const UN_DARK_BLUE = SERIES_PALETTE[2].hex;
-export const UN_DARK_YELLOW = SERIES_PALETTE[3].hex;
+export const MAX_COLOURED_SERIES = 7;
+export const RECOMMENDED_MAX_SERIES = 4;
 
 /**
  * Country-group colour rule – final form confirmed by the user 2026-09-04

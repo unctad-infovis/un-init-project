@@ -39,13 +39,80 @@ Both paths share `src/datawrapper-constants.js` / `src/datawrapper-
 metadata.js` / `src/create-datawrapper-pipeline.js` — real bugs found and
 fixed in one (see "Rules baked into the code" below) apply to both.
 
+3. **Checking/fixing an existing chart's settings** (`lint`/`apply-settings`
+   commands) — read-only compliance report against the 11 standard settings
+   plus text conventions, or a settings-only `PATCH` that never touches
+   content. The automated form of `references/apply-unctad-settings.md`.
+
+This skill's supporting reference material now lives under `references/`
+rather than all being inline here:
+- `references/api-gotchas.md` — the consolidated silent-failure gotchas list.
+- `references/to-web-conversion-rules.md` — bugs found and fixed in the
+  `to-web` conversion pipeline itself (country-group colours, en dashes,
+  HTML stripping, line/gridline/label defaults, and more).
+- `references/chart-type-playbook.md` — chart types `create`/`to-web` don't
+  build metadata for yet (scatter plot, tables, the beeswarm-faking technique).
+- `references/good-practices-2026-11-review.md` — conventions confirmed from a
+  live review of six real UNCTAD Datawrapper folders.
+- `references/apply-unctad-settings.md` — the settings procedure `lint`/
+  `apply-settings` automate, with the raw-`fetch()` equivalent for driving it
+  by hand.
+- `references/UNCTAD-datawrapper-ai-guide.md` — a single, portable,
+  dependency-free Markdown file with everything an AI session on a colleague's
+  machine (no access to this repo) needs to do this work from raw API calls.
+- `references/handbook/` — the human-facing visual PDF guidelines handbook
+  (`npm run build-handbook` to regenerate it).
+
+See also [docs/datawrapper-chart.md](../../../docs/datawrapper-chart.md) in
+the root README's documentation for the CLI command reference.
+
+## Every run needs these three things, regardless of how the request is phrased
+
+These apply to **every** path through this skill — `check`/`create`,
+`to-web`, `lint`/`apply-settings`, or preparing a chart directly — no
+matter how the user's request happens to be worded this time. Don't let
+the specific phrasing of a prompt be what decides whether these happen;
+they're standing requirements, not something to infer from context.
+
+1. **A confirmed destination folder, always.** Ask the user which
+   Datawrapper folder the chart belongs in if they haven't said — same as
+   the OneDrive destination confirmation in `/upload-documents`. **Never
+   silently rely on `create`/`to-web`'s `DEFAULT_FOLDER_ID` fallback
+   (`437477`) as a substitute for asking** — that folder is a confirmed,
+   legitimate default for draft mockups when there's genuinely no other
+   context (see `TODO.md`, confirmed with the user 2026-08-27), not a
+   stand-in for the question. State the resolved folder back to the user
+   (in the dry-run preview or right after creating the chart), so it's
+   visible and correctable before — or immediately after — the chart
+   exists, not discovered later.
+2. **A final human check before calling any chart done.** `check`/
+   `create`/`lint`/`to-web`'s automated findings catch mechanical issues —
+   they don't judge whether the chart type fits the question, whether the
+   title states the right finding, or whether the data tells the story it
+   should. Every run ends with handing back the editor URL
+   (`https://app.datawrapper.de/chart/<id>/visualize`) and saying plainly
+   that a human still needs to look at it before it's published — even
+   when every automated check passed clean. This is the standing
+   "a human always makes the final call" rule, not a formality to skip
+   when things look obviously fine.
+3. **Use the user's own Chrome for a real look, when one is needed.**
+   This skill's `allowed-tools` already include the `claude-in-chrome`
+   browser tools (see the frontmatter) — reach for them, not just
+   `exportChart`'s PNG render, whenever confirming how a chart actually
+   looks or behaves needs more than an API response: checking the live
+   editor's own Refine-panel state, confirming tooltip/hover text, or any
+   visual judgment a static export can't settle. `exportChart` (see
+   "Verifying a fix without a browser" below) is the fallback for when a
+   browser session genuinely isn't available in-session — not the default
+   first choice over actually looking at the real thing in the user's own
+   logged-in browser.
+
 ## Step 0 — find the source charts and the brief
 
 A request to build web charts for a webpage/report almost always comes
 with two things, both needed before touching Datawrapper:
-- **The destination folder** (a Datawrapper folder URL/id) — confirm it
-  with the user if not given explicitly, the same as OneDrive destination
-  confirmation in `/upload-documents`. Never invent one.
+- **The destination folder** — see "Every run needs these three things"
+  above; confirm it here, before matching any "Figure N" charts.
 - **The source folder** the print charts already live in, and **the
   content brief** (a `.docx`/similar) naming which "Figure N" maps to
   which suggested web chart, with its own title and description text.
@@ -300,14 +367,28 @@ on your own judgement; ask the user first if a chart seems to call for one.
   category/row labels this is a data edit (same mechanism as the LDC/SIDS
   label-opening rule: a direct CSV/`metadata.data.changes` edit, since the
   label comes from the data, not a metadata override), in prose
-  (title/description/notes) it's a plain text edit. Not automated inside
-  `to-web`/`create` yet — this is a manual check per chart, same as the
-  other data-driven-label caveats in this document.
+  (title/description/notes) it's a plain text edit.
+- **Partially automated since 2026-11-26**: `check`/`create` (CSV category
+  column), `to-web` (a source chart's `color-category.map` keys), and
+  `lint` (an existing chart's `color-category.map` keys) all flag a value
+  that matches `COMMON_INFORMAL_TO_OFFICIAL`'s fast-path list as a
+  non-blocking warning naming the official replacement. **This only
+  covers that curated fast-path list, not the full 249-economy
+  `data/UN_Country_Names.csv`** — a less common informal name, or one in
+  prose (title/description/notes) rather than a category/row value, still
+  needs the manual check above; don't treat a clean automated report as
+  proof every country name is correct.
 
 ## Rules baked into the code (don't re-derive these by hand)
 
-All in `src/datawrapper-constants.js` unless noted, confirmed against real
-UNCTAD charts 2026-09-03:
+The full list — country-group colours and label-opening, HTML/entity
+stripping, en dashes, custom-tick clearing, y-axis label placement,
+copy-time metadata quirks, line-style/dash/gridline defaults, year-pair
+colours, `color-by-column`, and bar/stacked-chart label defaults — now
+lives in `references/to-web-conversion-rules.md`, promoted out of this
+file so it doesn't keep growing. `to-web` already applies all of it; read
+that file when debugging why a converted chart looks wrong, not to
+re-derive these by hand. A couple of the most-consulted ones, verbatim:
 
 - **Country-group colours** (`classifyCountryGroup`/`resolveCountryGroupColors`):
   a fixed two-family pairing, confirmed 2026-09-04 (an earlier version of
@@ -322,113 +403,6 @@ UNCTAD charts 2026-09-03:
   countries (LDCs)"), not just the bare abbreviation, since a chart whose
   data values were renamed per the label-opening rule below no longer has
   the bare form as its series key.
-- **Country-group label opening** (`COUNTRY_GROUP_LABELS`/
-  `buildCountryGroupLabelOverrides`, `src/datawrapper-metadata.js`):
-  "LDC"/"LDCs" → "Least developed countries (LDCs)"; "SIDS" → "Small
-  island developing states (SIDS)". "Developed"/"Developing" are already
-  full words and are left alone.
-- **HTML stripping**: applies to title, intro/description, source line,
-  *and* notes — the last one only got added 2026-09-03 after finding a
-  real chart whose notes still had print-era `<span style="font-size:
-  14px;">...<span>` markup (note: the closing tag is often malformed too,
-  `stripHtml`'s regex handles that fine since it strips any `<...>`, not
-  just well-formed pairs).
-- **En dashes**: a hyphen between two years (`2010-2024`) or a
-  space-hyphen-space acting as a clause separator (`"ITU - Aggregation"`)
-  both become en dashes, in both the source line and the description.
-- **Custom ticks**: `custom-ticks`/`custom-ticks-x`/`custom-ticks-y`
-  always cleared on conversion, whether or not the source had any set.
-- **Y-axis label placement**: forced to `inside` (`visualize.yAxisLabels.
-  placement`) whenever the chart type has that field at all — this is
-  separate from the already-existing `y-grid-labels: inside` rule and was
-  missing before 2026-09-03 (found via a real chart whose value went
-  `outside`).
-- **Copy-time metadata can be richer than the source's stored metadata** —
-  Datawrapper's own `/copy` endpoint can regenerate a `color-category.map`
-  with more keys than the source chart's `GET` response shows (confirmed:
-  a copied `multiple-columns` chart had a bare `"Developed"` key its print
-  source didn't have alongside `"Developed economies"`). `to-web` re-fetches
-  the *new copy's own* map after `copyChart` and resolves colours against
-  that, not the source's map, specifically to avoid silently dropping keys
-  the copy picked up on its own.
-- **A d3-lines line's own custom title needs stripping too, not just the
-  country-group ones** — `buildLineStyles` never set a `title` at all
-  before 2026-09-03, so a converted chart's non-country-group lines (e.g.
-  "Developed"/"Developing") kept their print-era HTML forever until this
-  was added.
-- **`buildLineStyles`'s series list must include `visualize.lines`' own
-  keys, not just `color-category.map`** — confirmed 2026-09-14 on a real
-  single-series chart (`QeVNv`/`M1cHm`, "Real income per capita"): a
-  genuinely single-series d3-lines chart has no reason to ever have a
-  populated `color-category.map` (nothing to assign distinct colours
-  between), so `existingSeriesNames` came back empty and the whole
-  line-width/legend/dash overlay silently never ran, leaving the print
-  chart's own thin dashed line untouched on the "converted" web copy.
-  Same root shape as the computed-columns gap below – three different
-  places a real series name can live (`color-category.map` keys,
-  `describe['computed-columns']` names, `visualize.lines`' own keys), and
-  a correct conversion needs the union of all three, not any single one.
-- **`buildLineStyles` must explicitly clear `dash`, not just leave it
-  unset** — found alongside the fix above: web line charts are always
-  solid (colour is the only thing that should distinguish series), but a
-  print chart's own dash pattern (e.g. `dash: 'style1'`) silently carried
-  over untouched since this function never touched the field at all.
-  Confirmed by testing that `dash: null` (not omitting the key, and not
-  `false`/`'none'`) is what actually clears an existing dash via `PATCH
-  /v3/charts/{id}` – omitting the key leaves whatever the source had,
-  since `visualize` deep-merges. Retroactively fixed on `FiT2J` (5 of its
-  8 lines were still dashed from before this fix existed).
-- **A computed column (`describe['computed-columns']`, e.g. a formula
-  series like "All cross-regional" derived from other columns at render
-  time) is a real line but was never a key in `color-category.map`
-  either** — confirmed 2026-09-14 on a real chart (`FiT2J`): one such line
-  was silently skipped by the same `existingSeriesNames` logic, leaving it
-  without `colorKey`/`directLabel` set at all so it fell back to
-  Datawrapper's own default (next-to-line label) instead of the shared
-  legend every other line got. Always include computed-column names
-  alongside the map's own keys and `visualize.lines`' own keys (see above).
-- **`categoryLabels.enabled` must be forced explicitly, not merely spread
-  from the source** — confirmed 2026-09-14 on the same chart (`FiT2J`): a
-  bar-chart-family source chart's own `categoryLabels` object had already
-  picked up `enabled: true` at some point in its own history, so spreading
-  it looked like the "stacked-chart series labels default to a colour-key
-  legend" rule below worked correctly – but a d3-lines source with no
-  `categoryLabels` object at all (the common case) spread to `{}` and left
-  the legend never actually switched on, even though `show-color-key`/
-  `stack-color-legend` were both set "correctly". Fixed by setting
-  `enabled: true` explicitly in the overlay rather than trusting the
-  source to already have it.
-- **Default gridlines** — confirmed 2026-09-14, same chart: a genuinely
-  print-only d3-lines chart (never run through `create`) can carry forward
-  both axes' gridlines switched off, unnoticed. `to-web` now sets `y-grid:
-  'on'` whenever the chart type has that field at all (matching the one
-  working precedent found – a converted bar chart whose print source
-  already had `y-grid: 'on', x-grid: 'off'`) – `x-grid` is deliberately
-  left alone.
-- **HTML entity decoding, not just tag stripping** — `stripHtml` only
-  stripped `<tag>` patterns until 2026-09-04, when a real chart's title
-  came through with a literal trailing `&nbsp;` (not a tag, so untouched).
-  Now also decodes the handful of entities actually seen in print-chart
-  text (`&nbsp;`, `&amp;`, `&lt;`, `&gt;`, `&quot;`, `&#39;`) — deliberately
-  not a general entity decoder, since anything more exotic is worth seeing
-  raw rather than silently guessing at.
-- **Year-pair colours** (`resolveYearPairColors`): a second, narrower
-  colour rule alongside the country-group one — confirmed 2026-09-04 on a
-  real two-year comparison chart: when a chart's colour-category map is
-  *exactly* two bare four-digit years (e.g. "2024"/"2025"), the more
-  recent one is UN blue and the earlier one is UN yellow. Scoped tight on
-  purpose so it can never misfire on an unrelated two-series chart. The
-  country-group and year-pair rules are mutually exclusive by construction
-  (year-pair only runs when the country-group rule found nothing to
-  change) — a chart genuinely needs at most one of them.
-  **A "most relevant vs comparison" pairing that isn't a plain year pair
-  (e.g. a focal group like "G20 economies" vs a residual "Other
-  economies") is deliberately not auto-detected** — which side is "most
-  relevant" is a judgment call about that specific chart's content, not
-  something safely inferable from series names alone. Ask the user, then
-  apply UN blue to the relevant side and UN yellow to the comparison side
-  by hand (same mechanism as the country-group rule: `color-category.map`,
-  see the `color-by-column` gotcha right below).
 - **A colour-category map has no visible effect unless `color-by-column`
   is also `true`** — confirmed 2026-09-04: patching `color-category.map`
   alone left the chart's colours completely unchanged, silently. Only
@@ -437,50 +411,12 @@ UNCTAD charts 2026-09-03:
   automatically whenever it writes a real colour override, but if you
   ever patch colours by hand outside the pipeline, set this too or nothing
   will change on screen.
-- **Bar-chart-family defaults** — confirmed 2026-09-04 on a real grouped-
-  bar chart, each only applied when the source chart type actually has the
-  field (so a no-op on `d3-lines` etc.): never auto-sort bars by value
-  (`sort-bars: false`) — row order is meaningful, not something to
-  reshuffle; value labels sit to the right of their bar
-  (`value-label-alignment`/`label-alignment: 'right'`).
-  **Caveat found 2026-09-09 on `HipZo`** (a 100%-stacked horizontal bar
-  with row *categories* on the y-axis, e.g. "Trade share in volume"/
-  "Trade share in value" as the rows, not a category axis of individual
-  bars): `label-alignment` there controls the row-category labels'
-  left/right position, not the value labels shown inside each stacked
-  segment — confirmed by toggling the Refine panel's "Alignment" control
-  live and watching what actually moved. Field presence alone
-  (`!== undefined`) isn't enough to trust this rule blindly on every bar
-  chart shape — check what the field visibly does on that specific chart
-  before applying `'right'`, and leave it alone if it's clearly the wrong
-  thing (a row/category label, not a value label).
-- **Stacked-chart series labels default to a colour-key legend, never
-  "direct" connector-line labels** — confirmed 2026-09-04 on a real
-  stacked-column chart whose series names ("G20 economies"/"Other
-  economies") were shown as text floating next to each segment with a
-  leader line instead of a shared legend. The controlling field is
-  `visualize.categoryLabels.position` (`'direct'` → `'color-key'`) alone,
-  plus `show-color-key: true` alongside it — gated on `stack-color-legend`
-  existing on the source at all, since that field only exists on chart
-  types with this direct-vs-legend choice in the first place (this is
-  *not* the same field as the `d3-bars-grouped` "Alignment: Left/Right"
-  control, which is a plain `label-alignment` with no direct/legend
-  distinction — don't conflate the two when a future chart type's Refine
-  panel looks similar but the underlying field names differ).
-- **`stack-color-legend` itself ("Stack labels" in the Refine panel) is a
-  separate, cosmetic toggle — not the direct-vs-legend switch above, and
-  should be left `false` in most cases** — corrected 2026-09-08, found
-  live-testing a real chart (`KRN0n`): an earlier version of this doc
-  (and the pipeline) wrongly assumed `stack-color-legend: true` was
-  needed *together with* `categoryLabels.position` to get a legend at
-  all. Toggling "Stack labels" alone (with `categoryLabels.position`
-  held at `'color-key'` throughout) only changed whether the resulting
-  colour-key legend renders as a stacked one-per-line list or a
-  flowing/wrapped inline list — confirmed by diffing the chart's full
-  metadata before/after the click, isolating `stack-color-legend` as the
-  only field that changed. Per the user: "the stack labels should NOT be
-  enabled in most cases" — `to-web` now sets it `false`, the opposite of
-  the old (wrong) default.
+
+See `references/to-web-conversion-rules.md` for the rest: country-group
+label opening, HTML/entity stripping, en dashes, custom-tick clearing,
+y-axis label placement, copy-time metadata quirks, line-style/dash/
+gridline defaults, year-pair colours, and bar/stacked-chart label
+defaults.
 
 ## Publishing (only when explicitly asked)
 
@@ -600,146 +536,17 @@ any other folder.
   when in doubt (as `to-web`'s overlay logic does) rather than relying on
   this for anything load-bearing.
 
-## Building a `d3-scatter-plot` chart (no CLI support yet)
+## Building chart types `create`/`to-web` don't support yet
 
-First built 2026-09-09, a real chart (`fqrFs`, PCI input-missing-rate vs.
-World Bank SPI index, coloured by country group, 184 points). No print
-source chart existed for this one and the `create` CLI doesn't support
-this chart type yet (see `TODO.md`) — followed the brief's own suggested
-approach: `copyChart()` from an existing, already-UNCTAD-styled
-`d3-scatter-plot` chart (any real one already on the team's Datawrapper,
-e.g. `ISjSH`) as a template, then `uploadData()` with the new CSV and
-patch just what differs. Real findings from that first build, all still
-manual (nothing here is wired into `to-web`/`create` yet):
-
-- **CSV column headers become the axis titles directly** — same "the
-  label comes from the data, not a metadata override" rule as the
-  `multiple-columns` bar-chart caveat above, but here it's the norm, not
-  a caveat: give the CSV real header text (`"SPI Index"`, `"PCI Input
-  Missing Rate (%)"`), not a code-style column name (`spi_index`) — the
-  chart shows the header verbatim as its axis title.
-- **The tooltip template's variable names don't just lowercase-and-
-  underscore the header** — confirmed by trial and error: `"SPI Index"`
-  → `spi_index` (as expected), but `"PCI Input Missing Rate (%)"` →
-  `pci_input_missing_rate` (keeps "input", drops "(%)" and "missing
-  rate"'s own words differently than a naive guess predicts). **Don't
-  guess the tooltip variable name from the header text** — hover a real
-  point in the editor first; a wrong variable name fails silently in the
-  saved metadata and only shows as "Woops! There's a javascript error in
-  your template: undefined variable: ..." live on hover, not at save time.
-- **Copying from a template chart carries over that chart's own
-  chart-specific settings that don't apply to the new data** — confirmed
-  on `ISjSH` → `fqrFs`: the template's `y-axis.range` (`[-18, 18]`, a
-  jittered scatter spread specific to *that* chart's own data), its
-  `x-format`/`y-format` (`0%` on an axis that isn't a percentage in the
-  new chart), `text-annotations`/`range-annotations` (threshold lines
-  specific to the template's own story), and `auto-labels: true` (which
-  auto-picked outlier country labels irrelevant to the new chart) all
-  came across and had to be reset by hand. Always visually check both
-  axes' range/format and clear any inherited annotations before treating
-  a copied scatter plot as ready — this template-copy approach carries
-  more chart-specific baggage across than `to-web`'s own copy step does.
-- **Axis number format should match what the underlying value actually
-  is** — corrected by the user after the first pass: a percentage-valued
-  column (`"PCI Input Missing Rate (%)"`) needs `y-format: '0%'`, not a
-  bare `'0'` — a plain index score (`"SPI Index"`) correctly stays `'0'`.
-  Don't default every numeric axis to the same format; check what the
-  column actually represents.
-- **A regression line's equation/R² doesn't render automatically** —
-  Datawrapper's own `regression: true` / `regression-method: 'linear'`
-  draws the line but shows no equation text. If the source figure had one
-  (a real print chart's own headline stat), compute it independently from
-  the same CSV being uploaded (simple OLS: slope, intercept, R²) rather
-  than copying the print figure's printed numbers uncross-checked, then
-  add it as a `text-annotations` entry — computing it independently and
-  getting the same numbers as the print figure is itself a good sanity
-  check that the extracted data matches.
-- **The user's own follow-up edits after a first pass** (`fqrFs`, layout
-  tab): tightened `x-axis.range` to the real data's span with a little
-  padding (`[20, 100]` instead of `[0, 100]`, since the real minimum was
-  ~27.5) rather than leaving the full 0–100 default; reduced marker size
-  (`fixed-size: 16 → 8`) for a dense scatter (184 points) to cut
-  overplotting; turned on full gridlines both axes (`x-grid-lines`/
-  `y-grid-lines: 'on'`); slightly taller plot (`plotHeightFixed: 280 →
-  300`). Only one real example so far — worth checking for on a future
-  dense scatter plot, not yet confident enough to bake in as an automatic
-  rule at a specific point count.
-
-## Building a `tables` chart (no CLI support yet)
-
-First built 2026-09-14, three real charts for a Nigeria poverty report
-(`mHmuy`, `yCMU7`, `O9FXa` – redoing three print tables as Datawrapper
-"Table" visualizations, titles/descriptions from a content-brief `.odt`
-rather than a `.docx`). No print source chart existed for any of them (the
-originals were plain print-layout tables, not Datawrapper charts at all),
-and the `create` CLI doesn't support this type yet – built directly via
-`createChart`/`uploadData`/`patchMetadata`, using `buildBaseMetadata` for
-the standard web overlay (theme/language/publish blocks/sharing) plus a
-manual `visualize` overlay for table-specific display (`striped: true`,
-`sortTable: false`, `searchable: false`, `pagination: {enabled: false}`
-for a small static table, `header.style.bold: true` with a `2px` bottom
-border – matched to an existing well-styled real chart in the account,
-`6bCrU`, found by filtering the account's charts for `type: 'tables'`).
-
-- **A `tables` chart's "auto" number format silently rounds decimals away
-  on some columns but not others, with no error or warning** – confirmed
-  on two of the three real charts above: `27.2` rendered as `27`, `112.47`
-  as `112`, `7.5` as `8`. The third chart's columns (all consistent
-  2-decimal values, e.g. `1.59`, `-3.47`) rendered correctly with `auto`
-  and needed no fix – the rounding isn't consistent-precision-triggered
-  (one of the broken columns, Table 10's Gini index, was *itself*
-  consistently 1-decimal throughout and still got rounded to integers),
-  so don't assume a column is safe just because its own values share a
-  decimal count. **Always set an explicit format** rather than trusting
-  `auto` on a `tables` chart with any non-integer data: `visualize.columns`
-  keyed by the exact CSV column header text, `{ type: 'number', format:
-  '0.[00]' }` per column (the `[00]` square brackets mean "up to 2 decimal
-  places, trailing zeros trimmed" – so `65` still renders as `65`, not
-  `65.00`, while `112.47` renders exactly, not rounded). Confirmed only
-  after an `exportChart` PNG re-render – the raw metadata/API response
-  gives no indication anything is wrong, since `auto` is a legitimate,
-  silently-accepted value.
-- **`exportChart`'s default render height cuts off a `tables` chart with
-  more than a handful of rows** – unlike an axis-based chart type, a table
-  has no `plotHeightFixed` to size the render by default. Pass an explicit
-  `height` query param (e.g. `900` for a 5-row table, scale up for more
-  rows) directly in the export request – `exportChart` in
-  `src/datawrapper-api.js` doesn't expose this param yet, so call the API
-  directly with an extra `height` entry in the `URLSearchParams` until
-  that's added. Purely a verification-render issue – the live chart itself
-  isn't cropped, only the PNG snapshot used to check it without a browser.
-- **A print table's own "Source:" line sometimes bundles a citation and a
-  methodology note together** (e.g. "Computed based on data from
-  UNCTADstat, and World Bank PIP database. For each variable, the first
-  and last year for which data is available, in the phase under
-  consideration, was used in the computation of the annualized growth
-  rates.") – split by hand into `describe['source-name']` (the citation,
-  run through the same "UN Trade and Development (UNCTAD) based on ..."
-  convention as every other chart type, `normalizeSourceLine` from
-  `src/datawrapper-metadata.js`) and `annotate.notes` (the methodology
-  explanation), rather than jamming the whole sentence into one over-long
-  source line. `normalizeSourceLine` assumes the remainder already reads
-  naturally after "UN Trade and Development (UNCTAD)" – a source starting
-  with its own verb already ("Computed based on...") needs the split done
-  manually first, since running the whole sentence through the function
-  verbatim produces an awkward doubled "based on ... based on ...".
-- **A brief's suggested title/description for a table can be narrower in
-  scope than the table's actual columns** – confirmed on Table 10
-  ("Selected inequality indicators for Nigeria", 3 columns: Gini index,
-  income share of the highest 10%, income share of the lowest 20%): the
-  brief's own suggested figure text only described "Gini index, Nigeria,
-  1985–2022" – written for a simpler Gini-only line chart the brief
-  separately flagged as a "Suggested graph" alternative to the full table.
-  Used the brief's title verbatim (it's still accurate as an umbrella
-  headline) but flagged the scope mismatch to the user rather than either
-  dropping two real columns to match the narrower description, or silently
-  expanding the brief's own wording to cover them.
-- Datawrapper's per-row highlight styling on the original print table (a
-  distinct background colour on a "Remarks" row) has no equivalent applied
-  here – the converted table uses only the standard alternating stripe,
-  not a special one-off row colour. Not automated; worth a manual
-  `visualize.rows` override (per-row style, distinct from `visualize.
-  columns`) if it matters for a specific table, not attempted this time.
+`d3-scatter-plot`, `tables`, and a documented beeswarm-faking technique (for when
+Datawrapper has no chart type at all for the shape needed) are now in
+`references/chart-type-playbook.md`, promoted out of this file so it doesn't keep
+growing — read that file before building any of these by hand. `references/api-gotchas.md`
+has the consolidated list of silent-failure gotchas (the `<`/`>` category bug, the `0%`
+format, `color-by-column`, metadata merge behaviour) referenced from several places in
+this file. `references/good-practices-2026-11-review.md` has empirical conventions
+confirmed from a live review of six real UNCTAD Datawrapper folders (value-label
+visibility, sort order, the benchmark-annotation pattern, and more).
 
 ## Open, not automated
 

@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 
-import { inspectCsv, detectMissingHeaderRow } from './csv-inspect.js';
+import { inspectCsv, detectMissingHeaderRow, detectAngleBracketCategories, readCsv } from './csv-inspect.js';
+import { COMMON_INFORMAL_TO_OFFICIAL } from './datawrapper-country-names.js';
 import { validateChartText } from './datawrapper-validate.js';
 import {
   buildChartMetadata, buildLineStyles, stripHtml, normalizeSourceLine,
@@ -60,6 +61,11 @@ export async function runCreatePipeline({
   const missingHeaderProblem = detectMissingHeaderRow(csvReport.header);
   if (missingHeaderProblem) {
     throw new CreateChartError(missingHeaderProblem);
+  }
+  const { rows } = readCsv(csvPath);
+  const angleBracketProblem = detectAngleBracketCategories(csvReport.header, rows);
+  if (angleBracketProblem) {
+    throw new CreateChartError(angleBracketProblem);
   }
   const seriesNames = csvReport.header.slice(1);
   if (seriesNames.length === 0) {
@@ -127,6 +133,10 @@ export async function runConvertToWebPipeline({ sourceChartId, folderId, dryRun 
   const source = await getChart({ token, chartId: sourceChartId });
 
   const warnings = [];
+  // error-severity findings collected inline (not just `warnings`, which
+  // the CLI always prints as "warning(s)") – see the angle-bracket check
+  // below for why this one needs to stand out as "needs fixing".
+  const errorFindings = [];
   if (source.theme === THEME_WEB) {
     warnings.push(`Source chart is already using the "${THEME_WEB}" (web) theme, not "${THEME_PRINT}" – converting it again is harmless but may not be necessary.`);
   }
@@ -199,6 +209,26 @@ export async function runConvertToWebPipeline({ sourceChartId, folderId, dryRun 
   // relevant to the same chart.
   const sourceColorMap = source.metadata?.visualize?.['color-category']?.map;
   if (sourceColorMap && Object.keys(sourceColorMap).length > 0) {
+    // A category value containing "<"/">" (e.g. a print chart's own
+    // "Limited reported trade (<$100k)") silently breaks Datawrapper's
+    // colour matching – the category vanishes from the legend and every
+    // row in it falls back to the default series colour, no error anywhere.
+    // Carrying this straight through from the source chart's own stored
+    // map would reproduce the bug in the new web copy, so flag it as an
+    // error (needs fixing before publishing), not just a style warning.
+    for (const name of Object.keys(sourceColorMap)) {
+      if (name.includes('<') || name.includes('>')) {
+        errorFindings.push({ severity: 'error', field: 'color-category', message: `Category "${name}" contains "<" or ">" – Datawrapper silently fails to colour-match this and it will vanish from the legend. Move the detail into the notes and rename the category (and its data rows) before publishing.` });
+      }
+      // Individual country series named informally (e.g. "Turkey" instead
+      // of "Türkiye") – a style convention, not a render break, so warning
+      // severity. Same curated COMMON_INFORMAL_TO_OFFICIAL list as the CSV
+      // check in csv-inspect.js; doesn't touch country-GROUP names
+      // ("Developed"/"LDCs"/etc.), which are handled separately above.
+      if (Object.hasOwn(COMMON_INFORMAL_TO_OFFICIAL, name)) {
+        errorFindings.push({ severity: 'warning', field: 'color-category', message: `Category "${name}" is an informal country name – the official UNCTAD name is "${COMMON_INFORMAL_TO_OFFICIAL[name]}". This needs a data edit (the category/row value), not just a metadata rename – see SKILL.md's "Country names" section.` });
+      }
+    }
     let correctedColors = resolveCountryGroupColors(sourceColorMap);
     if (JSON.stringify(correctedColors) === JSON.stringify(sourceColorMap)) {
       correctedColors = resolveYearPairColors(sourceColorMap);
@@ -390,12 +420,15 @@ export async function runConvertToWebPipeline({ sourceChartId, folderId, dryRun 
     overlayMetadata.annotate = { notes: finalNotes };
   }
 
-  const textFindings = validateChartText({
-    title: finalTitle === 'TITLE NEEDED' ? undefined : finalTitle,
-    description: finalIntro,
-    source: finalSourceLine,
-    notes: finalNotes,
-  });
+  const textFindings = [
+    ...errorFindings,
+    ...validateChartText({
+      title: finalTitle === 'TITLE NEEDED' ? undefined : finalTitle,
+      description: finalIntro,
+      source: finalSourceLine,
+      notes: finalNotes,
+    }),
+  ];
 
   const resolvedFolderId = folderId || DEFAULT_FOLDER_ID;
   const result = {
