@@ -326,11 +326,51 @@ workflow manually:
   This does **not** apply to a genuine citation parenthetical like
   `"UN Trade and Development (UNCTAD)"` or a year `"(2025)"` in the source
   line — only to unit/measure shorthand written as a bracketed aside.
-- **Thick bars for a chart with very few bars/rows** (roughly 2–3) —
-  `visualize.thick: true` reads better than the default thin bars when
-  there's little else on the plot to fill the space; a chart with many
-  rows/categories should stay thin. Judgment call, not a hard threshold —
-  check what the chart actually looks like with few rows before deciding.
+- **Dollar amounts in prose: spell out "dollars", never "US$" or "US
+  dollars"** — confirmed with the user 2026-11-27: there's room in a
+  description/subtitle to spell the unit out (`"US$ million"` →
+  `"millions of dollars"`), and UN convention already assumes a bare
+  dollar figure is in US dollars, so spelling out "US" too is redundant.
+  **Only name the currency explicitly ("US dollars") when it's genuinely
+  ambiguous** — e.g. the chart also shows another currency, or the figure
+  could otherwise be misread as a different one. This is the same
+  bracketed-unit-abbreviation principle as the bullet above, just for the
+  one unit common enough to call out by name.
+- **Never double up on highlighting the same thing** — confirmed
+  2026-11-27 on a real chart: a bar already singled out by colour (e.g.
+  one country's bar in UN yellow against a field of UN blue, with its
+  category label already bold) doesn't also need its *value label* text
+  coloured to match (`visualize['value-label-colors']`) — that's a third
+  signal pointing at the same bar, which reads as visual noise rather
+  than extra information. Pick one dominant highlight mechanism (colour +
+  bold label is usually enough) and leave the value labels neutral.
+  Applies generally, not just to country-group highlighting.
+- **Thick bars for a chart with few-to-moderate bars/rows** — broadened
+  2026-11-27 (previously "roughly 2–3" only): confirmed against a real
+  10-row single-series bar chart that a bar count up to roughly a dozen
+  still reads better thick when there isn't much else filling the plot.
+  `visualize.thick: true`; a chart with many more rows/categories, or
+  several series per category, should stay thin. Still a judgment call,
+  not a hard threshold — check what the chart actually looks like before
+  deciding, same as before.
+- **Value labels inside the bar/column, not floating above it** — for a
+  column-type chart, a label placed *above* the column makes the column
+  read as taller than its actual value (the label's own height visually
+  extends it). Prefer the inside placement (`visualize.valueLabels.
+  placement: 'inside'`, field name varies slightly by chart type) unless
+  a specific bar is too short for the label to fit legibly inside it.
+- **Separating lines between bars/groups can help readability, but
+  aren't a default** — worth considering on a grouped/multi-series bar
+  chart with many categories, where a line can help the eye track which
+  bars belong to which group; often unnecessary on a single-series chart
+  or one with few categories. Judgment call per chart, not a rule to
+  apply automatically.
+- **Check country names even when nothing else about the chart changed**
+  — see "Country names: use the official UNCTAD name" below. Confirmed
+  2026-11-27: this is easy to skip when a chart otherwise looks finished
+  (colours fixed, text fixed) — it's a separate check, not something the
+  other fixes surface on their own, and the user had to ask for it
+  directly before it got done.
 
 ## Country names: use the official UNCTAD name
 

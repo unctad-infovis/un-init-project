@@ -19,9 +19,18 @@ own.
   first).
 - **`thick: true`** on charts with few bars/groups (confirmed: a 2-category COMESA
   licensing chart, a 2-series portal-coverage chart), `thick: false` on charts with
-  more series or categories – matches the existing "thick bars for 2–3 rows" guidance
-  in `SKILL.md`'s "Preparing a chart directly" checklist, now confirmed against real
-  production examples rather than just stated as a rule.
+  more series or categories – matches the existing "thick bars for few-to-moderate
+  rows" guidance in `SKILL.md`'s "Preparing a chart directly" checklist. That
+  guidance's own threshold was broadened 2026-11-27 after a real 10-row single-series
+  bar chart also read better thick – not just the 2–3-row case these folder examples
+  showed.
+- **Value labels placed inside the bar/column, not floating above it** – confirmed
+  2026-11-27: a label sitting above a column makes the column look taller than its
+  real value, since the label's own height visually extends it. Set the chart type's
+  value-label placement field to `'inside'` by default for column-type charts.
+- **Separating lines between bars/groups** – worth considering on a multi-series bar
+  chart with many categories to help the eye track which bars group together; not a
+  default, and often unnecessary on a single-series chart or one with few categories.
 
 ## The benchmark-line annotation pattern
 

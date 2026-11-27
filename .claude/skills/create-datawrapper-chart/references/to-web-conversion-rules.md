@@ -128,6 +128,30 @@ UNCTAD charts 2026-09-03:
   apply UN blue to the relevant side and UN yellow to the comparison side
   by hand (same mechanism as the country-group rule: `color-category.map`,
   see the `color-by-column` gotcha right below).
+  **A narrower, different-shaped case: one specific focus entity vs its
+  own broader aggregate** (e.g. a single country vs the region it
+  belongs to, confirmed 2026-11-27 on a real "Uganda vs Africa" exports
+  chart) — this is a part-vs-whole relationship, not two peer groups
+  being compared, and the colour assignment runs the other way round
+  from the G20-style case above: the broader aggregate/baseline gets UN
+  blue (the "normal backdrop" colour), and the specific focus entity
+  gets UN yellow (a highlight), especially when that same entity is
+  already shown highlighted in yellow elsewhere in the same project —
+  confirmed real case: the report's other chart already singled out
+  Uganda in yellow, so keeping Uganda yellow here too kept the two
+  charts visually consistent. Still a judgment call to confirm with the
+  user, not an auto-detected rule — the test is "is one side a specific
+  thing the report is about, and the other side the wider group it sits
+  inside", not just "which two series does this chart have".
+  **Never colour a two-category chart with two shades from the same
+  colour family** (e.g. UN dark blue *and* UN blue together, with no
+  yellow at all) — confirmed 2026-11-27: two blues read as barely
+  distinguishable at a glance, even when their hex values are clearly
+  different in the metadata. A genuine two-category comparison should
+  always end up with one blue-family colour and one yellow-family
+  colour (UN blue/UN yellow being the default pair; UN dark blue/UN dark
+  yellow only when the country-group rule specifically calls for SIDS/
+  LDCs), never two from the same family.
 - **A colour-category map has no visible effect unless `color-by-column`
   is also `true`** — confirmed 2026-09-04: patching `color-category.map`
   alone left the chart's colours completely unchanged, silently. Only

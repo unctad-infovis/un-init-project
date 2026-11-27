@@ -152,6 +152,27 @@ developing states (SIDS)"`.
 A **year-pair** special case: if a colour map has *exactly two* keys and both are bare
 4-digit years, the later year gets UN blue and the earlier gets UN yellow.
 
+A **focus-entity-vs-aggregate** special case (confirmed 2026-11-27, e.g. a single
+country vs the region it belongs to): the broader aggregate/baseline gets UN blue, the
+specific focus entity gets UN yellow — especially if that entity is already shown
+highlighted in yellow elsewhere in the same project. This is the opposite assignment
+from a "focal peer-group vs residual" comparison (e.g. "G20 economies" vs "Other
+economies", where the focal group gets blue) — the difference is part-vs-whole vs
+two-peer-groups; a human should confirm which shape a given chart actually is.
+**Never colour a two-category chart with two shades from the same family** (e.g. UN
+dark blue + UN blue, no yellow at all) — they read as barely distinguishable even
+though the hex values differ; a real two-category chart should always end up one
+blue-family colour and one yellow-family colour.
+
+Don't stack more than one highlight mechanism on the same series for the same reason —
+e.g. a bar already coloured + bold-labelled to call it out doesn't also need its value
+label text coloured to match; that's a third, redundant signal.
+
+In prose (title/description/notes), spell dollar amounts out as "dollars", never "US$"
+or "US dollars" — UN convention already assumes a bare dollar figure is in US dollars.
+Only name the currency explicitly when genuinely ambiguous (e.g. another currency is
+also shown).
+
 `color-category.map` alone isn't enough to show distinct colours — `metadata.visualize['color-by-column']`
 must also be set to `true`, or the chart silently stays monochrome.
 
@@ -201,12 +222,18 @@ charts. Axis tick labels on automatic — annotate instead of hand-setting them.
 donuts: five categories at most, largest slice first from twelve o'clock clockwise,
 "Other" last.
 
-**Two conventions confirmed from real published UNCTAD charts, not written down
+**Conventions confirmed from real published UNCTAD charts, not written down
 elsewhere**: `visualize['value-label-visibility']: 'always'` (values shown directly on
 bars) and `visualize['sort-by']: 'first'` are the de facto defaults on nearly every
 real bar/column chart. A group/peer benchmark value is usually shown as a dashed
 `range-annotations` vertical line plus a matching `text-annotations` label, not as an
-extra bar.
+extra bar. For a column-type chart, place value labels *inside* the column
+(`'inside'` placement) rather than floating above it — a label above the column makes
+it visually read as taller than its real value. `thick: true` reads better than the
+default thin bars on a chart with few-to-moderate bars (confirmed up to roughly a
+dozen) and little else filling the plot; stay thin with more rows/series. Separating
+lines between bars/groups can help a multi-series chart with many categories, but
+aren't a default.
 
 ## Workflow
 

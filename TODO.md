@@ -1063,6 +1063,52 @@ run for real and verified against `GET /v3/charts/{id}`.
       that `437477` is a fine permanent default for when it's genuinely
       needed.
 
+- [x] **New chart-design conventions from real Uganda SME report charts,
+      2026-11-27** – end-to-end test of the `to-web` pipeline on a real
+      brief: the brief (`Uganda publication_revisedst_clean.docx`) named
+      which Figures needed web charts, and the two actual source chart
+      ids were found embedded as `datawrapper.de/_/<id>` links inside the
+      docx's own Word comments (not in the visible text) – a new, useful
+      pattern: when a brief's own "Figure N" prose doesn't give a chart id
+      directly, check the document's comments for one before falling back
+      to searching the source folder by title match. Both charts
+      (`lLZmM`/Figure 13, `8QaNl`/Figure 14) converted, title/description
+      patched from the brief, published, and logged to Drupal. User
+      feedback on the result produced several new documented conventions:
+      (1) a two-category chart where one side is a specific focus entity
+      (e.g. a single country) and the other its own broader aggregate
+      (e.g. the region it sits in) gets UN blue for the aggregate/baseline
+      and UN yellow for the focus entity – the reverse assignment from the
+      existing "focal peer-group vs residual" rule (e.g. G20 vs Other),
+      since this is a part-vs-whole relationship, not two peer groups –
+      and should stay consistent with how that same entity is already
+      coloured elsewhere in the same project; (2) never colour a
+      two-category chart with two shades of the same family (the original
+      had UN dark blue + UN blue, easy to mistake for one colour); (3)
+      spell dollar amounts out as "dollars" in prose, never "US$"/"US
+      dollars" (UN convention already assumes US dollars by default,
+      only name the currency when genuinely ambiguous); (4) don't stack
+      multiple highlight mechanisms on one series – a bar already
+      coloured + bold-labelled doesn't also need its value-label text
+      coloured to match; (5) the existing "thick bars for very few
+      bars/rows (2–3)" guidance was too narrow – confirmed a real 10-row
+      chart also reads better thick; (6) column-type value labels default
+      to `'inside'` placement, not floating above the column (an
+      above-column label visually inflates the column's apparent height);
+      (7) separating lines between bars/groups are a situational aid for
+      multi-series charts with many categories, not a default. All seven
+      written into `SKILL.md`'s "Preparing a chart directly" checklist,
+      `references/to-web-conversion-rules.md` (the colour rules, next to
+      the existing year-pair/G20-vs-Other rule), `references/good-
+      practices-2026-11-review.md`, and the portable
+      `references/UNCTAD-datawrapper-ai-guide.md`. Also reconfirmed in
+      this run: the already-documented country-names check is easy to
+      forget when a chart otherwise looks finished – the user had to ask
+      directly ("did you check the country names?") before it got done
+      (it turned out all ten country names in the Figure 13 chart were
+      already correct) – added a line to the checklist flagging this as a
+      separate step, not something the other fixes surface on their own.
+
 ### Needs verification against a real API call
 
 - [x] **Metadata shape for `d3-lines`** – verified 2026-08-27. Real
